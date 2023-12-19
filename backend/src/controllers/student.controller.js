@@ -3,6 +3,27 @@ import {ApiError} from "../utils/apiError.js"
 import { ApiResponse } from "../utils/apiResponse.js"
 import { Student } from "../models/student.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
+import jwt from "jsonwebtoken"
+
+const generateAccessAndRefreshTokens = async(userId) => {
+    try {
+        const user = await Student.findById(userId)
+        const accessToken = await user.generateAccessToken();
+        const refreshToken = await user.generateRefreshToken();
+        
+        if(user) user.refreshToken = refreshToken;
+        await user.save({validationBeforeSave : false})
+        return {accessToken,refreshToken}
+    } catch (error) {
+        throw new ApiError(500,error?.message || "Something went wrong while generating refresh and access tokens");  
+    }
+    
+}
+
+const options ={
+    httpOnly : true,
+    secure : true
+}
 
 const registerStudent = asyncHandler(async(req,res) =>{
 
@@ -47,10 +68,11 @@ const registerStudent = asyncHandler(async(req,res) =>{
             username: username.toLowerCase(),
             collegeRollNo,
             pfp: pfp?.url
-        }).then(student => res.status(200).json({
-            message : "User successfully created",
-            student,
-        }))
+        })
+        const createdStudent = await Student.findById(student._id).select("-password -refreshToken")
+        return res.status(201).json(
+            new ApiResponse(200,createdStudent,"Student registered successfulluy")
+        )
     }
     catch(err)
     {
@@ -58,7 +80,7 @@ const registerStudent = asyncHandler(async(req,res) =>{
     }
 })
 
-const studentLogin = asyncHandler(async(req,res) => {
+const loginStudent = asyncHandler(async(req,res) => {
     const {username, email, password} = req.body;
     if(!username && !email){
         throw new ApiError(400,"username or email required")
@@ -73,14 +95,76 @@ const studentLogin = asyncHandler(async(req,res) => {
     if(!isPasswordValid){
         throw new ApiError(400,"Wrong passowrd");
     }
-    else{
-        res.status(200).json({
-            message : "Login Successful",
-            user,
-        })
-    }
+    const {accessToken,refreshToken} = await generateAccessAndRefreshTokens(user._id)
+   
+    // console.log(accessToken);
+    // console.log(refreshToken);
+
+    const loggedInUser = await Student.findById(user._id).select("-password -refreshToken");
+    res.status(200)
+    .cookie("accessToken",accessToken,options)
+    .cookie("refreshToken",refreshToken,options)
+    .json(
+        new ApiResponse(
+            200,
+            {
+                user : loggedInUser,accessToken,refreshToken
+            },
+            "User logged in Successfully"
+        )
+    )
 })
 
+const logoutStudent= asyncHandler(async(req,res) =>{
+    await Student.findByIdAndUpdate(
+        req.user._id,
+        {
+            $set :{
+                refreshToken: undefined
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    return res.status(200)
+    .clearCookie("accessToken",options)
+    .clearCookie("refreshToken",options)
+    .json(new ApiResponse(200,{},"User logged out successfully"))
+})
+
+const refreshAccessToken = asyncHandler(async(req,res) =>{
+    const incomingRefreshToken = req.cookie.refreshToken || req.body.refreshToken
+    
+    if(!incomingRefreshToken){
+        throw new ApiError(400,"refreshToken not found")
+    }
+    try {
+        const decodedToken = jwt.verify(incomingRefreshToken,process.env.REFRESH_TOKEN_SECRET)
+        const user = Student.findById(decodedToken?._id)
+        if(!user){
+            throw new ApiError(401,"Invalid Refresh Token")
+        }
+        if(incomingRefreshToken !== user?.refreshToken){
+            throw new ApiError(401,"Refresh token is expired or used");
+        }
+
+        const {accessToken,refreshToken} = await generateAccessAndRefreshTokens(user._id);
+        return res.status(200)
+        .cookie("accessToken",accessToken,options)
+        .cookie("refreshToken",refreshToken,options)
+        .json(
+            new ApiResponse(
+                200,
+                {accessToken,refreshToken},
+                "access Token refreshed successfully"
+            )
+        )
+    } catch (error) {
+        throw new ApiError(401,error?.message || "invalid refresh token")
+    }
+})
 const deleteStudent = asyncHandler(async(req,res)=>{
     const {id} = req.body
     await Student.findById(id)
@@ -94,4 +178,4 @@ const deleteStudent = asyncHandler(async(req,res)=>{
         .json({ message: "An error occurred", error: error.message })
     )
 })
-export {registerStudent,studentLogin,deleteStudent} 
+export {registerStudent,loginStudent,deleteStudent,logoutStudent,refreshAccessToken} 
