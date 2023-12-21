@@ -91,7 +91,8 @@ const loginStudent = asyncHandler(async(req,res) => {
     if(!user){
         throw new ApiError(400,"wrong username")
     }
-    const isPasswordValid = user.isPasswordCorrect(password);
+    const isPasswordValid = await user.isPasswordCorrect(password);
+    console.log(isPasswordValid)
     if(!isPasswordValid){
         throw new ApiError(400,"Wrong passowrd");
     }

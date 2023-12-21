@@ -6,7 +6,7 @@ import SignUp from './components/Login/SignUp.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <LoginPage /> */}
-    <SignUp />
+    <LoginPage />
+    {/* <SignUp /> */}
   </React.StrictMode>,
 )

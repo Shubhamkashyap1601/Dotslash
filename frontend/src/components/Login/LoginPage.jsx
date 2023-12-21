@@ -5,8 +5,8 @@ import AuthenticationCard from './AuthenticationCard.jsx';
 const LoginPage = () => {
 
   const Fields = [
-    { name: 'email', type: 'email', placeholder: 'Email ID', required: true },
-    { name: 'password', type: 'password', placeholder: 'Password', required: true },
+    { name: 'email',id:'email', type: 'email', placeholder: 'Email ID', required: true,key:1},
+    { name: 'password',id:'password', type: 'password', placeholder: 'Password', required: true,key:2},
   ];
 
   const inputFields = {
