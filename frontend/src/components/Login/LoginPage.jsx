@@ -28,15 +28,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-        // {/* <div className="authentication-page">
-        //   <h2 className="login-title">Login</h2>
-        //   <form action="#" method="post">
-        //     <input type="email" id="email" name="email" placeholder="Email ID" required />
-        //     <input type="password" id="password" name="password" placeholder="Password" required />
-
-        //     <a href="#" className="forgot-password">Forgot Password?</a>
-        //     <a href="registration.html" className="forgot-password">Not registered? Sign up!</a>
-
-        //     <button type="submit">Login</button>
-        //   </form>
-        // </div> */}
