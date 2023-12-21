@@ -135,14 +135,16 @@ const logoutStudent= asyncHandler(async(req,res) =>{
 })
 
 const refreshAccessToken = asyncHandler(async(req,res) =>{
-    const incomingRefreshToken = req.cookie.refreshToken || req.body.refreshToken
+    const incomingRefreshToken = req.cookies?.refreshToken || req.body?.refreshToken
     
     if(!incomingRefreshToken){
         throw new ApiError(400,"refreshToken not found")
     }
     try {
         const decodedToken = jwt.verify(incomingRefreshToken,process.env.REFRESH_TOKEN_SECRET)
-        const user = Student.findById(decodedToken?._id)
+        console.log(decodedToken)
+        const user = await Student.findById(decodedToken?._id)
+        console.log(user.refreshToken);
         if(!user){
             throw new ApiError(401,"Invalid Refresh Token")
         }
@@ -153,7 +155,7 @@ const refreshAccessToken = asyncHandler(async(req,res) =>{
         const {accessToken,refreshToken} = await generateAccessAndRefreshTokens(user._id);
         return res.status(200)
         .cookie("accessToken",accessToken,options)
-        .cookie("refreshToken",refreshToken,options)
+        .cookie("refreshToken",incomingRefreshToken,options)
         .json(
             new ApiResponse(
                 200,
