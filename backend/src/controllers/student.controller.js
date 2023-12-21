@@ -10,8 +10,8 @@ const generateAccessAndRefreshTokens = async(userId) => {
         const user = await Student.findById(userId)
         const accessToken = await user.generateAccessToken();
         const refreshToken = await user.generateRefreshToken();
-        
-        if(user) user.refreshToken = refreshToken;
+
+        user.refreshToken = refreshToken;
         await user.save({validationBeforeSave : false})
         return {accessToken,refreshToken}
     } catch (error) {
