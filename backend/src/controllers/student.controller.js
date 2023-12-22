@@ -27,7 +27,7 @@ const options ={
 
 const registerStudent = asyncHandler(async(req,res) =>{
 
-    const {name, email, username, password, collegeRollNo} = req.body;
+    const {name, email, username, password, rollNo} = req.body;
 
     if(name?.trim() === ""){
         throw new ApiError(400,"Name is required");
@@ -41,7 +41,7 @@ const registerStudent = asyncHandler(async(req,res) =>{
     else if(password?.trim() === ""){
         throw new ApiError(400,"password is required");
     }
-    else if(collegeRollNo?.trim() === ""){
+    else if(rollNo?.trim() === ""){
         throw new ApiError(400,"college roll number is required");
     }
 
@@ -66,7 +66,7 @@ const registerStudent = asyncHandler(async(req,res) =>{
             email,
             password,
             username: username.toLowerCase(),
-            collegeRollNo,
+            rollNo,
             pfp: pfp?.url
         })
         const createdStudent = await Student.findById(student._id).select("-password -refreshToken")

@@ -17,7 +17,7 @@ const studentSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    collegeRollNo :{
+    rollNo :{
         type : String,
         required : true
     },
@@ -65,7 +65,7 @@ studentSchema.methods.generateAccessToken = function(){
             username:this.username,
             name:this.name,
             email:this.email,
-            collegeRollNo:this.collegeRollNo
+            rollNo:this.rollNo
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
