@@ -5,14 +5,20 @@ body {
   /* background-color: ffffff; */
   font-family: Arial, sans-serif;
   margin: 0;
-  display: flex;
-  justify-content: center;
+  display: block;
   align-items: center;
+  justify-content: center;
+  width: 100vw;
   height: 100vh;
 }
 
 .login-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -115,4 +121,83 @@ button:hover {
   text-decoration: none;
   color: white;
   font-size: 14px;
+}
+
+/* temporary css for header*/
+
+.navBar {
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  height: 7%;
+  position: sticky;
+  /* background-color: #333; */
+  background-color: black;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
+h1 {
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #444;
+  padding: right;
+  float: right;
+}
+
+nav a {
+  font-size: large;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+}
+
+nav a:hover {
+  background-color: #555;
+}
+
+.side-image-nav-bar{
+  width: 15%;
+  height: 100%;
+}
+
+#logo1{
+  width : 33%;
+  height : 100%;
+  display: inline-block;
+}
+
+#logo2{
+  width: 66%;
+  height: 100%;
+  display: inline-block;
+}
+.headerLogo{
+  width : 100%;
+  height: 100%;
+  display: flex;
+}
+
+.navGroup{
+  margin-left: auto;
+  right: 0px;
+  float: right;
+}
+
+#root{
+  height: 100%;
+  background-color: #121212;
+  /* background-image: url('./assets/dotslashLogo.png');
+  background-repeat: no-repeat;
+  background-size:cover; */
 }
