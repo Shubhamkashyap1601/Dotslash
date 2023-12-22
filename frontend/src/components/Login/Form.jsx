@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Form = ({ formType,inputFields }) => {
+const Form = ({ formType ,inputFields }) => {
   const [formData, setFormData] = useState({});
 
   const handleChange = (e) => {
@@ -70,9 +71,9 @@ const Form = ({ formType,inputFields }) => {
         <a href="#" className="forgot-password">
           Forgot Password?
         </a>
-        <a href="#" className="forgot-password">
+        <Link to={inputFields.toAddress || '/login'} className="forgot-password">
           {inputFields.changePageText}
-        </a>
+        </Link>
         <button type="submit">{inputFields.buttonText}</button>
       </form>
     </>

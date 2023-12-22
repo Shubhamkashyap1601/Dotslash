@@ -16,8 +16,9 @@ const SignUp = () => {
 
     const inputFields = {
         Fields: Fields,
-        changePageText: "Already registered? Login in!",
-        buttonText: "Sign up"
+        changePageText: "Already registered? Login!",
+        buttonText: "Sign up",
+        toAddress: '/login'
     }
 
     return (

@@ -2,6 +2,7 @@ import React from 'react';
 import '../../App.css'; // Import your CSS file
 import SideImage from './SideImage.jsx'
 import AuthenticationCard from './AuthenticationCard.jsx';
+
 const LoginPage = () => {
 
   const Fields = [
@@ -12,7 +13,8 @@ const LoginPage = () => {
   const inputFields = {
     Fields: Fields,
     changePageText: "Not Registered? Sign up!",
-    buttonText: "Login"
+    buttonText: "Login",
+    toAddress: "/signup"
   }
 
   return (
