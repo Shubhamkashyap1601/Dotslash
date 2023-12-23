@@ -13,7 +13,7 @@ function Home({pageText}) {
   
   return (
     <>
-        <h1 className="timepass">This is {pageText}</h1>
+        {/* <h1 className="timepass">This is {pageText}</h1> */}
         <HomeBlogCard blog={blog}/>
     </>
   )

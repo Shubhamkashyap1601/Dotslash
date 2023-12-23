@@ -5,15 +5,18 @@ function HomeBlogCard({blog}) {
     <>
         <div className="blog-card">
             <div className="blog-card-title">
-                <h4>{blog.title}</h4>
+                {blog.title}
             </div>
             <div className="blog-card-body">
                 <p>{blog.description}</p>
-                <img src={blog.image} alt="" />
+                <div className="blog-card-body-image">
+                    <img src={blog.image} alt="" />    
+                </div>
+                
             </div>
             <div className="blog-card-footer">
                 <div className="blog-card-likes-and-date">
-                    <p>{blog.date} | Likes: {blog.likes}</p>
+                    {blog.date} &#8729; Likes: {blog.likes}
                 </div>
                 <div className="blog-card-author">
                     <h4>{blog.author}</h4>

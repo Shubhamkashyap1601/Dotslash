@@ -7,7 +7,7 @@ const Header = () => {
       <header className='navBar'>
         <div className='side-image-nav-bar'>
           <img src='./src/assets/dotslashLogo.png' alt="logo" id='logo1' />
-          <img src='./src/assets/dotslashName.png' alt="logo" id='logo2' />
+          {/* <img src='./src/assets/dotslashName.png' alt="logo" id='logo2' /> */}
         </div>
         <nav className='navGroup'>
           <NavLink to="/" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
