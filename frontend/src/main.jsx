@@ -4,6 +4,7 @@ import {LoginPage, SignUp, Home} from './components/index.js'
 import Layout from './Layout.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import BlogMainPage from './components/Blogs/BlogMainPage.jsx'
+import CreateBlog from './components/Blogs/CreateBlog.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route path='blogs' element={<BlogMainPage pageText='Blogs' />} />
       <Route path='login' element={<LoginPage />} />
       <Route path='signup' element={<SignUp />} />
+      <Route path='create-blog' element={<CreateBlog />} />
     </Route>  
   )
 )
