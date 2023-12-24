@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import {LoginPage, SignUp, Home} from './components/index.js'
 import Layout from './Layout.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+import BlogMainPage from './components/Blogs/BlogMainPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,7 +14,7 @@ const router = createBrowserRouter(
       <Route path='mentors' element={<Home pageText='Mentors' />} />
       <Route path='ratings' element={<Home pageText='Ratings' />} />
       <Route path='discussions' element={<Home pageText='Discussions' />} />
-      <Route path='blogs' element={<Home pageText='Blogs' />} />
+      <Route path='blogs' element={<BlogMainPage pageText='Blogs' />} />
       <Route path='login' element={<LoginPage />} />
       <Route path='signup' element={<SignUp />} />
     </Route>  
