@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css'; // Import your CSS file
+import './login.css'; // Import your CSS file
 import SideImage from './SideImage.jsx'
 import AuthenticationCard from './AuthenticationCard.jsx';
 

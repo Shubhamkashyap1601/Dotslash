@@ -53,70 +53,7 @@ body {
   display: inline-block;
 }
 
-.authentication-page{
-  display: flex;
-  flex-direction: column;
-  background-color: #171717;
-  align-items: center;
-  place-items:center;
-  justify-content: center;
-  width: 55%;
-  height: 100%;
-}
 
-.login-title {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  font-size: 2em;
-  padding: 10px;
-  border-radius: 20px;
-  color: white;
-  text-align: center;
-}
-
-input {
-  margin: 5px 10px 10px 10px;
-  width: 80%;
-  height: 7%;
-  padding: 15px 25px 15px 25px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border-radius: 20px;
-  align-self: center;
-  background-color: rgba(255, 255, 255, 0.85);
-  font-size: 1em;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-button, .button {
-  color: rgb(0, 0, 0);
-  background-color: rgb(245, 152, 3);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: rgb(255, 163, 4);
-  transition: 0.3s ease;
-  box-shadow: 0 0 15px 5px rgba(233, 174, 72, 0.9);
-}
-
-.forgot-password {
-  margin-top: 10px;
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-}
 
 /* temporary css for header*/
 
@@ -196,7 +133,7 @@ nav a:hover, .glow-text-nav-bar{
 
 #root{
   height: 100%;
-  background-color: #000000;
+  background-color: #3e3e3e;
 }
 
 .timepass{
