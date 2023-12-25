@@ -1,10 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {LoginPage, SignUp, Home} from './components/index.js'
+import {LoginPage, SignUp, Home, CreateBlog, BlogMainPage} from './components/index.js'
 import Layout from './Layout.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import BlogMainPage from './components/Blogs/BlogMainPage.jsx'
-import CreateBlog from './components/Blogs/CreateBlog.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

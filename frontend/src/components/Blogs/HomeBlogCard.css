@@ -1,0 +1,55 @@
+
+.blog-card{
+    position: relative;
+    height: 40vh;
+    width: 15vw;
+    padding: 0.5%;
+    margin: 1vw;
+    color: white;
+    border : 1px solid #4d4d4d;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #1b1b1b;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+  }
+  .blog-card:hover{
+    background-color:#202020;
+    overflow: auto;
+    
+  }
+  .blog-card-body{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-bottom: 2px solid #000000;
+  }
+  .blog-card-body p{
+    text-align: left;
+  }
+  .blog-card-body img{
+    max-width: 50%;   
+    margin-bottom: 10px;
+  }
+  .blog-card-title{
+    padding: 5%;
+    display: inline-block;
+    text-align: center;
+    border-bottom:2px solid #000000;
+  }
+  .blog-card-footer{
+    display: inline-block;
+    flex-direction: row;
+    font-size: 12px;
+  }
+  .blog-card-author{
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+    /* text-align: right; */
+  }
+  .blog-card::-webkit-scrollbar {
+    width: 0px; /* Set the width of the scrollbar */
+  }
+  

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './BlogTemplate.css';
 
 function BlogTemplate({ darkMode }) {
   useEffect(() => {
