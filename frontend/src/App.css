@@ -9,6 +9,15 @@ body {
   height: 100vh;
 }
 
+.cover-for-popup{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(240, 240, 240, .8);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .login-container{
   position: absolute;
   top: 50%;
@@ -25,7 +34,7 @@ body {
   border-radius: 15px;
   width: 50vw;
   height: 80vh;
-  flex-grow: 1;
+  z-index: 2;
 }
 
 .side-image {
@@ -52,8 +61,6 @@ body {
   height: 30%;
   display: inline-block;
 }
-
-
 
 /* temporary css for header*/
 
@@ -98,7 +105,6 @@ nav a:hover, .glow-text-nav-bar{
   color: #ffA500;
   border-bottom:1px solid #ffA500;
   border-right:1px solid #ffA500;
-  /* background-color: rgb(30, 30, 30); */
 }
 
 .side-image-nav-bar{
@@ -271,43 +277,53 @@ body.dark-mode {
   box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
 }
 
-
 .home-rating-card{
   display: flex;
   flex-direction: column;
   background-color: rgb(17, 17, 17);
   align-items: center;
-  justify-content: center;
   width: 20%;
-  height: 50%;
+  height: 40%;
   border: 2px solid white;
   border-radius: 20px;
   color: orange;
-  padding: 0.5%;
+  padding: 0.2%;
+  font-size: 100%;
 }
 
 .home-rating-card-header{
-  position: relative;
-  top: 0px;
   display: flex;
-  flex-direction: row;
   height: 30%;
   width: 100%;
+  align-items: center;
+  font-size: 100%;
 }
 
 .home-rating-card-header-img{
-  height: 100%;
+  display: flex;
+  height: 90%;
   width: 30%;
+  margin-left: 1%;
+  align-items: center;
+  justify-content: center;
 }
 
-.home-rating-card-header span img{
-  height: 50%;
-  float: left;
-  z-index: 5px;
-  /* width: 20%; */
+.home-rating-card-header-img img{
+  width: 60%;
+  min-width: 50px;
 }
 
 .home-rating-card-header-title{
+  display: inline-block;;
+  width: 70%;
+  align-items: center;
+  padding-left: 15%;
+  height: 100%;
+  font-size: 100%;
+}
+
+.home-rating-card-header-title h4{
+  font-size: 2em;
 }
 
 .home-rating-card-body{

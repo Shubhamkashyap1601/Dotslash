@@ -11,7 +11,7 @@ function HomeRatingCard({ratingCard}) {
             <div className='home-rating-card-header-title'><h4>{ratingCard.platform}</h4></div>
           </div>
           <div className='home-rating-card-body'>
-            {
+            {/* {
               ratingCard.users.map(
                 (user) => (
                   <div className='home-rating-card-user' key={i}>
@@ -21,7 +21,7 @@ function HomeRatingCard({ratingCard}) {
                   </div>
                 )
               )
-            }
+            } */}
           </div>
         </div>
     </>

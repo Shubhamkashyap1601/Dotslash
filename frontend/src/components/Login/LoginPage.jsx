@@ -19,11 +19,13 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="login-container">
+      <div className='cover-for-popup'>
+        <div className="login-container">
 
-        <SideImage />
-        <AuthenticationCard headerTitle="Login" inputFields={inputFields} />
+          <SideImage />
+          <AuthenticationCard headerTitle="Login" inputFields={inputFields} />
 
+        </div>
       </div>
     </>
   );
