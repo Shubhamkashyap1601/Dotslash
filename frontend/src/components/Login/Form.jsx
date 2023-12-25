@@ -68,13 +68,13 @@ const Form = ({ formType ,inputFields }) => {
             required={field.required}
           />
         ))}
-        <a href="#" className="forgot-password">
-          Forgot Password?
-        </a>
+        <button type="submit">{inputFields.buttonText}</button>
         <Link to={inputFields.toAddress || '/login'} className="forgot-password">
           {inputFields.changePageText}
         </Link>
-        <button type="submit">{inputFields.buttonText}</button>
+        <a href="#" className="forgot-password">
+          Forgot Password?
+        </a>
       </form>
     </>
   );
