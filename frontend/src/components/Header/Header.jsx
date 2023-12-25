@@ -1,12 +1,20 @@
 import React from 'react';
 import '../../App.css';
 import { NavLink } from 'react-router-dom';
+
+const home = ()=>{
+    
+}
 const Header = () => {
   return (
     <>
       <header className='navBar'>
         <div className='side-image-nav-bar'>
-          <img src='./src/assets/dotslashLogo.png' alt="logo" id='logo1' />
+          <nav>
+            <NavLink to ="/">
+              <img src='./src/assets/dotslashLogo.png' alt="logo" id='logo1' onClick={home}/>
+            </NavLink>
+          </nav>
           {/* <img src='./src/assets/dotslashName.png' alt="logo" id='logo2' /> */}
         </div>
         <nav className='navGroup'>
