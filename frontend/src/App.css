@@ -94,13 +94,14 @@ nav a {
   border-radius: 10px;
 }
 
-nav a:hover, .glow-text-nav-bar{
+nav a:hover{
+  color: #ffA500;
+ }
+.glow-text-nav-bar{
   color: #ffA500;
   border-bottom:1px solid #ffA500;
   border-right:1px solid #ffA500;
-  /* background-color: rgb(30, 30, 30); */
 }
-
 .side-image-nav-bar{
   padding: 0px;
   padding-left: 2%;
