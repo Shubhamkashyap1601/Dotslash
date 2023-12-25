@@ -1,0 +1,108 @@
+/* CreateBlog.css (Enhanced Dark Mode) */
+
+body {
+    background-color: #111; /* Overall background color for the page */
+    color: #ddd; /* Default text color for dark mode */
+    font-family: 'Arial', sans-serif; /* Choose a suitable font-family */
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.create-blog-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #333;
+    color: #ddd;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
+}
+
+.title,
+.desc,
+.blog-content,
+.file{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #444;
+    border-radius: 12px;
+}
+
+.title label,
+.desc label,
+.blog-content label,
+.file label,
+.submit {
+    padding: 10px;
+    margin-bottom: px;
+    background-color: #444;
+    border-radius: 12px;
+}
+.label {
+    font-size: 25px;
+    color: #b3b3b3;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.input,
+.file-box {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    background-color: #555;
+    color: #ddd;
+    border: 1px solid #444;
+    border-radius: 8px;
+}
+
+.file-box {
+    margin-top: 8px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #444;
+    border-radius: 12px;
+}
+
+
+.submit-btn {
+    position: center;
+    background-color: #5cb85c;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.submit-btn:hover {
+    background-color: #4cae4c;
+}
+
+
+.blog-content input {
+    height: 150px;
+    overflow-wrap: break-word;
+    resize: vertical;
+    width: 100%;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    display: block; /* Ensure the input is a block element */
+    margin: 0; /* Remove default margins */
+    padding: 12px; /* Adjust padding as needed */
+}

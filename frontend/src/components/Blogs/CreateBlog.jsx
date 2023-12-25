@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './CreateBlog.css'
 function CreateBlog() {
 
     return (
@@ -9,22 +9,22 @@ function CreateBlog() {
         <div class='create-blog-container'>
 
           <div class ="title">
-            <label class="title label">Title</label><br/>
+            <label class="title label">Title</label>
             <input type="text" class = "title input" placeholder='Title'/>
           </div>
 
           <div class ="desc">
-            <label class="desc label">Blog Description</label><br/>
+            <label class="desc label">Blog Description</label>
             <input type="text" class = "desc input" placeholder='Brief Description about the blog'maxLength="200"/>
           </div>
 
           <div class ="blog-content">
-            <label class="blog-content label">Content</label><br/>
+            <label class="blog-content label">Content</label>
             <input type="text" class = "blog-content input" placeholder='Blog Content' />
           </div>
 
           <div class="file">
-            <label class="file label">Add Attachments</label><br/>
+            <label class="file label">Add Attachments</label>
             <input class="file-box" type="file" />
           </div>
 
