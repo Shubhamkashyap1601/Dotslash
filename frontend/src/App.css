@@ -182,6 +182,7 @@ nav a:hover, .glow-text-nav-bar{
   height: 100%;
   display: inline-block;
 }
+
 .headerLogo{
   width : 100%;
   height: 100%;
@@ -219,6 +220,7 @@ nav a:hover, .glow-text-nav-bar{
   justify-content: center;
   display: grid;
 }
+
 .blog-card:hover{
   background-color:#202020;
   overflow: auto;
@@ -256,4 +258,57 @@ nav a:hover, .glow-text-nav-bar{
 }
 .blog-card::-webkit-scrollbar {
   width: 0px; /* Set the width of the scrollbar */
+}
+
+.home-rating-card{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(17, 17, 17);
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 50%;
+  border: 2px solid white;
+  border-radius: 20px;
+  color: orange;
+  padding: 0.5%;
+}
+
+.home-rating-card-header{
+  position: relative;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  height: 30%;
+  width: 100%;
+}
+
+.home-rating-card-header-img{
+  height: 100%;
+  width: 30%;
+}
+
+.home-rating-card-header span img{
+  height: 50%;
+  float: left;
+  z-index: 5px;
+  /* width: 20%; */
+}
+
+.home-rating-card-header-title{
+}
+
+.home-rating-card-body{
+}   
+
+.home-rating-card-user{
+}
+
+.home-rating-card-user-rank{
+}
+
+.home-rating-card-user-name{
+}
+
+.home-rating-card-user-rating{
 }

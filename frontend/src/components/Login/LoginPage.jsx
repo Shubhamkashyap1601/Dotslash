@@ -1,13 +1,13 @@
 import React from 'react';
-import '../../App.css'; // Import your CSS file
+import '../../App.css';
 import SideImage from './SideImage.jsx'
 import AuthenticationCard from './AuthenticationCard.jsx';
 
 const LoginPage = () => {
 
   const Fields = [
-    { name: 'email',id:'email', type: 'email', placeholder: 'Email ID', required: true,key:1},
-    { name: 'password',id:'password', type: 'password', placeholder: 'Password', required: true,key:2},
+    { name: 'email', id: 'email', type: 'email', placeholder: 'Email ID', required: true, key: 1 },
+    { name: 'password', id: 'password', type: 'password', placeholder: 'Password', required: true, key: 2 },
   ];
 
   const inputFields = {
