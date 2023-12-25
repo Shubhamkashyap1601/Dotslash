@@ -1,0 +1,71 @@
+body.dark-mode {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e; /* Dark background for dark mode */
+    color: #ffffff; /* Light text color for better contrast in dark mode */
+  }
+  
+  .blog-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #2c2c2c; /* Slightly lighter background for the container */
+    padding: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Increased shadow for a more pronounced effect in dark mode */
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .blog-title {
+    font-size: 2.8em;
+    margin-bottom: 15px;
+    color: #f2f2f2; /* Light text color for titles in dark mode */
+  }
+  
+  .author {
+    padding-left: 20px;
+    display: inline-block;
+  }
+  
+  .author-date {
+    font-size: 0.9em;
+    color: #999999; /* Lighter text color for author-date in dark mode */
+    margin: 30px 0 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .blog-body {
+    background: #333333; /* Darker background for the blog body */
+    line-height: 1.6;
+    font-size: 1.15em;
+    color: #cccccc; /* Lighter text color for better contrast in dark mode */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .like-dislike {
+    text-align: right;
+    font-size: 1em;
+    margin-top: 30px;
+  }
+  
+  .like-btn,
+  .dislike-btn {
+    cursor: pointer;
+    margin-left: 15px;
+    color: #3498db;
+    transition: color 0.3s ease;
+  }
+  
+  .like-btn:hover {
+    color: green; /* Adjusted the hover color for better visual appeal */
+    box-shadow: 0 0 10px rgba(83, 255, 101, 0.5);
+  }
+  
+  .dislike-btn:hover {
+    color: #e74c3c;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+  }
+  

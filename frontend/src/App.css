@@ -9,15 +9,6 @@ body {
   height: 100vh;
 }
 
-.cover-for-popup{
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(240, 240, 240, .8);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .login-container{
   position: absolute;
   top: 50%;
@@ -34,7 +25,7 @@ body {
   border-radius: 15px;
   width: 50vw;
   height: 80vh;
-  z-index: 2;
+  flex-grow: 1;
 }
 
 .side-image {
@@ -61,6 +52,8 @@ body {
   height: 30%;
   display: inline-block;
 }
+
+
 
 /* temporary css for header*/
 
@@ -105,6 +98,7 @@ nav a:hover, .glow-text-nav-bar{
   color: #ffA500;
   border-bottom:1px solid #ffA500;
   border-right:1px solid #ffA500;
+  /* background-color: rgb(30, 30, 30); */
 }
 
 .side-image-nav-bar{
@@ -125,7 +119,6 @@ nav a:hover, .glow-text-nav-bar{
   height: 100%;
   display: inline-block;
 }
-
 .headerLogo{
   width : 100%;
   height: 100%;
@@ -140,203 +133,5 @@ nav a:hover, .glow-text-nav-bar{
 
 #root{
   height: 100%;
-  background-color: #171717;
-}
-
-.timepass{
-  color: white;
-  font-size: 100px;
-}
-
-.blog-card{
-  position: relative;
-  height: 40vh;
-  width: 15vw;
-  padding: 0.5%;
-  margin: 1vw;
-  color: white;
-  border : 1px solid #4d4d4d;
-  border-radius: 20px;
-  overflow: hidden;
-  background-color: #1b1b1b;
-  align-items: center;
-  justify-content: center;
-  display: grid;
-}
-
-.blog-card:hover{
-  background-color:#202020;
-  overflow: auto;
-}
-
-.blog-card-body{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  border-bottom: 2px solid #000000;
-}
-.blog-card-body p{
-  text-align: left;
-}
-.blog-card-body img{
-  max-width: 30%;   
-  margin-bottom: 10px;
-}
-.blog-card-title{
-  padding: 5%;
-  display: inline-block;
-  text-align: center;
-  border-bottom:2px solid #000000;
-}
-.blog-card-footer{
-  display: inline-block;
-  flex-direction: row;
-  font-size: 12px;
-}
-.blog-card-author{
-  display: flex;
-  justify-content: flex-end;
-  float: right;
-  /* text-align: right; */
-}
-.blog-card::-webkit-scrollbar {
-  width: 0px; /* Set the width of the scrollbar */
-}
-
-/* blog card css for main page */
-
-
-body.dark-mode {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #1e1e1e; /* Dark background for dark mode */
-  color: #ffffff; /* Light text color for better contrast in dark mode */
-}
-
-.blog-container {
-  max-width: 800px;
-  margin: 20px auto;
-  background-color: #2c2c2c; /* Slightly lighter background for the container */
-  padding: 40px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Increased shadow for a more pronounced effect in dark mode */
-  border-radius: 12px;
-  position: relative;
-  z-index: 1;
-}
-
-.blog-title {
-  font-size: 2.8em;
-  margin-bottom: 15px;
-  color: #f2f2f2; /* Light text color for titles in dark mode */
-}
-
-.author {
-  padding-left: 20px;
-  display: inline-block;
-}
-
-.author-date {
-  font-size: 0.9em;
-  color: #999999; /* Lighter text color for author-date in dark mode */
-  margin: 30px 0 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.blog-body {
-  background: #333333; /* Darker background for the blog body */
-  line-height: 1.6;
-  font-size: 1.15em;
-  color: #cccccc; /* Lighter text color for better contrast in dark mode */
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.like-dislike {
-  text-align: right;
-  font-size: 1em;
-  margin-top: 30px;
-}
-
-.like-btn,
-.dislike-btn {
-  cursor: pointer;
-  margin-left: 15px;
-  color: #3498db;
-  transition: color 0.3s ease;
-}
-
-.like-btn:hover {
-  color: #007acc; /* Adjusted the hover color for better visual appeal */
-  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
-}
-
-.dislike-btn:hover {
-  color: #e74c3c;
-  box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
-}
-
-.home-rating-card{
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(17, 17, 17);
-  align-items: center;
-  width: 20%;
-  height: 40%;
-  border: 2px solid white;
-  border-radius: 20px;
-  color: orange;
-  padding: 0.2%;
-  font-size: 100%;
-}
-
-.home-rating-card-header{
-  display: flex;
-  height: 30%;
-  width: 100%;
-  align-items: center;
-  font-size: 100%;
-}
-
-.home-rating-card-header-img{
-  display: flex;
-  height: 90%;
-  width: 30%;
-  margin-left: 1%;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-rating-card-header-img img{
-  width: 60%;
-  min-width: 50px;
-}
-
-.home-rating-card-header-title{
-  display: inline-block;;
-  width: 70%;
-  align-items: center;
-  padding-left: 15%;
-  height: 100%;
-  font-size: 100%;
-}
-
-.home-rating-card-header-title h4{
-  font-size: 2em;
-}
-
-.home-rating-card-body{
-}   
-
-.home-rating-card-user{
-}
-
-.home-rating-card-user-rank{
-}
-
-.home-rating-card-user-name{
-}
-
-.home-rating-card-user-rating{
+  background-color: #000000;
 }
