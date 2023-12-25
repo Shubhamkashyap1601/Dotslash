@@ -4,7 +4,7 @@ function CreateBlog() {
 
     return (
         <>
-        <p class="page-title">Contribute to DotSlash Community</p>
+        {/* <p class="page-title">Contribute to DotSlash Community</p> */}
 
         <div class='create-blog-container'>
 
@@ -20,7 +20,8 @@ function CreateBlog() {
 
           <div class ="blog-content">
             <label class="blog-content label">Content</label>
-            <input type="text" class = "blog-content input" placeholder='Blog Content' />
+
+            <textarea class = "blog-content input" placeholder='Blog Content' />
           </div>
 
           <div class="file">

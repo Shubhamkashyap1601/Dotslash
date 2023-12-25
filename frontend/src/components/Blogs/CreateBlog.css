@@ -1,9 +1,9 @@
 /* CreateBlog.css (Enhanced Dark Mode) */
 
 body {
-    background-color: #111; /* Overall background color for the page */
-    color: #ddd; /* Default text color for dark mode */
-    font-family: 'Arial', sans-serif; /* Choose a suitable font-family */
+    background-color: #111; 
+    color: #ddd; 
+    font-family: 'Arial', sans-serif;
 }
 
 .page-title {
@@ -13,14 +13,14 @@ body {
     color: #fff;
 }
 
-.create-blog-container {
-    max-width: 600px;
+.create-blog-container {    
+    max-width: 50vw;
     margin: 0 auto;
     background-color: #333;
     color: #ddd;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .title,
@@ -88,7 +88,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-size: 18px;
-    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+    transition: background-color 0.3s ease; 
 }
 
 .submit-btn:hover {
@@ -96,13 +96,12 @@ body {
 }
 
 
-.blog-content input {
+.blog-content textarea{
     height: 150px;
-    overflow-wrap: break-word;
+    font-size: 17px;
+    overflow-wrap: true;
     resize: vertical;
-    width: 100%;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    display: block; /* Ensure the input is a block element */
-    margin: 0; /* Remove default margins */
-    padding: 12px; /* Adjust padding as needed */
+    display: block;
+    margin: 0; 
+    padding: 12px;
 }
