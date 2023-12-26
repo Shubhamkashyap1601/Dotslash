@@ -1,40 +1,73 @@
-import React from 'react'
-import './CreateBlog.css'
+import React, { useRef } from 'react'
+import './blogs.css'
+import { Link } from 'react-router-dom';
+
+
 function CreateBlog() {
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const contentRef = useRef();
 
-    return (
-        <>
-        {/* <p class="page-title">Contribute to DotSlash Community</p> */}
+  const sendDataToBackend = async (data) => {
+    fetch('/api/create-blog', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Response from backend for blog creation:", data);
+      })
+      .catch((error) => {
+        console.error("Error creating blog:", error);
+      });
+  };
 
-        <div class='create-blog-container'>
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    console.log("Blog creation started.");
+    const formData = {
+      title: titleRef.current.value,
+      description: descriptionRef.current.value,
+      content: contentRef.current.value,
+    };
+    console.log(formData);
+    await sendDataToBackend(formData);
+  }
 
-          <div class ="title">
-            <label class="title label">Title</label>
-            <input type="text" class = "title input" placeholder='Title'/>
-          </div>
+  return (
+    <>
+      <div className='create-blog-container'>
 
-          <div class ="desc">
-            <label class="desc label">Blog Description</label>
-            <input type="text" class = "desc input" placeholder='Brief Description about the blog'maxLength="200"/>
-          </div>
-
-          <div class ="blog-content">
-            <label class="blog-content label">Content</label>
-
-            <textarea class = "blog-content input" placeholder='Blog Content' />
-          </div>
-
-          <div class="file">
-            <label class="file label">Add Attachments</label>
-            <input class="file-box" type="file" />
-          </div>
-
-          <div class="submit">
-            <button class="submit-btn" value="Upload" >Upload</button>
-          </div>
+        <div className="title">
+          <label className="title label">Title</label>
+          <input type="text" name='title' className="title input" placeholder='Title' ref={titleRef} />
         </div>
-        </>
-    )
+
+        <div className="desc">
+          <label className="desc label">Blog Description</label>
+          <input type="text" name='description' className="desc input" placeholder='Brief Description about the blog' maxLength="200" ref={descriptionRef} />
+        </div>
+
+        <div className="blog-content">
+          <label className="blog-content label">Content</label>
+
+          <textarea name='content' className="blog-content input" placeholder='Blog Content' ref={contentRef} />
+        </div>
+
+        <div className="file">
+          <label className="file label">Add Attachments</label>
+          <input className="file-box" type="file" />
+        </div>
+
+        <div className="submit">
+          <Link to='blogs'><button className="submit-btn" value="Upload" onClick={handleSubmit}>Upload</button> </Link>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default CreateBlog

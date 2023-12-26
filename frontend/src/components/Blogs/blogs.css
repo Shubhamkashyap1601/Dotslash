@@ -1,0 +1,276 @@
+.home-blog-page{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.blog-main-container{
+    display: flex;
+    flex-direction: column;
+    margin-right: 0.2%;
+    width: 90%;
+}
+
+.blog-create-container{
+    display: inline-block;
+}
+
+.create-blog-btn{
+    background-color: orange;
+    color: black;
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+}
+
+body.dark-mode {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e; /* Dark background for dark mode */
+    color: #ffffff; /* Light text color for better contrast in dark mode */
+  }
+  
+  .blog-container {
+    max-width: 800px;
+    width: 60%;
+    margin: 20px auto;
+    background-color: #2c2c2c; /* Slightly lighter background for the container */
+    padding: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Increased shadow for a more pronounced effect in dark mode */
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .blog-title {
+    font-size: 2.8em;
+    margin-bottom: 15px;
+    color: #f2f2f2; /* Light text color for titles in dark mode */
+  }
+  
+  .author {
+    padding-left: 20px;
+    display: inline-block;
+  }
+  
+  .author-date {
+    font-size: 0.9em;
+    color: #999999; /* Lighter text color for author-date in dark mode */
+    margin: 30px 0 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .blog-body {
+    background: #333333; /* Darker background for the blog body */
+    line-height: 1.6;
+    font-size: 1.15em;
+    color: #cccccc; /* Lighter text color for better contrast in dark mode */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .like-dislike {
+    text-align: right;
+    font-size: 1em;
+    margin-top: 30px;
+  }
+  
+  .like-btn,
+  .dislike-btn {
+    cursor: pointer;
+    margin-left: 15px;
+    color: #3498db;
+    transition: color 0.3s ease;
+  }
+  
+  .like-btn:hover {
+    color: green; /* Adjusted the hover color for better visual appeal */
+    box-shadow: 0 0 10px rgba(83, 255, 101, 0.5);
+  }
+  
+  .dislike-btn:hover {
+    color: #e74c3c;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+  }
+  
+
+
+/* CreateBlog.css (Enhanced Dark Mode) */
+
+
+
+body {
+    background-color: #111; 
+    color: #ddd; 
+    font-family: 'Arial', sans-serif;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.create-blog-container {    
+    max-width: 50vw;
+    margin: 0 auto;
+    background-color: #333;
+    color: #ddd;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.title,
+.desc,
+.blog-content,
+.file{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #444;
+    border-radius: 12px;
+}
+
+.title label,
+.desc label,
+.blog-content label,
+.file label,
+.submit {
+    padding: 10px;
+    margin-bottom: px;
+    background-color: #444;
+    border-radius: 12px;
+}
+.label {
+    font-size: 25px;
+    color: #b3b3b3;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.input,
+.file-box {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    background-color: #555;
+    color: #ddd;
+    border: 1px solid #444;
+    border-radius: 8px;
+}
+
+.file-box {
+    margin-top: 8px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #444;
+    border-radius: 12px;
+}
+
+
+.submit-btn {
+    position: center;
+    background-color: #5cb85c;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease; 
+}
+
+.submit-btn:hover {
+    background-color: #4cae4c;
+}
+
+
+.blog-content textarea{
+    height: 150px;
+    font-size: 17px;
+    overflow-wrap: true;
+    resize: vertical;
+    display: block;
+    margin: 0; 
+    padding: 12px;
+}
+
+
+
+/* HomeBlogCard.css */
+
+
+
+.blog-card{
+    position: relative;
+    width: 20vw;
+    height: auto;
+    padding: 0.5%;
+    margin: 1vw;
+    color: white;
+    border : 1px solid #4d4d4d;
+    border-radius: 7px; /*thala for a reason*/
+    overflow: hidden;
+    background-color: #1b1b1b;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+  }
+  
+  .blog-card:hover{
+    background-color:#202020;
+    /* overflow: auto;   */
+  }
+  .blog-card-body{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-bottom: 2px solid #000000;
+  }
+  .blog-card-body p{
+    text-align: left;
+    margin-top: 7px; /*thala for a reason*/
+    font-size: 80%;
+  }
+  
+  .blog-card-image img{
+    max-width: 98%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  .blog-card-title{
+    /* padding: 0.1%; */
+    display: inline-block;
+    text-align: left;
+  }
+  .blog-card-footer{
+    display: inline-block;
+    flex-direction: row;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .blog-card-author{
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+    /* text-align: right; */
+  }
+  .blog-card-author h4{
+    font-size: medium;
+  }
+  .blog-card::-webkit-scrollbar {
+    width: 0px; /* Set the width of the scrollbar */
+  }
+  
