@@ -40,9 +40,7 @@ function BlogMainPage({ pageText }) {
               ))
             }
           </div>
-          <div className="blog-create-container">
             <Link to="create-blog"><button className='create-blog-btn'>Create Blog</button></Link>
-          </div>
         </div>
       </>
     )
