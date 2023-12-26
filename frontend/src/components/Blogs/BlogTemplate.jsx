@@ -1,7 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState} from 'react';
 import './blogs.css';
 
 function BlogTemplate({ blog }) {
+  
+  const [likes, setLikes] = useState(blog.likes);
+
+  const handleLikeClick = async () => {
+    try {
+      const response = await fetch('/api/like', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ _id: blog._id }),
+      });
+
+      if (response.ok) {
+        await response.json().then((data)=>{
+          setLikes(data.likes);
+        })
+      } else {
+        console.error('Failed to update likes');
+      }
+    } catch (error) {
+      console.error('Error updating likes:', error);
+    }
+  };
+
   return (
     <>
       {
@@ -15,8 +40,7 @@ function BlogTemplate({ blog }) {
             <p>{blog.content}</p>
           </div>
           <div className="like-dislike">
-            <span className="like-btn" role="img" aria-label="Like">💚 Like</span>
-            <span className="dislike-btn" role="img" aria-label="Dislike">💔 Dislike</span>
+            <span className="like-btn" role="img" aria-label="Like" onClick={handleLikeClick}>💚 {likes} Like</span>
           </div>
         </div>
       }

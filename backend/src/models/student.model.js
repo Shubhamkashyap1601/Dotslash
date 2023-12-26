@@ -45,7 +45,10 @@ const studentSchema = new mongoose.Schema({
     },
     refreshToken :{
         type : String
-    }
+    },
+    likedBlogs:[{
+        type : mongoose.Schema.Types.ObjectId,
+    }]  
 },{timestamps : true})
 
 studentSchema.pre("save", async function (next) {
