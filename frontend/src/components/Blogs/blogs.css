@@ -6,20 +6,23 @@
 .blog-main-container{
     display: flex;
     flex-direction: column;
-    margin-right: 0.2%;
-    width: 90%;
-}
-
-.blog-create-container{
-    display: inline-block;
+    align-items: center;
+    width: 80%;
+    padding-left: 10%;
 }
 
 .create-blog-btn{
+    display: flex;
     background-color: orange;
     color: black;
     position: fixed;
+    height: 5%;
+    width: 7%;
+    font-size: 1.1em;
     bottom: 10%;
     right: 5%;
+    text-align: center;
+    align-items: center;
 }
 
 body.dark-mode {
@@ -68,8 +71,30 @@ body.dark-mode {
     color: #cccccc; /* Lighter text color for better contrast in dark mode */
     padding: 20px;
     border-radius: 8px;
+    max-height: 30vh;
+    overflow: auto;
+  }
+
+  /* WebKit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px; /* width of the scrollbar */
   }
   
+  ::-webkit-scrollbar-thumb {
+    background-color: #444343; /* color of the thumb */
+    border-radius: 6px; /* roundness of the thumb */
+    height: 10%;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #6c6a6a; /* color of the track */
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* color of the thumb on hover */
+  }
+
   .like-dislike {
     text-align: right;
     font-size: 1em;
@@ -99,12 +124,6 @@ body.dark-mode {
 /* CreateBlog.css (Enhanced Dark Mode) */
 
 
-
-body {
-    background-color: #111; 
-    color: #ddd; 
-    font-family: 'Arial', sans-serif;
-}
 
 .page-title {
     font-size: 28px;
