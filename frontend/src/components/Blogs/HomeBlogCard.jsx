@@ -1,5 +1,5 @@
 import React from 'react'
-import './HomeBlogCard.css';
+import './blogs.css';
 function HomeBlogCard({blog}) {
   return (
     <>
