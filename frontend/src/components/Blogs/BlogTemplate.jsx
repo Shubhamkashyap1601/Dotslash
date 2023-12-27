@@ -3,7 +3,10 @@ import "./blogs.css";
 
 function BlogTemplate({ blog }) {
   const [likes, setLikes] = useState(blog.likes);
-  const [likeEmoji, setLikeEmoji] = useState("🤍");
+  const [likeEmoji, setLikeEmoji] = useState(()=>{
+    if(blog.isLiked) return "💖"
+    else return "🤍"
+  });
   const [isClickDisabled, setClickDisabled] = useState(false);
 
   const handleLikeClick = async () => {
@@ -23,7 +26,8 @@ function BlogTemplate({ blog }) {
       if (response.ok) {
         await response.json().then((data) => {
           setLikes(data.likes);
-          if (likeEmoji === "🤍") setLikeEmoji("💖");
+          console.log(data.isLiked)
+          if (!data.isLiked) setLikeEmoji("💖");
           else setLikeEmoji("🤍");
         });
       } else {

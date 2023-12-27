@@ -40,16 +40,41 @@ const createBlog = asyncHandler(async (req, res) => {
     );
   }
 });
-
 const fetchBlogs = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  let user;
   try {
-    const Blogs = await Blog.find({}).sort({ createdAt: -1 });
-    res.json(Blogs);
+    user = await Student.findById(userId);
+  } catch (error) {
+    throw new ApiError(
+      500,
+      `Something went wrong while finding the current user: ${error.message}`
+    );
+  }
+
+  const likedBlogs = user?.likedBlogs;
+
+  try {
+    let blogs = await Blog.find({}).sort({ createdAt: -1 });
+
+    let modifiedBlogs = blogs.map((blog) => {
+      let modifiedBlog = {...blog}._doc;
+      if (likedBlogs.includes(modifiedBlog._id)) {
+        modifiedBlog.isLiked = true;
+      } else {
+        modifiedBlog.isLiked = false;
+      }
+      return modifiedBlog;
+    });
+
+    console.log(modifiedBlogs);
+    res.json(modifiedBlogs);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Fetching all blogs unsuccessful" });
   }
 });
+
 
 const incrementLikes = asyncHandler(async (req, res) => {
   const { _id } = req.body;
@@ -86,6 +111,6 @@ const incrementLikes = asyncHandler(async (req, res) => {
       error?.message || "Error occured while saving to the database"
     );
   }
-  return res.status(200).json({likes:blog.likes});
+  return res.status(200).json({likes:blog.likes,isLiked:alreadyLiked});
 });
 export { createBlog, fetchBlogs, incrementLikes };
