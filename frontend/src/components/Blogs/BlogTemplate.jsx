@@ -7,7 +7,7 @@ function BlogTemplate({ blog }) {
   const [isClickDisabled, setClickDisabled] = useState(false);
 
   const handleLikeClick = async () => {
-    if(isClickDisabled){ 
+    if (isClickDisabled) {
       return;
     }
     setClickDisabled(!isClickDisabled);
@@ -54,7 +54,7 @@ function BlogTemplate({ blog }) {
               aria-label="Like"
               onClick={handleLikeClick}
             >
-              {likeEmoji} {likes} Like
+              {likeEmoji} {likes} Likes
             </span>
           </div>
         </div>
