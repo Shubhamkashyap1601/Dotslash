@@ -92,7 +92,6 @@ const loginStudent = asyncHandler(async(req,res) => {
         throw new ApiError(400,"wrong username")
     }
     const isPasswordValid = await user.isPasswordCorrect(password);
-    console.log(isPasswordValid)
     if(!isPasswordValid){
         throw new ApiError(400,"Wrong passowrd");
     }
@@ -112,7 +111,7 @@ const loginStudent = asyncHandler(async(req,res) => {
                 user : loggedInUser,accessToken,refreshToken
             },
             "User logged in Successfully"
-        )
+            )
     )
 })
 

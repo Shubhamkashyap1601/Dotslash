@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import BlogTemplate from './BlogTemplate'
 import { Link } from 'react-router-dom';
 
-function BlogMainPage({ pageText }) {
+function BlogMainPage() {
   const [blogs, setBlogs] = useState([]);
-
+  
   const fetchData = async () => {
     try {
       await fetch('/api/fetch-blogs', {
@@ -24,7 +24,7 @@ function BlogMainPage({ pageText }) {
       console.error('Error fetching data:', error);
     }
   };
-
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -32,7 +32,7 @@ function BlogMainPage({ pageText }) {
   if (blogs.length != 0) {
     return (
       <>
-        <div className="home-blog-page">
+        <div className="blog-page">
           <div className="blog-main-container">
             {
               blogs.map((blog) => (

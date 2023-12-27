@@ -67,7 +67,6 @@ const fetchBlogs = asyncHandler(async (req, res) => {
       return modifiedBlog;
     });
 
-    console.log(modifiedBlogs);
     res.json(modifiedBlogs);
   } catch (error) {
     console.error(error);
@@ -89,7 +88,6 @@ const incrementLikes = asyncHandler(async (req, res) => {
     }
   });
   const blog = await Blog.findById(blogId);
-  console.log(typeof blog.likes);
   if (alreadyLiked) {
     blog.likes = blog.likes - 1;
     const temp = user.likedBlogs.filter((id) => {

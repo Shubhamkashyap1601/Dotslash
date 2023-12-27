@@ -1,62 +1,65 @@
 .navBar {
-    align-items: center;
-    justify-content: center;
-    margin-top: auto;
-    height: 7%;
-    position: fixed;
-    background-color: black;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid grey;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    z-index: 2;
-  }
+  position: sticky;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 1vh;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-bottom: 1px solid grey;
+  width: 100%;
+  z-index: 1;
+}
 
-  #logo1{
-    width : 23%;
-    height : 100%;
-    display: flex;
-  }
-  
-  .navGroup{
-    margin-left: auto;
-    right: 0px;
-    float: right;
-  }
-  nav {
-    display: flex;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0);
-    padding: right;
-    float: right;
-  }
-  
-  nav a {
-    font-size: large;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    border-radius: 10px;
-  }
-  
-  nav a:hover{
-    color: #ffA500;
-   }
-  .glow-text-nav-bar{
-    color: #ffA500;
-    border-bottom:1px solid #ffA500;
-    border-right:1px solid #ffA500;
-  }
-  .side-image-nav-bar{
-    padding: 0px;
-    padding-left: 2%;
-    width: 15%;
-    height: 130%;
-  }
-  
+#logo1 {
+  width: 23%;
+  min-width: 50px;
+  display: flex;
+}
+
+.navGroup {
+  margin-left: auto;
+  right: 0px;
+  float: right;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0);
+  padding: right;
+  float: right;
+}
+
+nav a {
+  font-size: large;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 10px;
+}
+
+nav a:hover {
+  color: #ffA500;
+}
+
+.glow-text-nav-bar {
+  color: #ffA500;
+  border-bottom: 1px solid #ffA500;
+  border-right: 1px solid #ffA500;
+}
+
+.side-image-nav-bar {
+  padding: 0px;
+  padding-left: 2%;
+  width: 15%;
+  /* height: 130%; */
+}
