@@ -1,12 +1,13 @@
 import React from 'react'
 import './blogs.css';
+
 function HomeBlogCard({blog}) {
+  blog.imageURL = blog.imageURL || './src/assets/code_blog_img.jpg'
   return (
     <>
         <div className="blog-card">
-
             <div className="blog-card-image">
-                <img src={blog.image} alt="" />    
+                <img src={blog.imageURL} alt="" />    
             </div>
 
             <div className="blog-card-title">
@@ -19,7 +20,7 @@ function HomeBlogCard({blog}) {
             <div className="blog-card-footer">
 
                 <div className="blog-card-likes-and-date">
-                    {blog.date} &#8729; Likes: {blog.likes}
+                    {blog.createdAt} &#8729; Likes: {blog.likes}
                 </div>
 
                 <div className="blog-card-author">

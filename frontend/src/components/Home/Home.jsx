@@ -1,20 +1,10 @@
 import React from 'react'
-import HomeBlogCard from '../Blogs/HomeBlogCard'
+import { Blogs } from '../index.js'
 
-function Home({pageText}) {
-  const blog = {
-    title: 'New line character input in C',
-    description: 'One should take care of inputting newlines while working in C',
-    image: './src/assets/code_blog_img.jpg',
-    date: '23/12/23',
-    likes: 1000,
-    author: 'Daulat Ojha'
-  }
-  
+function Home() {
   return (
     <>
-        {/* <h1 className="timepass">This is {pageText}</h1> */}
-        <HomeBlogCard blog={blog}/>
+        <Blogs />
     </>
   )
 }

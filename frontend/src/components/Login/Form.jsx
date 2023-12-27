@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Form = ({ formType ,inputFields }) => {
+const Form = ({ formType, inputFields }) => {
   const [formData, setFormData] = useState({});
-
+  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -11,50 +12,46 @@ const Form = ({ formType ,inputFields }) => {
     });
   };
 
+  const sendDataToBackend = async (data) => {
+    if (formType === "Login") {
+      fetch('/api/login', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+      .then((response) => {
+          if (response.ok) navigate('/');
+        })
+        .catch((error) => {
+          console.error("Error submitting form:", error);
+        });
+      }
+      else {
+      fetch('/api/register', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Response from backend:", data);
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+      });
+    }
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Here you can send the formData to your backend
     sendDataToBackend(formData);
   };
 
-  const sendDataToBackend = async (data) => {
-    if(formType === "Login"){
-      fetch('/api/login', {
-        method: "POST", 
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Response from backend:", data);
-          // Handle the response as needed
-        })
-        .catch((error) => {
-          console.error("Error submitting form:", error);
-        });
-    }
-    else
-    {
-      fetch('/api/register', {
-        method: "POST", 
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Response from backend:", data);
-          // Handle the response as needed
-        })
-        .catch((error) => {
-          console.error("Error submitting form:", error);
-        });
-    }
-  };
   return (
     <>
       <form onSubmit={handleSubmit}>
