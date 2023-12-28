@@ -3,7 +3,6 @@ import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { Blog } from "../models/blog.model.js";
 import { Student } from "../models/student.model.js";
-
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import jwt from "jsonwebtoken";
 
@@ -20,12 +19,20 @@ const createBlog = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Author is required");
   }
 
+  let imagePath;
+  if(req.file?.path) imagePath = req.file.path;
+  let image;
+  if(imagePath){
+    image = await uploadOnCloudinary(imagePath);
+  }
+  
   try {
     const blog = await Blog.create({
       title,
       description,
       author,
       content,
+      imageURL:image.url,
       likes: 0,
       dislikes: 0,
     });

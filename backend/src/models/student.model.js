@@ -41,7 +41,7 @@ const studentSchema = new mongoose.Schema({
         type : String,
     },
     pfp :{
-        type : String
+        type : String,
     },
     refreshToken :{
         type : String

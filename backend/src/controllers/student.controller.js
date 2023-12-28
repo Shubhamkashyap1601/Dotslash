@@ -2,7 +2,7 @@ import {asyncHandler} from "../utils/asyncHandler.js"
 import {ApiError} from "../utils/apiError.js"
 import { ApiResponse } from "../utils/apiResponse.js"
 import { Student } from "../models/student.model.js"
-import { uploadOnCloudinary } from "../utils/cloudinary.js"
+import { destroyOnCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js"
 import jwt from "jsonwebtoken"
 
 const generateAccessAndRefreshTokens = async(userId) => {
@@ -28,7 +28,6 @@ const options ={
 const registerStudent = asyncHandler(async(req,res) =>{
 
     const {name, email, username, password, rollNo} = req.body;
-
     if(name?.trim() === ""){
         throw new ApiError(400,"Name is required");
     }
@@ -52,8 +51,8 @@ const registerStudent = asyncHandler(async(req,res) =>{
         throw new ApiError(409,"Student with email or username already exists")
     }
     let pfpPath;
-    if(req.files && Array.isArray(req.files.pfp) && req.files.pfp.length > 0){
-        pfpPath = req.files.pfp[0].path
+    if(req.file && req.file.path){
+        pfpPath = req.file.path;
     }
     let pfp;
     if(pfpPath){
@@ -67,7 +66,7 @@ const registerStudent = asyncHandler(async(req,res) =>{
             password,
             username: username.toLowerCase(),
             rollNo,
-            pfp: pfp?.url
+            pfp: pfp?.url || ""
         })
         const createdStudent = await Student.findById(student._id).select("-password -refreshToken")
         return res.status(201).json(
@@ -96,9 +95,7 @@ const loginStudent = asyncHandler(async(req,res) => {
         throw new ApiError(400,"Wrong passowrd");
     }
     const {accessToken,refreshToken} = await generateAccessAndRefreshTokens(user._id)
-   
-    // console.log(accessToken);
-    // console.log(refreshToken);
+
 
     const loggedInUser = await Student.findById(user._id).select("-password -refreshToken");
     res.status(200)
@@ -167,6 +164,65 @@ const refreshAccessToken = asyncHandler(async(req,res) =>{
         throw new ApiError(401,error?.message || "invalid refresh token")
     }
 })
+const getCurrentUser = asyncHandler(async(req,res) =>{
+        
+    return res.status(200)
+        .json(new ApiResponse(
+            200,
+            req.user,
+            "Fetched user data successfully"
+        )) 
+})
+
+const changePassword = asyncHandler(async(req,res)=>{
+    const {oldPassword,newPassword} = req.body
+    const user = await Student.findById(req.user._id)
+    const isCorrect = user.isPasswordCorrect(oldPassword);
+    if(!isCorrect) {
+        throw new ApiError(400,"Wrong old password");
+    }
+    user.password = newPassword;
+    try {
+        user.save({validateBeforeSave:false});
+    } catch (error) {
+        throw new ApiError(400,"Error occured while saving password to the database")
+    }
+    return res.status(200)
+        .json(
+            new ApiResponse(
+                200,
+                {},
+                "Password Changes successfully"
+            )
+        )
+})
+
+const updateUserPfp = asyncHandler(async(req,res)=>{
+    if(!(req.file?.path)){
+        throw new ApiError(400,"Please provide pfp to be updated");
+    }
+    const user = Student.findById(req.user._id);
+    try {
+        await destroyOnCloudinary(user.pfp)
+    } catch (error) {
+        throw new ApiError(400,"Error deleting old pfp from cloudinary")
+    }
+    const newPfp = await uploadOnCloudinary(req.file.path)
+    user.pfp = newPfp.url;
+    try {
+        user.save({validateBeforeSave:false});
+    } catch (error) {
+        throw new ApiError(400,"Error while saving into database")
+    }
+    return res.status(200)
+        .json(
+            new ApiResponse(
+                200,
+                {},
+                "pfp updated successfully"
+            )
+        )
+})
 const deleteStudent = asyncHandler(async(req,res)=>{
     const {id} = req.body
     await Student.findById(id)
@@ -180,4 +236,4 @@ const deleteStudent = asyncHandler(async(req,res)=>{
         .json({ message: "An error occurred", error: error.message })
     )
 })
-export {registerStudent,loginStudent,deleteStudent,logoutStudent,refreshAccessToken} 
+export {registerStudent,loginStudent,deleteStudent,logoutStudent,refreshAccessToken,getCurrentUser,changePassword,updateUserPfp} 
