@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Form = ({ formType, inputFields }) => {
+  const [isDisabled, setIsDisabled] = useState(false);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   
@@ -13,6 +14,7 @@ const Form = ({ formType, inputFields }) => {
   };
 
   const sendDataToBackend = async (data) => {
+    setIsDisabled(true);
     if (formType === "Login") {
       fetch('/api/login', {
         method: "POST",
@@ -42,13 +44,14 @@ const Form = ({ formType, inputFields }) => {
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
-      });
+      })
+      .finally(() => {setIsDisabled(false)});
     }
   };
   
   const handleSubmit = (e) => {
+    if(isDisabled) return;
     e.preventDefault();
-
     sendDataToBackend(formData);
   };
 
