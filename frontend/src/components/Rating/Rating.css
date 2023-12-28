@@ -1,0 +1,67 @@
+.home-rating-card{
+    color: white;
+    width: 80%;
+    font-family: Rubik;
+}
+.home-rating-card-header{
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+.platform-img{
+    width: 4.4vh;
+    height: auto;
+    margin-right: 10px;
+    align-self: center;
+}
+
+.header-title{
+    vertical-align: middle;
+    font-size: x-large;
+}
+
+table{
+    width: 100%;
+    border: 1px solid white;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow-x: auto;
+    overflow: hidden;
+    /* box-shadow: 0.5px 0.5px 1px 0px rgba(255, 255, 255, 0.66); */
+    box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.15);
+
+}
+
+thead{
+    background-color: rgba(0, 0, 0, 0.306);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.46);
+    color: white;
+    border-radius: 8px;
+}
+
+
+.user-rank{
+    text-align: left;
+}
+
+.user-name, .user-rating{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.heading-rank{
+    text-align: left;
+}
+
+th,td{
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(47, 47, 47, 0.272);
+}
+
+tbody tr:hover{
+    background-color: rgba(224, 224, 224, 0.68);
+    color: black;
+}
