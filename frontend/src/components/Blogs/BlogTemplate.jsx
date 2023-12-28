@@ -7,13 +7,11 @@ function BlogTemplate({ blog }) {
     if(blog.isLiked) return "💖"
     else return "🤍"
   });
-  const [isClickDisabled, setClickDisabled] = useState(false);
+  const [isLikeDisabled, setIsLikeDisabled] = useState(false);
 
   const handleLikeClick = async () => {
-    if (isClickDisabled) {
-      return;
-    }
-    setClickDisabled(!isClickDisabled);
+    if (isLikeDisabled) return;
+    setIsLikeDisabled(!isLikeDisabled);
     try {
       const response = await fetch("/api/like", {
         method: "POST",
@@ -35,8 +33,9 @@ function BlogTemplate({ blog }) {
       }
     } catch (error) {
       console.error("Error updating likes:", error);
+    } finally{
+      setIsLikeDisabled(false);
     }
-    setClickDisabled(false);
   };
 
   return (
@@ -49,7 +48,12 @@ function BlogTemplate({ blog }) {
             <span className="date">{blog.createdAt}</span>
           </div>
           <div className="blog-body">
+            <div className="blog-body-image">
+              <img src={blog.imageURL}/>
+            </div>
+          <div className="blog-body-content">
             <p>{blog.content}</p>
+          </div>
           </div>
           <div className="like-dislike">
             <span

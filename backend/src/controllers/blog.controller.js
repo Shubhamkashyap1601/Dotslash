@@ -20,33 +20,33 @@ const createBlog = asyncHandler(async (req, res) => {
   }
 
   let imagePath;
-  if(req.file?.path) imagePath = req.file.path;
+  if (req.file?.path) imagePath = req.file.path;
   let image;
-  if(imagePath){
+  if (imagePath) {
     image = await uploadOnCloudinary(imagePath);
   }
-  
+
   try {
     const blog = await Blog.create({
       title,
       description,
       author,
       content,
-      imageURL:image.url,
+      imageURL: image.url,
       likes: 0,
       dislikes: 0,
     });
-    const createdBLog = await Blog.findById(blog._id);
-    return res
-      .status(201)
-      .json(new ApiResponse(200, createdBLog, "Blog created successfulluy"));
   } catch (err) {
     throw new ApiError(
       500,
       `Something went wrong while creating the blog: ${err.message}`
     );
   }
+  return res
+    .status(201)
+    .json(new ApiResponse(200, {}, "Blog created successfully"));
 });
+
 const fetchBlogs = asyncHandler(async (req, res) => {
   const userId = req.user._id;
   let user;
@@ -62,10 +62,21 @@ const fetchBlogs = asyncHandler(async (req, res) => {
   const likedBlogs = user?.likedBlogs;
 
   try {
+    const dateTimeOptions = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: 'Asia/Kolkata',
+    };
+
     let blogs = await Blog.find({}).sort({ createdAt: -1 });
 
     let modifiedBlogs = blogs.map((blog) => {
-      let modifiedBlog = {...blog}._doc;
+      let modifiedBlog = { ...blog }._doc;
+      modifiedBlog.createdAt = modifiedBlog.createdAt.toLocaleString('en-In', dateTimeOptions)
       if (likedBlogs.includes(modifiedBlog._id)) {
         modifiedBlog.isLiked = true;
       } else {
@@ -80,7 +91,6 @@ const fetchBlogs = asyncHandler(async (req, res) => {
     res.status(500).json({ error: "Fetching all blogs unsuccessful" });
   }
 });
-
 
 const incrementLikes = asyncHandler(async (req, res) => {
   const { _id } = req.body;
@@ -98,13 +108,13 @@ const incrementLikes = asyncHandler(async (req, res) => {
   if (alreadyLiked) {
     blog.likes = blog.likes - 1;
     const temp = user.likedBlogs.filter((id) => {
-        if(id!=blogId) return true;
-        else return false;
+      if (id != blogId) return true;
+      else return false;
     });
     user.likedBlogs = temp;
   } else {
     blog.likes = blog.likes + 1;
-    user.likedBlogs.push(blogId);   
+    user.likedBlogs.push(blogId);
   }
 
   try {
@@ -116,6 +126,6 @@ const incrementLikes = asyncHandler(async (req, res) => {
       error?.message || "Error occured while saving to the database"
     );
   }
-  return res.status(200).json({likes:blog.likes,isLiked:alreadyLiked});
+  return res.status(200).json({ likes: blog.likes, isLiked: alreadyLiked });
 });
 export { createBlog, fetchBlogs, incrementLikes };
