@@ -182,8 +182,27 @@ body.dark-mode {
   color: #cccccc;
   padding: 20px;
   border-radius: 8px;
-  max-height: 30vh;
-  overflow: auto;
+  max-height: 50vh;
+  overflow: auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.blog-body-content{
+  position: relative;
+  left: 0px;
+  align-self: baseline;
+}
+.blog-body-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:90%;
+  min-width:70px; 
+}
+.blog-body-image img{
+  width:40%;
+  min-width:70px; 
 }
 
 /* WebKit-based browsers (Chrome, Safari) */
@@ -244,7 +263,9 @@ body.dark-mode {
 }
 
 .create-blog-container {
-  max-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
   margin: 0 auto;
   background-color: #333;
   color: #ddd;

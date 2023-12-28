@@ -7,14 +7,14 @@ function CreateBlog() {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const contentRef = useRef();
-
+  const imageRef = useRef();
   const sendDataToBackend = async (data) => {
     fetch('/api/create-blog', {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      body: data,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -28,12 +28,19 @@ function CreateBlog() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log("Blog creation started.");
-    const formData = {
-      title: titleRef.current.value,
-      description: descriptionRef.current.value,
-      content: contentRef.current.value,
-    };
-    console.log(formData);
+    const formData = new FormData();
+    formData.append('title',titleRef.current.value)
+    formData.append('description',descriptionRef.current.value)
+    formData.append('content',contentRef.current.value)
+    formData.append('imageURL',imageRef.current.files[0])
+
+    // const formData = {
+    //   title: titleRef.current.value,
+    //   description: descriptionRef.current.value,
+    //   content: contentRef.current.value,
+    //   imageURL: imageRef.current.files[0];
+    // };
+    // console.log(formData);
     await sendDataToBackend(formData);
   }
 
@@ -59,7 +66,7 @@ function CreateBlog() {
 
         <div className="file">
           <label className="file label">Add Attachments</label>
-          <input className="file-box" type="file" />
+          <input className="file-box" type="file" ref={imageRef} />
         </div>
 
         <div className="submit">

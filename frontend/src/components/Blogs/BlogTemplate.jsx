@@ -49,7 +49,12 @@ function BlogTemplate({ blog }) {
             <span className="date">{blog.createdAt}</span>
           </div>
           <div className="blog-body">
+            <div className="blog-body-image">
+              <img src={blog.imageURL}/>
+            </div>
+          <div className="blog-body-content">
             <p>{blog.content}</p>
+          </div>
           </div>
           <div className="like-dislike">
             <span
