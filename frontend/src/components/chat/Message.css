@@ -1,0 +1,31 @@
+.chat-message {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    color: #fff;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.received-message {
+    background-color: #2c3e50;
+    text-align: left;
+    margin-right: 20%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.sent-message {
+    background-color: #34495e;
+    text-align: right;
+    margin-left: 20%;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.sender-name {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 5px;
+}
