@@ -1,21 +1,21 @@
-.home-rating-card{
+.rating-table{
     color: white;
     width: 80%;
     font-family: Rubik;
 }
-.home-rating-card-header{
+.rating-table-header{
     display: flex;
     align-items: center;
     vertical-align: middle;
 }
-.platform-img{
+.table-platform-img{
     width: 4.4vh;
     height: auto;
     margin-right: 10px;
     align-self: center;
 }
 
-.header-title{
+.table-header-title{
     vertical-align: middle;
     font-size: x-large;
 }
@@ -29,7 +29,6 @@ table{
     overflow: hidden;
     /* box-shadow: 0.5px 0.5px 1px 0px rgba(255, 255, 255, 0.66); */
     box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.15);
-
 }
 
 thead{
@@ -40,11 +39,11 @@ thead{
 }
 
 
-.user-rank{
+.table-user-rank{
     text-align: left;
 }
 
-.user-name, .user-rating{
+.table-user-name, .table-user-rating{
     text-align: center;
     vertical-align: middle;
 }
@@ -64,4 +63,106 @@ tr:nth-child(even) {
 tbody tr:hover{
     background-color: rgba(224, 224, 224, 0.68);
     color: black;
+}
+
+
+/* CSS for home rating card */
+
+.ratings-text{
+    color: white;
+  /* background-color: #242323; */
+  width: 90vw;
+  text-align: center;
+  font-size: 3em;
+  font-family:  Cal Sans,Cal Sans Fallback,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  font-weight: bold;
+  
+  /* Blended text with white */
+  color: rgba(255, 255, 255, 0.3);
+  background-color: rgb(255, 166, 0,1); 
+  background-clip: text;
+
+  /* border-radius: 10px; */
+  /* border-top: 1px solid rgba(255, 255, 255, 0.8); */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.rating-cards{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 2px;
+}
+
+.home-rating-card{
+    width: 30%;
+    color: white;
+    border: 0.5px solid white;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2.2vh;
+}
+
+.home-rating-card:hover{
+    box-shadow: 0px 0px 1px 0.5px white;
+}
+
+.home-rating-card-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    font-size: larger;
+}
+
+.platform-img{
+    width: 3.3vh;
+    height: auto;
+    margin-right: 1vh;
+    border-radius: 4px;
+}
+
+.rating-card-data{
+    display: flex;
+    color: black;
+    align-items: row;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    font-family: Lora;
+    padding: 2vh;
+    border-radius: 25px;
+    overflow: hidden;
+    border-radius: 70px;
+    /* background-color: coral; */
+    margin: 2vh;
+}
+
+.rating-card-data:hover{
+    scale: 102%;
+}
+
+.rating-card-name{
+    margin-left: 1vh;
+    font-size: larger;
+    justify-content: left;
+}
+
+
+.rating-card-rating{
+    margin-right: 1vh;
+    margin-left: auto;
+    align-items: right;
+    font-size: larger;
+}
+
+.bgclr-1{
+    background-color: red;
+}
+.bgclr-2{
+    background-color: orange;
+}
+.bgclr-3{
+    background-color: yellow;
 }

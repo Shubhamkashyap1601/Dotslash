@@ -19,13 +19,14 @@ function HomeBlogCard({blog}) {
             </div>
             <div className="blog-card-footer">
 
-                <div className="blog-card-likes-and-date">
-                    {blog.createdAt} &#8729; Likes: {blog.likes}
-                </div>
+                {/* <div className="blog-card-likes-and-date"> */}
+                    <h4 className='blog-card-author'>{blog.author}</h4>
+                    <p>{blog.likes} 💖</p>
+                    {/*{blog.createdAt} &#8729;*/}
+                {/* </div> */}
 
-                <div className="blog-card-author">
-                    <h4>{blog.author}</h4>
-                </div>
+                {/* <div className="blog-card-author"> */}
+                {/* </div> */}
 
             </div>
 

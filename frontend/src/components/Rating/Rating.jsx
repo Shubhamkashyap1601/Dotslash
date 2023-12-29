@@ -1,5 +1,5 @@
 import React from 'react'
-import RatingCard from './RatingCard'
+import RatingTable from './RatingTable'
 
 function Rating(){
   const users = [
@@ -31,13 +31,13 @@ function Rating(){
   ]
     return(
     <>
-        <RatingCard platform = "CodeForces" platform_img = "../../src/assets/cf_img.webp" users = {users}/>
+        <RatingTable platform = "CodeForces" platform_img = "../../src/assets/cf_img.webp" users = {users}/>
         <br />
         <br />
-        <RatingCard platform = "LeetCode" platform_img = "../../src/assets/leetcode_img.png" users = {users}/>
+        <RatingTable platform = "LeetCode" platform_img = "../../src/assets/leetcode_img.png" users = {users}/>
         <br />
         <br />
-        <RatingCard platform = "CodeChef" platform_img = "../../src/assets/codechef_img.jpg" users = {users}/>  
+        <RatingTable platform = "CodeChef" platform_img = "../../src/assets/codechef_img.jpg" users = {users}/>  
         <br />
         <br />
     </>

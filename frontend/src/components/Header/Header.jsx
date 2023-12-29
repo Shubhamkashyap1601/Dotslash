@@ -10,12 +10,10 @@ const Header = () => {
     <>
       <header className='navBar'>
         <div className='side-image-nav-bar'>
-          <nav>
-            <NavLink to ="/">
-              <img src='./src/assets/dotslashLogo.png' alt="logo" id='logo1' onClick={home}/>
-            </NavLink>
-          </nav>
-          {/* <img src='./src/assets/dotslashName.png' alt="logo" id='logo2' /> */}
+          <NavLink className="Logo" to ="/">
+            <img src='./src/assets/dotslashLogo.png' alt="logo" id='logo1' onClick={home}/>
+          </NavLink>
+          {/* <p>DotSlash</p> */}
         </div>
         <nav className='navGroup'>
           <NavLink to="/" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>

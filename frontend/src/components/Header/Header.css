@@ -17,6 +17,7 @@
 
 #logo1 {
   width: 23%;
+  height: auto;
   min-width: 50px;
   display: flex;
 }
@@ -58,6 +59,7 @@ nav a:hover {
 }
 
 .side-image-nav-bar {
+  display: flex;
   padding: 0px;
   padding-left: 2%;
   width: 15%;
