@@ -42,7 +42,7 @@
 }
 
 .topic:hover {
-    background-color: #2f3134;
+    background-color: #1d242f;
     transform: scale(1.05);
 }
 
@@ -50,7 +50,6 @@
     flex: 1;
     border-radius: 8px;
     background-color: #424549;
-
     width: 30%;
     padding: 20px;
     overflow-y: auto;
@@ -89,13 +88,13 @@
 .message-form {
     display: flex;
     align-items: center;
-
+    margin-top: auto; 
 }
-
 
 .sendmessage {
-    margin-top: 20px;
+    margin-top: 20px; 
 }
+
 
 
 .send-button {
@@ -113,3 +112,14 @@
 .send-button:hover {
     background-color: #677bc4;
 }
+
+.create-topic-button {
+    cursor: pointer;
+  }
+  
+  .create-topic-button img {
+    position: absolute;
+  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  right: 10px; /* Adjust the distance from the right as needed */
+  cursor: pointer;
+  }
