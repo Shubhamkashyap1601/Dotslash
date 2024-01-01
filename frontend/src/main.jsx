@@ -4,6 +4,7 @@ import {LoginPage, SignUp, Home, CreateBlog, BlogMainPage, Chat} from './compone
 import Layout from './Layout.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Rating from './components/Rating/Rating.jsx'
+import SingleBlog from './components/Blogs/SingleBlog.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,8 @@ const router = createBrowserRouter(
       <Route path='login' element={<LoginPage />} />
       <Route path='signup' element={<SignUp />} />
       <Route path='blogs/create-blog' element={<CreateBlog />} />
+      <Route path='blog/:blogId' element={<SingleBlog/>}/>
+      <Route path='user/:username' element={<Home pageText='Home' />} />
     </Route>  
   )
 )

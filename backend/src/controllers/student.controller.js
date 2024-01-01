@@ -105,7 +105,8 @@ const loginStudent = asyncHandler(async(req,res) => {
         new ApiResponse(
             200,
             {
-                user : loggedInUser,accessToken,refreshToken
+                user : loggedInUser
+                ,accessToken,refreshToken
             },
             "User logged in Successfully"
             )
@@ -164,6 +165,17 @@ const refreshAccessToken = asyncHandler(async(req,res) =>{
         throw new ApiError(401,error?.message || "invalid refresh token")
     }
 })
+
+const isAuth = asyncHandler(async(req,res)=>{
+    return res.status(200)
+            .json(
+                new ApiResponse(
+                    200,
+                    req.user.username,
+                    "User is logged in"
+                )
+            )
+})
 const getCurrentUser = asyncHandler(async(req,res) =>{
         
     return res.status(200)
@@ -173,7 +185,24 @@ const getCurrentUser = asyncHandler(async(req,res) =>{
             "Fetched user data successfully"
         )) 
 })
+const getUser = asyncHandler(async(req,res)=>{
+    const username = req.params.username;
+    let user;
+    try {
+        user = await Student.findOne({username : username}).select("-password -refreshToken");
+    } catch (error) {
+        throw new ApiError("Error occured while fetching the user")
+    }
+    return res.status(200)
+        .json(
+            new ApiResponse(
+                200,
+                user,
+                "Found user successfully"
+            )
+        )
 
+})
 const changePassword = asyncHandler(async(req,res)=>{
     const {oldPassword,newPassword} = req.body
     const user = await Student.findById(req.user._id)
@@ -236,4 +265,4 @@ const deleteStudent = asyncHandler(async(req,res)=>{
         .json({ message: "An error occurred", error: error.message })
     )
 })
-export {registerStudent,loginStudent,deleteStudent,logoutStudent,refreshAccessToken,getCurrentUser,changePassword,updateUserPfp} 
+export {registerStudent,loginStudent,deleteStudent,logoutStudent,refreshAccessToken,getCurrentUser,getUser,changePassword,updateUserPfp,isAuth} 

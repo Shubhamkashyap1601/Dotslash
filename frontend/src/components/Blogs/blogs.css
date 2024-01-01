@@ -190,7 +190,9 @@ body.dark-mode {
   position: relative;
   z-index: 0;
 }
-
+.blog-nav{
+  text-decoration: none;
+}
 .blog-title {
   font-size: 2.8em;
   margin-bottom: 15px;

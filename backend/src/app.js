@@ -1,5 +1,6 @@
 import express from "express";
-import router from "./routes/student.routes.js"
+import homeRouter from "./routes/student.routes.js"
+import blogRouter from "./routes/blog.routes.js"
 import cors from "cors";
 import cookieParser from "cookie-parser" 
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({extended : true, limit:"16kb"}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
-app.use("/api",router);
+app.use("/api",homeRouter);
+app.use("/api",blogRouter);
 
 export {app};

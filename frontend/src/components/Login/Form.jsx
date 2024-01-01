@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useLoginContext } from '../../context/LoginContext.js';
 
 const Form = ({ formType, inputFields }) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
-  
+  const {isLoggedIn,LogIn,LogOut,username,setUsername} = useLoginContext();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -23,8 +25,14 @@ const Form = ({ formType, inputFields }) => {
         },
         body: JSON.stringify(data),
       })
-      .then((response) => {
-          if (response.ok) navigate('/');
+      .then(async(response) => {
+          if (response.ok)
+          {
+            const data = await response.json();
+            setUsername(data.data.user.username)
+            LogIn();
+            navigate('/');
+          }
         })
         .catch((error) => {
           console.error("Error submitting form:", error);
@@ -57,6 +65,7 @@ const Form = ({ formType, inputFields }) => {
 
   return (
     <>
+    
       <form onSubmit={handleSubmit}>
         {inputFields.Fields.map((field) => (
           <input

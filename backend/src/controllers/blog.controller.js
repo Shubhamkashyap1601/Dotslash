@@ -128,4 +128,72 @@ const incrementLikes = asyncHandler(async (req, res) => {
   }
   return res.status(200).json({ likes: blog.likes, isLiked: alreadyLiked });
 });
-export { createBlog, fetchBlogs, incrementLikes };
+
+const fetchOneBlog = asyncHandler(async(req,res)=>{
+  const paramValue = req.params.blogId;
+  console.log(req.params);
+  let blog;
+  try {
+    blog = await Blog.findById(paramValue);
+  } catch (error) {
+    throw new ApiError(404,"Blog not found");
+  }
+  let user;
+  try {
+    user = await Student.findById(req.user._id);
+  } catch (error) {
+    throw new ApiError(404,"error fetching the user")
+  }
+  const likedBlogs = user.likedBlogs;
+  const dateTimeOptions = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: 'Asia/Kolkata',
+  };
+  let modifiedBlog = { ...blog }._doc;
+  modifiedBlog.createdAt = modifiedBlog.createdAt.toLocaleString('en-In', dateTimeOptions)
+  if (likedBlogs.includes(modifiedBlog._id)) {
+    modifiedBlog.isLiked = true;
+  } else {
+    modifiedBlog.isLiked = false;
+  }
+  return res.status(200)
+    .json(
+      new ApiResponse(
+        200,
+        modifiedBlog,
+        "Blog delivered successfully"
+      )
+    )
+
+})
+const fetchLikedBlogs = asyncHandler(async(req,res)=>{
+  let user;
+  try {
+    user = await Student.findById(req.user._id);
+  } catch (error) {
+    throw new ApiError(404,"Error fetching user from the database");
+  }try {
+    
+    let blogs = await Blog.find({});
+  } catch (error) {
+    throw new ApiError(404,"Error fetching user form the database");
+  }
+  let likedBlogs = blogs.map((blog)=>{
+    return user.likedBlogs.includes(blog._id);
+  })
+  return res.status(200)
+        .json(
+          new ApiResponse(
+            200,
+            likedBlogs,
+            "Fetched blogs liked by the user successfully"
+          )
+        )
+
+})
+export { createBlog, fetchBlogs, incrementLikes,fetchOneBlog,fetchLikedBlogs};
