@@ -32,7 +32,7 @@ const createBlog = asyncHandler(async (req, res) => {
       description,
       author,
       content,
-      imageURL: image.url,
+      imageURL: image?.url,
       likes: 0,
       dislikes: 0,
     });
