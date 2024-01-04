@@ -7,5 +7,6 @@ import CreateBlog from './Blogs/CreateBlog.jsx'
 import HomeBlogCard from './Blogs/HomeBlogCard.jsx';
 import Blogs from './Blogs/Blogs.jsx';
 import Chat from "./chat/Chat.jsx";
+import User from "./User/user.jsx";
 
-export { Header, Home, LoginPage, SignUp, BlogMainPage, CreateBlog, HomeBlogCard, Blogs, Chat };
+export { Header, Home, LoginPage, SignUp, BlogMainPage, CreateBlog, HomeBlogCard, Blogs, Chat , User};
