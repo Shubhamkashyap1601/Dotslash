@@ -1,87 +1,259 @@
-/* #cursor {
-    pointer-events: none;
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    mix-blend-mode: difference;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
-} */
-
-
-.user-background{
-    justify-content: space-between;
+.user-page-container{
+    padding-top: 2%;
     display: flex;
-    border-radius: 10px;
-    margin-top: 5%;
-    background-color: #282828;
-    height:80vh;
-    width: 70vw;
-    align-items: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    flex-direction: row;
+    width:60vw;
 }
-
-.user-info{
-    background-color: #383636;
-    height: 100%;
+.user-left-container{
+    display:flex;
+    flex-direction: column;
     width: 40%;
-    border-radius: 10px; 
-    margin-right: 1%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.user-profile{
-    display: grid;
-    place-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    height: 60%;
-    width: 100%;
-    margin-bottom: 1%;
-    border-radius: 10px; 
-}
-
-
-
-.user-img{
-    height: 50%;
-    width: 50%;
+    margin: 10px;
     
 }
 
-.user-links{
-    display: grid;
-    place-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    height: 40%;
-    width: 100%;
-    border-radius: 10px;
-}
-
-.user-bio{
-    background-color: #383636;
-    height: 100%;
+.user-right-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     width: 60%;
-    border-radius: 10px; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    margin: 10px;
 }
+.user-image-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#2c2c2c;
+    width : 100%;
+    border-radius: 5px;
+    padding-top: 3%;
+    padding-bottom: 3%;
 
-.user-details{
-    display: grid;
-    place-items: center;
-    height: 40%;
+}
+.user-profile-links-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
     width: 100%;
-    background-color: rgba(240, 248, 255,0.1);
-    margin-bottom: 1%;
-    border-radius: 10px; 
+    border-radius: 5px;
+    background-color:#2c2c2c;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+    
+}
+.user-details-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width : 100%;
+    border-radius: 5px;
+    background-color:#2c2c2c;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+}
+.user-ratings-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    width : 100%;
+    border-radius: 5px;
+    background-color:#2c2c2c;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+}
+.user-image{
+    margin: 10px;
+    height: 50%;
+    width:50%;
+    border-radius: 50%;
+}
+.text-container-hidden{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text-container{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+.custom-text1{
+    font-size: large;
+    font-style: oblique;
+    font-weight: 600;
+    color: aliceblue;
+    justify-content: center;
+    margin: 5px;
 }
 
-.user-works{
+.custom-text2{
 
-    display: grid;
-    place-items: center;
-    height: 60%;
+    font-size: large;
+    font-weight: 0;
+    color: aliceblue;
+    justify-content: center;
+    margin: 5px;
+}
+
+.custom-text3{
+    font-size: medium;
+    font-weight: 0;
+    color: aliceblue;
+    justify-content: center;
+    margin: 5px;
+}
+.user-image-container label{
+    color:#BDBCBA
+}
+.upload-image{
+    padding: 0;
+    margin: 5px;
+}
+
+.upload-image-hidden{
+    display: none;
+    padding: 0;
+    margin: 5px;
+}
+.submit-image-hidden{
+    display: none;
+}
+.submit-image{
+    padding: 10;
+    margin: 10;
+}
+ul{
+    padding-left: 4%;
+    padding-right: 4%;
+    margin:0;
+    margin-top: 5%;
+    list-style: none;
+}
+li{
+    color: rgb(208, 192, 192);
+    padding: 0.5%;
+    font-size: medium;
+}
+.list-item{
+    display: flex;
+    align-items: center;
+}
+.list-item-name{
+    justify-content: center;
+    color: aliceblue;
+}
+.list-item-content{
+    display:none;
+}
+.list-item-content-hidden{
     width: 100%;
-    background-color: rgba(240, 248, 255,0.1);
-    border-radius: 10px;
+    text-align: right;
 }
+.list-item-content-hidden a{
+    color: rgb(189, 188, 186);
+    text-decoration: none;
+}
+.list-item-content a:hover{
+    color: rgb(189, 188, 186);
+    text-decoration: underline;
+}
+.list-item-input{
+    padding:0;
+    font-size: medium;
+    margin-bottom: 0;
+    margin-top:0;
+    margin-left: 2%;
+}
+.list-item-input-hidden{
+    display: none;
+}
+.user-profile-links-container button{
+    margin:0%;
+    justify-content: center;
+    margin-left: 35%;
+    width:30%;
+}
+.feild{
+    display: flex;
+}
+.feild-name{
+    font-size: large;
+    padding: 0px;
+    justify-content: center;
+    color: aliceblue;
+}
+.feild-value-hidden{
+    width: 100%;
+    text-align: center;
+}
+.feild-value{
+    display:none;
+}
+.feild-input-hidden{
+    display:none;
+}
+.feild-input{
+    width: 100%;
+    padding:0;
+    font-size: large;
+    margin-bottom: 0;
+    margin-top:0;
+    margin-left: 2%;
+}
+.user-details-container button{
+    margin:0%;
+    justify-content: center;
+    margin-left: 35%;
+    width:30%;
+}
+.bar-container{
+    display: flex;
+    flex-direction: column;
+}
+.platform-name{
+    color: aliceblue;
+    margin: 10px;
+    font-size: large;
+}
+.full-length-bar{
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+}
+.leetcode-bar{
+    justify-content:right ;
+    height:1vh;
+    width:50%;
+    background-color: rgb(255, 145, 0);
+}
+.codeforces-bar{
+    justify-content:right ;
+    height:1vh;
+    width:70%;
+    background-color: rgb(255, 145, 0);
+}
+.codechef-bar{
+    justify-content:right ;
+    height:1vh;
+    width:40%;
+    background-color: rgb(255, 145, 0);
+}
+
+@media (max-width: 800px) {
+    .user-page-container {
+      flex-direction: column;
+    }
+    .user-left-container{
+        width:100%;
+    }
+    .user-right-container{
+        width: 100%;
+    }
+  }
