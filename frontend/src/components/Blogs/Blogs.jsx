@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import HomeBlogCard from './HomeBlogCard'
 import '../Blogs/blogs.css'
+import { toast } from 'react-toastify';
 function Blogs() {
     const [blogs, setBlogs] = useState([])
 
     const fetchData = async () => {
+        let response;
         try {
-            await fetch('/api/fetch-blogs', {
+                response = await fetch('/api/fetch-blogs', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
-                .then(async (response) => await response.json())
-                .then((data) => {
-                    setBlogs(data);
-                })
-                .catch((error) => {
-                    console.error("Error Reading blog:", error);
-                });
+            if(response.ok){
+                const data = await response.json();
+                setBlogs(data);
+            }
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error("Error fetching the blogs from server : ",error);
         }
     };
 

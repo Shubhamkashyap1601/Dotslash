@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import BlogTemplate from './BlogTemplate'
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function BlogMainPage() {
   const [blogs, setBlogs] = useState([]);
   
   const fetchData = async () => {
+    let response;
     try {
-      await fetch('/api/fetch-blogs', {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+          response = await fetch('/api/fetch-blogs', {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+          },
       })
-        .then(async (response) => await response.json())
-        .then((data) => {
+      if(response.ok){
+          const data = await response.json();
           setBlogs(data);
-        })
-        .catch((error) => {
-          console.error("Error Reading blog:", error);
-        });
+      }
+      else{
+          toast.warning("Please Login to view Blogs",{
+              position:toast.POSITION.BOTTOM_LEFT
+          })
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     }

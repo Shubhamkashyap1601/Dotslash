@@ -218,32 +218,38 @@ const changePassword = asyncHandler(async (req, res) => {
         )
 })
 
+
 const updateUserPfp = asyncHandler(async (req, res) => {
     if (!(req.file?.path)) {
         throw new ApiError(400, "Please provide pfp to be updated");
     }
-    const user = Student.findById(req.user._id);
-    try {
-        await destroyOnCloudinary(user.pfp)
-    } catch (error) {
-        throw new ApiError(400, "Error deleting old pfp from cloudinary")
+    const user = await Student.findById(req.user._id);
+    if(user.pfp.length>0)
+    {
+        try {
+            await destroyOnCloudinary(user.pfp)
+        } catch (error) {
+            throw new ApiError(400, "Error deleting old pfp from cloudinary")
+        }
+            
     }
     const newPfp = await uploadOnCloudinary(req.file.path)
     user.pfp = newPfp.url;
     try {
-        user.save({ validateBeforeSave: false });
+        await user.save({ validateBeforeSave: false });
     } catch (error) {
-        throw new ApiError(400, "Error while saving into database")
+        throw new ApiError(400, "Error while saving into database:",error)
     }
     return res.status(200)
         .json(
             new ApiResponse(
                 200,
-                {},
+                user.pfp,
                 "pfp updated successfully"
             )
         )
 })
+
 const deleteStudent = asyncHandler(async (req, res) => {
     const { id } = req.body
     await Student.findById(id)
@@ -257,4 +263,21 @@ const deleteStudent = asyncHandler(async (req, res) => {
                 .json({ message: "An error occurred", error: error.message })
         )
 })
-export { registerStudent, loginStudent, deleteStudent, logoutStudent, refreshAccessToken, getUser, changePassword, updateUserPfp, isAuthorized } 
+
+const updateHandles = asyncHandler(async(req,res)=>{
+    try {
+        const{codechef,codeforces,leetcode,github} = req.body;
+        const user = await Student.findById(req.user._id)
+        user.set({
+            codechef: codechef,
+            github: github,
+            codeforces: codeforces,
+            leetcode: leetcode,
+        });
+        await user.save({validationBeforeSave:false})
+    } catch (error) {
+        throw new ApiError(400,error);
+    }
+    return res.status(200);
+})
+export { registerStudent, loginStudent, deleteStudent, logoutStudent, refreshAccessToken, getUser, changePassword, updateUserPfp, isAuthorized,updateHandles} 

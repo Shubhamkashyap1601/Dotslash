@@ -5,8 +5,7 @@ import Layout from './Layout.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Rating from './components/Rating/Rating.jsx'
 import SingleBlog from './components/Blogs/SingleBlog.jsx'
-import User from './components/User/UserPageTemplate.jsx'
-
+import UserPage from './components/User/UserPage.jsx'
 
 const router = createBrowserRouter(
 
@@ -23,13 +22,11 @@ const router = createBrowserRouter(
       <Route path='signup' element={<SignUp />} />
       <Route path='blogs/create-blog' element={<CreateBlog />} />
       <Route path='blog/:blogId' element={<SingleBlog />} />
-      <Route path='user/:username' element={<User/>} />
+      <Route path='user/:username' element={<UserPage />} />
     </Route>
   )
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-      <RouterProvider router={router} />
-  </React.StrictMode>,
+    <RouterProvider router={router} />
 )

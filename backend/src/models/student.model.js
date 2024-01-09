@@ -30,12 +30,19 @@ const studentSchema = new mongoose.Schema({
     },
     leetcode :{
         type : String,
+        default :""
     },
     codeforces :{
         type : String,
+        default :""
     },
     codechef :{
         type : String,
+        default :""
+    },
+    github:{
+        type : String,
+        default :""
     },
     linkedin :{
         type : String,

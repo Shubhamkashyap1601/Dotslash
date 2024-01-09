@@ -85,7 +85,7 @@ const fetchBlogs = asyncHandler(async (req, res) => {
       return modifiedBlog;
     });
 
-    res.json(modifiedBlogs);
+    res.status(200).json(modifiedBlogs);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Fetching all blogs unsuccessful" });

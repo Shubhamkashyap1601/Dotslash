@@ -27,13 +27,18 @@ const uploadOnCloudinary = async (localFilePath) => {
 }
   
 const destroyOnCloudinary = async(imageUrl)=>{
-    const publicId = cloudinary.url(imageUrl, { type: 'upload' }).public_id;
-    cloudinary.uploader.destroy(publicId, (error, result) => {
-        if (error) {
-          console.error('Error deleting image:', error);
-        } else {
-          console.log('Image deleted successfully:', result);
-        }})
+  try {
+    const matches = imageUrl.match(/\/v\d+\/([^\/.]+)\./);
+    const publicId = matches[1];
+      await cloudinary.uploader.destroy(publicId, (error, result) => {
+          if (error) {
+            console.error('Error deleting image:', error);
+          } else {
+            console.log('Image deleted successfully:', result);
+          }})
+    } catch (error) {
+      console.error(error);
+    }
 }
     
 

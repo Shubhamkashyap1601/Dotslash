@@ -2,6 +2,8 @@ import React, { useState,useEffect } from 'react'
 import Header from './components/Header/Header.jsx'
 import { Outlet } from 'react-router-dom'
 import { LoginContextProvider } from './context/LoginContext.js';
+import {toast,ToastContainer} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
 
 function Layout() {
         
@@ -18,25 +20,31 @@ function Layout() {
 
     let data = null;
     const isAuthorized = async() => {
-    fetch('/api/authorized', 
-        {
-        method: 'GET',
-        }
-    )
-    .then(async(response) => {
-        if(response.ok){
-        data = await response.json();
-        LogIn();
-        setUsername(data.data);
-        } 
-        else {
-        LogOut();
-        }
-    })
+   try {
+     fetch('/api/authorized', 
+         {
+         method: 'GET',
+         }
+     )
+     .then(async(response) => {
+         if(response.ok){
+         data = await response.json();
+         LogIn();
+         setUsername(data.data);
+         } 
+         else {
+         LogOut();
+         toast.warning("Please Login to view restricted content",{
+             position: toast.POSITION.BOTTOM_LEFT
+         })
+         }
+     })
+   } catch (error) {
+    console.error(error);
+   }
     }
     useEffect(
     () => {
-        console.log("hi");
         isAuthorized();
     }
     , [])
@@ -45,6 +53,7 @@ function Layout() {
         <LoginContextProvider value={{ isLoggedIn, LogIn, LogOut, username, setUsername }} >
             <Header />
             <Outlet />
+            <ToastContainer/>
         </LoginContextProvider>
         </>
     )

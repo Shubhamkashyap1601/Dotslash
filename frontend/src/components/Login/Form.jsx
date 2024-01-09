@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginContext } from '../../context/LoginContext.js';
+import {toast} from 'react-toastify'
 
 const Form = ({ formType, inputFields }) => {
   const [isDisabled, setIsDisabled] = useState(false);
@@ -32,6 +33,11 @@ const Form = ({ formType, inputFields }) => {
             setUsername(data.data.user.username)
             LogIn();
             navigate('/');
+          }
+          else{
+            toast.error("Wrong username or password",{
+              position:toast.POSITION.BOTTOM_LEFT
+            })
           }
         })
         .catch((error) => {
@@ -74,7 +80,7 @@ const Form = ({ formType, inputFields }) => {
             name={field.name || ''}
             placeholder={field.placeholder || ''}
             onChange={handleChange}
-            required={field.required}
+            required={field.required} 
           />
         ))}
         <button type="submit">{inputFields.buttonText}</button>

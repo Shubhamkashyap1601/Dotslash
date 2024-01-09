@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './user.css'
 import { useState } from 'react';
 import { useLoginContext } from '../../context/LoginContext';
 
-function UserPage() {
+function UserPageTemplate({User}) {
+  
   const [visibility,setvisibility] = useState('-hidden');
   const [buttonText,setButtonText] = useState('Change Image')
 
@@ -13,7 +14,13 @@ function UserPage() {
   const [deatailInputVisibility,setDetailInputVisibility] = useState('-hidden');
   const [detailButtonText,setDetailButtonText] = useState('edit');
 
-  const {isLoggedIn} = useLoginContext(); 
+  const {isLoggedIn,username} = useLoginContext();
+  const [isOwner,setIsOwner] = useState(false)
+
+  const [user,setUser] = useState(User);
+  const [formData, setFormData] = useState({});
+
+  const pfpRef = useRef();
 
   const changeVisibility = ()=>{
     setvisibility((pre)=>{
@@ -26,7 +33,31 @@ function UserPage() {
     })
   }
 
+  const updateHandles = async()=>{
+    try {
+      const response = await fetch('/api/updateHandles',{
+        method : 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body : JSON.stringify(formData)})
+      if(response.ok)
+      {
+        const res = await response.json();
+        const url = res.data;
+        setUser((prev)=>
+          ({...prev,
+            pfp : url
+          })
+        )
+      }
+    } catch (error) {
+      console.error("Something went wrong :",error);
+    }
+  }
+
   const changeLinkInputVisibility = ()=>{
+    if(linkButtonText === 'submit') updateHandles();
     setLinkInputVisibility((pre)=>{
       if(pre === '-hidden') return '';
       else return '-hidden';
@@ -47,27 +78,126 @@ function UserPage() {
       else return 'edit';
     })
   }
-  const updateLeetcodeProgressBar = (maxValue,currentValue)=>{
-    const progressBar = document.getElementById('leetcode-bar');
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const updatePfp = async()=>{
+    const formData = new FormData();
+    formData.append('pfp', pfpRef.current.files[0]);
+    try {
+      const response = await fetch('/api/updatePfp',{method : 'POST',body : formData})
+      if(response.ok)
+      {
+        setUser((prev)=>
+          ({...prev,
+            codeforces : formData.codeforces,
+            leetcode : formData.leetcode,
+            codechef : formData.codechef,
+            github : formData.github
+          })
+        )
+      }
+    } catch (error) {
+      console.error("Something went wrong :",error);
+    }
+  }
+  
+  const updateLeetcodeProgressBar = async(currentValue,maxValue=2500)=>{ 
+    
+    if(response.ok)
+    {
+      const res = await response.json();
+      setUser((prev)=>
+        ({
+          ...prev,
+          leetcodeRating : res.data.userContestRanking.rating,
+        })
+      )
+      currentValue=res.data.userContestRanking.rating
+    }
+    const progressBar = document.querySelector('.codeforces-bar');
     const progressPercentage = (currentValue / maxValue) * 100;
     progressBar.style.width = progressPercentage + '%';
+  }
+
+  const updateCodeforcesProgressBar = async(currentValue,maxValue=2500)=>{  
+    const response = await fetch(`https://codeforces.com/api/user.info?handles=${user.codeforces}`,{method:'GET'});
+    if(response.ok)
+    {
+      const res = await response.json();
+      setUser((prev)=>
+        ({
+          ...prev,
+          codeforcesRating : res.result[0].rating,
+        })
+      )
+      currentValue=res.result[0].rating
+    }
+    const progressBar = document.querySelector('.codeforces-bar');
+    const progressPercentage = (currentValue / maxValue) * 100;
+    progressBar.style.width = progressPercentage + '%';
+    if(currentValue < 1200) progressBar.style.backgroundColor = 'grey'
+    else if(currentValue>=1200 && currentValue < 1400) progressBar.style.backgroundColor = 'darkgreen'
+    else if(currentValue>=1400 && currentValue < 1600) progressBar.style.backgroundColor = 'cyan'
+    else if(currentValue>=1600 && currentValue < 1900) progressBar.style.backgroundColor = 'darkblue'
+    else if(currentValue>=1900 && currentValue < 2100) progressBar.style.backgroundColor = 'purple'
+  }
+  const updateCodechefProgressBar = async(currentValue,maxValue=2500)=>{  
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const apiUrl = `https://codechef-api.vercel.app/${user.codechef}`;
+    const response = await fetch(proxyUrl+apiUrl,{method:'GET'});
+    if(response.ok)
+    {
+      const res = await response.json();
+      console.log(res);
+      setUser((prev)=>
+        ({
+          ...prev,
+          codechefRating : res.currentRating,
+        })
+      )
+      currentValue=res.currentRating
+    }
+    const progressBar = document.querySelector('.codechef-bar');
+    const progressPercentage = (currentValue / maxValue) * 100;
+    progressBar.style.width = progressPercentage + '%';
+    if(currentValue < 1200) progressBar.style.backgroundColor = 'grey'
+    else if(currentValue>=1200 && currentValue < 1400) progressBar.style.backgroundColor = 'darkgreen'
+    else if(currentValue>=1400 && currentValue < 1600) progressBar.style.backgroundColor = 'cyan'
+    else if(currentValue>=1600 && currentValue < 1900) progressBar.style.backgroundColor = 'darkblue'
+    else if(currentValue>=1900 && currentValue < 2100) progressBar.style.backgroundColor = 'purple'
   }
 
   const unSetImage = ()=>{
 
   }
+  useEffect(()=>{
+    if(user.pfp == undefined)
+    {
+      user.pfp = 'https://wallpapers.com/images/hd/cool-profile-picture-1ecoo30f26bkr14o.jpg'
+    }
+    if(isLoggedIn && user.username === username) setIsOwner(true);
+    else setIsOwner(false);
+    updateCodeforcesProgressBar();
+    updateCodechefProgressBar();
+    updateLeetcodeProgressBar();  
+  },[user.pfp,username])
   return (
-        <div className='user-page-container'>
+      <div className='user-page-container'>
             <div className='user-left-container'>
                 <div className="user-image-container">
-                    <img src='https://bootdey.com/img/Content/avatar/avatar7.png' className='user-image'/>
-                    {isLoggedIn? <label type= "button"className="changeButton" onClick={changeVisibility}>{buttonText}</label>:" "}
-                    <input type="file" className={`upload-image${visibility}`} accept="image/*"/>
-                    <button className={`submit-image${visibility}`}>Upload</button>
+                    <img src={`${user.pfp}`} alt='' className='user-image'/>
+                    {isOwner? <label type= "button"className="changeButton" onClick={changeVisibility}>{buttonText}</label>:" "}
+                    <input type="file" className={`upload-image${visibility}`} name ='pfp'ref={pfpRef}/>
+                    <button className={`submit-image${visibility}`} onClick={updatePfp}>Upload</button>
                     <div className={`text-container${visibility}`}>  
-                      <div className='custom-text1'>uname</div>
-                      <div className='custom-text2'>real-name</div>
-                      <div className='custom-text3'>sample@gmail.com</div>
+                      <div className='custom-text1'>{user.username}</div>
+                      <div className='custom-text2'>{user.name}</div> 
+                      <div className='custom-text3'>{user.email}</div>
                     </div>
                 </div>
                 <div className="user-profile-links-container">
@@ -76,15 +206,16 @@ function UserPage() {
                       <div className='list-item'>
                         <span className='list-item-name'>Github</span>
                         <span className={`list-item-content${linkInputVisibility}`}><a href='#'>Github link</a></span>
-                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='githubLink'/>
+                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='github' onChange={handleChange}/>
                       </div>
                     </li>
                     <hr/>
                     <li>
                       <div className='list-item'>
-                        <span className='list-item-name'>Codeforces</span>
-                        <span className={`list-item-content${linkInputVisibility}`}><a href='#'>Codeforces link</a></span>
-                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='codeforcesLink'/>
+                        <span className='list-item-name'>Codeforces
+                        </span>
+                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://codeforces.com/profile/${user.codeforces}`}target='_blank'>Codeforces link</a></span>
+                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='codeforces' onChange={handleChange}/>
 
                       </div>
                     </li>
@@ -92,8 +223,8 @@ function UserPage() {
                     <li>
                       <div className='list-item'>
                         <span className='list-item-name'>Leetcode</span>
-                        <span className={`list-item-content${linkInputVisibility}`}><a href='#'>Leetcode link</a></span>
-                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='leetcodeLink'/>
+                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://leetcode.com/${user.leetcode}/`}target='_blank'>Leetcode link</a></span>
+                        <input type='text' className={`list-item-input${linkInputVisibility}` } name='leetcode' onChange={handleChange}/>
 
                       </div>
                     </li>
@@ -101,8 +232,8 @@ function UserPage() {
                     <li>
                       <div className='list-item'>
                         <span className='list-item-name'>CodeChef</span>
-                        <span className={`list-item-content${linkInputVisibility}`}><a href='#'>Codechef link</a></span>
-                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='codechefLink'/>
+                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://www.codechef.com/users/${user.codechef}`} target='_blank'>Codechef link</a></span>
+                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='codechef' onChange={handleChange}/>
 
                       </div>
                     </li>
@@ -112,12 +243,11 @@ function UserPage() {
                         <span className='list-item-name'>Website</span>
                         <span className={`list-item-content${linkInputVisibility}`}><a href='#'>Website link</a></span>
                         <input type='text' className={`list-item-input${linkInputVisibility}`} name='websiteLink'/>
-
                       </div>
                     </li>
                     <hr/>
                   </ul>
-                  {isLoggedIn? <button onClick={changeLinkInputVisibility}>{linkButtonText}</button>:""}
+                  {isOwner? <button onClick={changeLinkInputVisibility}>{linkButtonText}</button>:""}
                 </div>
             </div>
             <div className="user-right-container">
@@ -125,7 +255,7 @@ function UserPage() {
                     <ul>
                       <li>
                         <div className="feild">
-                         <span className='feild-name'>
+                          <span className='feild-name'>
                             Name
                           </span>
                           <span className={`feild-value${deatailInputVisibility}`}>
@@ -137,7 +267,7 @@ function UserPage() {
                       <hr/>
                       <li>
                         <div className="feild">
-                         <span className='feild-name'>
+                          <span className='feild-name'>
                             Name
                           </span>
                           <span className={`feild-value${deatailInputVisibility}`}>
@@ -149,7 +279,7 @@ function UserPage() {
                       <hr/>
                       <li>
                         <div className="feild">
-                         <span className='feild-name'>
+                          <span className='feild-name'>
                             Name
                           </span>
                           <span className={`feild-value${deatailInputVisibility}`}>
@@ -161,7 +291,7 @@ function UserPage() {
                       <hr/>
                       <li>
                         <div className="feild">
-                         <span className='feild-name'>
+                          <span className='feild-name'>
                             Name
                           </span>
                           <span className={`feild-value${deatailInputVisibility}`}>
@@ -173,7 +303,7 @@ function UserPage() {
                       <hr/>
                       <li>
                         <div className="feild">
-                         <span className='feild-name'>
+                          <span className='feild-name'>
                             Name
                           </span>
                           <span className={`feild-value${deatailInputVisibility}`}>
@@ -184,12 +314,13 @@ function UserPage() {
                       </li>
                       <hr/>
                     </ul>
-                    {isLoggedIn? <button onClick={changeDetailInputVisibility}>{detailButtonText}</button>:""}
+                    {isOwner? <button onClick={changeDetailInputVisibility}>{detailButtonText}</button>:""}
                 </div>
                 <div className="user-ratings-container">
                     <div className='bar-container'>
                       <div className='platform-name'>
-                        leetcode - rating
+                        
+                        leetcode -{user.leetcodeRating} rating
                       </div>
                       <div className="full-length-bar">
                         <div className='leetcode-bar'>
@@ -198,7 +329,7 @@ function UserPage() {
                     </div>
                     <div className='bar-container'>
                       <div className='platform-name'>
-                        Codeforces - rating
+                        Codeforces - {user.codeforcesRating} rating
                       </div>
                       <div className="full-length-bar">
                         <div className='codeforces-bar'>
@@ -207,7 +338,7 @@ function UserPage() {
                     </div>
                     <div className='bar-container'>
                       <div className='platform-name'>
-                        Codechef - rating
+                        Codechef - {user.codechefRating} rating
                       </div>
                       <div className="full-length-bar">
                         <div className='codechef-bar'>
@@ -217,7 +348,7 @@ function UserPage() {
                 </div>
             </div>
         </div>
-  )
-}
+    )
+  }
 
-export default UserPage
+export default UserPageTemplate
