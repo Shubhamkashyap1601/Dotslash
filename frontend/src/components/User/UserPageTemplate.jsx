@@ -106,25 +106,25 @@ function UserPageTemplate({User}) {
     }
   }
   
-  const updateLeetcodeProgressBar = async(currentValue,maxValue=2500)=>{ 
-    
+  const updateLeetcodeProgressBar = async(currentValue,maxValue=3000)=>{ 
+    const response = await fetch(`/api/leetcode/${user.leetcode}`,{method:'GET'});
     if(response.ok)
     {
       const res = await response.json();
       setUser((prev)=>
         ({
           ...prev,
-          leetcodeRating : res.data.userContestRanking.rating,
+          leetcodeRating : res.data,
         })
       )
-      currentValue=res.data.userContestRanking.rating
+      currentValue=res.data
     }
-    const progressBar = document.querySelector('.codeforces-bar');
+    const progressBar = document.querySelector('.leetcode-bar');
     const progressPercentage = (currentValue / maxValue) * 100;
     progressBar.style.width = progressPercentage + '%';
   }
 
-  const updateCodeforcesProgressBar = async(currentValue,maxValue=2500)=>{  
+  const updateCodeforcesProgressBar = async(currentValue,maxValue=3000)=>{  
     const response = await fetch(`https://codeforces.com/api/user.info?handles=${user.codeforces}`,{method:'GET'});
     if(response.ok)
     {
@@ -141,15 +141,13 @@ function UserPageTemplate({User}) {
     const progressPercentage = (currentValue / maxValue) * 100;
     progressBar.style.width = progressPercentage + '%';
     if(currentValue < 1200) progressBar.style.backgroundColor = 'grey'
-    else if(currentValue>=1200 && currentValue < 1400) progressBar.style.backgroundColor = 'darkgreen'
-    else if(currentValue>=1400 && currentValue < 1600) progressBar.style.backgroundColor = 'cyan'
-    else if(currentValue>=1600 && currentValue < 1900) progressBar.style.backgroundColor = 'darkblue'
-    else if(currentValue>=1900 && currentValue < 2100) progressBar.style.backgroundColor = 'purple'
+    else if(currentValue>=1200 && currentValue < 1400) progressBar.style.backgroundColor = '#00C700'
+    else if(currentValue>=1400 && currentValue < 1600) progressBar.style.backgroundColor = '#01BDB2'
+    else if(currentValue>=1600 && currentValue < 1900) progressBar.style.backgroundColor = '#757DFF'
+    else if(currentValue>=1900 && currentValue < 2100) progressBar.style.backgroundColor = '#CE8AFF'
   }
-  const updateCodechefProgressBar = async(currentValue,maxValue=2500)=>{  
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = `https://codechef-api.vercel.app/${user.codechef}`;
-    const response = await fetch(proxyUrl+apiUrl,{method:'GET'});
+  const updateCodechefProgressBar = async(currentValue,maxValue=3000)=>{  
+    const response = await fetch(`/api/codechef/${user.codechef}`,{method:'GET'});
     if(response.ok)
     {
       const res = await response.json();
@@ -157,19 +155,20 @@ function UserPageTemplate({User}) {
       setUser((prev)=>
         ({
           ...prev,
-          codechefRating : res.currentRating,
+          codechefRating : res.data,
         })
       )
-      currentValue=res.currentRating
+      currentValue=res.data;
     }
     const progressBar = document.querySelector('.codechef-bar');
     const progressPercentage = (currentValue / maxValue) * 100;
     progressBar.style.width = progressPercentage + '%';
-    if(currentValue < 1200) progressBar.style.backgroundColor = 'grey'
-    else if(currentValue>=1200 && currentValue < 1400) progressBar.style.backgroundColor = 'darkgreen'
-    else if(currentValue>=1400 && currentValue < 1600) progressBar.style.backgroundColor = 'cyan'
-    else if(currentValue>=1600 && currentValue < 1900) progressBar.style.backgroundColor = 'darkblue'
-    else if(currentValue>=1900 && currentValue < 2100) progressBar.style.backgroundColor = 'purple'
+    if(currentValue>=1200 && currentValue < 1400) progressBar.style.backgroundColor = '#FFFFFF'
+    else if(currentValue>=1400 && currentValue < 1600) progressBar.style.backgroundColor = '#IE7D22'
+    else if(currentValue>=1600 && currentValue < 1800) progressBar.style.backgroundColor = '#3366CC'
+    else if(currentValue>=1800 && currentValue < 2000) progressBar.style.backgroundColor = '#684273'
+    else if(currentValue >= 2000) progressBar.style.backgroundColor = '#FFBF00'  
+
   }
 
   const unSetImage = ()=>{
@@ -215,7 +214,7 @@ function UserPageTemplate({User}) {
                         <span className='list-item-name'>Codeforces
                         </span>
                         <span className={`list-item-content${linkInputVisibility}`}><a href={`https://codeforces.com/profile/${user.codeforces}`}target='_blank'>Codeforces link</a></span>
-                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='codeforces' onChange={handleChange}/>
+                        <input type='text' className={`list-item-input${linkInputVisibility}`} name='codeforces' onChange={handleChange} />
 
                       </div>
                     </li>
@@ -224,7 +223,7 @@ function UserPageTemplate({User}) {
                       <div className='list-item'>
                         <span className='list-item-name'>Leetcode</span>
                         <span className={`list-item-content${linkInputVisibility}`}><a href={`https://leetcode.com/${user.leetcode}/`}target='_blank'>Leetcode link</a></span>
-                        <input type='text' className={`list-item-input${linkInputVisibility}` } name='leetcode' onChange={handleChange}/>
+                        <input type='text' className={`list-item-input${linkInputVisibility}` } name='leetcode' onChange={handleChange} />
 
                       </div>
                     </li>

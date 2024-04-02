@@ -4,6 +4,7 @@ import { ApiResponse } from "../utils/apiResponse.js"
 import { Student } from "../models/student.model.js"
 import { destroyOnCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js"
 import jwt from "jsonwebtoken"
+import * as cheerio from 'cheerio';
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -100,7 +101,7 @@ const loginStudent = asyncHandler(async (req, res) => {
     res.status(200)
         .cookie("accessToken", accessToken, options)
         .cookie("refreshToken", refreshToken, options)
-        .json(
+        .json(  
             new ApiResponse(
                 200,
                 {
@@ -280,4 +281,47 @@ const updateHandles = asyncHandler(async(req,res)=>{
     }
     return res.status(200);
 })
-export { registerStudent, loginStudent, deleteStudent, logoutStudent, refreshAccessToken, getUser, changePassword, updateUserPfp, isAuthorized,updateHandles} 
+
+const scrapeRatingLeetcode = asyncHandler(async(req,res)=>{
+    const platformId = req.params.platformId;
+    const url = `https://leetcode.com/${platformId}/`;
+
+    const response = await fetch(url);
+
+    if(!response.ok){
+        throw new ApiError(404,"error fetching from url");
+    }
+    const html = await response.text();
+    const $ = cheerio.load(html);
+    const title = $('.text-label-3:contains("Contest Rating") + .text-label-1').text().replace(/,/g, '').trim();;
+    const rating = title.substr(0,4);
+
+    return res.status(200)
+            .json(new ApiResponse(
+                200,
+                rating,
+                "fetched something"
+            ))
+})
+const scrapeRatingCodechef = asyncHandler(async(req,res)=>{
+    const platformId = req.params.platformId;
+    const url = `https://www.codechef.com/users/${platformId}`;
+
+    const response = await fetch(url);
+
+    if(!response.ok){
+        throw new ApiError(404,"error fetching from url");
+    }
+    const html = await response.text();
+    const $ = cheerio.load(html);
+    const rating = $('.rating-number').text();
+
+    return res.status(200)
+            .json(new ApiResponse(
+                200,
+                rating,
+                "fetched something"
+            ))
+})
+
+export { registerStudent, loginStudent, deleteStudent, logoutStudent, refreshAccessToken, getUser, changePassword, updateUserPfp, isAuthorized,updateHandles,scrapeRatingLeetcode,scrapeRatingCodechef} 
