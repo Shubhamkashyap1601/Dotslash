@@ -269,12 +269,18 @@ const updateHandles = asyncHandler(async(req,res)=>{
     try {
         const{codechef,codeforces,leetcode,github} = req.body;
         const user = await Student.findById(req.user._id)
-        user.set({
-            codechef: codechef,
-            github: github,
-            codeforces: codeforces,
-            leetcode: leetcode,
-        });
+        if (codechef !== undefined && codechef !== null && codechef !== '') {
+            user.codechef = codechef;
+        }
+        if (codeforces !== undefined && codeforces !== null && codeforces !== '') {
+            user.codeforces = codeforces;
+        }
+        if (leetcode !== undefined && leetcode !== null && leetcode !== '') {
+            user.leetcode = leetcode;
+        }
+        if (github !== undefined && github !== null && github !== '') {
+            user.github = github;
+        }
         await user.save({validationBeforeSave:false})
     } catch (error) {
         throw new ApiError(400,error);
@@ -282,27 +288,36 @@ const updateHandles = asyncHandler(async(req,res)=>{
     return res.status(200);
 })
 
-const scrapeRatingLeetcode = asyncHandler(async(req,res)=>{
+const scrapeRatingLeetcode = asyncHandler(async(req, res) => {
     const platformId = req.params.platformId;
     const url = `https://leetcode.com/${platformId}/`;
 
-    const response = await fetch(url);
+    try {
+        const response = await fetch(url);
 
-    if(!response.ok){
-        throw new ApiError(404,"error fetching from url");
-    }
-    const html = await response.text();
-    const $ = cheerio.load(html);
-    const title = $('.text-label-3:contains("Contest Rating") + .text-label-1').text().replace(/,/g, '').trim();;
-    const rating = title.substr(0,4);
+        if (!response.ok) {
+            const error = await response.text();
+            console.error(`Error fetching from URL: ${url}. Status: ${response.status}. Error message: ${error}`);
+            throw new ApiError(response.status, "Error fetching from URL");
+        }
 
-    return res.status(200)
+        const html = await response.text();
+        const $ = cheerio.load(html);
+        const title = $('.text-label-3:contains("Contest Rating") + .text-label-1').text().replace(/,/g, '').trim();
+        const rating = title.substr(0, 4);
+
+        return res.status(200)
             .json(new ApiResponse(
                 200,
                 rating,
                 "fetched something"
-            ))
-})
+            ));
+    } catch (error) {
+        console.error("Error in scraping:", error);
+        return res.status(500).json(new ApiResponse(500, null, "Internal Server Error"));
+    }
+});
+
 const scrapeRatingCodechef = asyncHandler(async(req,res)=>{
     const platformId = req.params.platformId;
     const url = `https://www.codechef.com/users/${platformId}`;
@@ -323,5 +338,6 @@ const scrapeRatingCodechef = asyncHandler(async(req,res)=>{
                 "fetched something"
             ))
 })
+
 
 export { registerStudent, loginStudent, deleteStudent, logoutStudent, refreshAccessToken, getUser, changePassword, updateUserPfp, isAuthorized,updateHandles,scrapeRatingLeetcode,scrapeRatingCodechef} 
