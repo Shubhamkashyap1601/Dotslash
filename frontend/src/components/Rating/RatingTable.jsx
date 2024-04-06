@@ -6,8 +6,8 @@ function RatingTable({platform, platform_img, users}) {
     <>
         <div className='rating-table'>
           <div className='rating-table-header'>
-            <img className='table-platform-img' src={platform_img} alt="platform-image" />  
-            <p className="table-header-title">{platform}</p>
+            {/* <img className='table-platform-img' src={platform_img} alt="platform-image" />   */}
+            {/* <p className="table-header-title">{platform}</p> */}
           </div>
           <div className='rating-table-body'>
             <table>
