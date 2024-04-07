@@ -13,7 +13,7 @@ function SingleBlog() {
       const response = await fetch(`/api/blog/${blogId}`, { method: "GET" });
       if (response.ok) {
         const res = await response.json();
-        console.log(res);
+        // console.log(res);
         setBlog(res.data);
     }
       console.log(blogId);
@@ -26,11 +26,11 @@ function SingleBlog() {
     fetchBlog();
   }, [])
 
-  if(blog)
+  if(blog !== undefined)
   {
     return(
         
-        <BlogTemplate blog={blog} />
+        <BlogTemplate blog={blog} key={blogId} />
     )
   }
 }

@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { registerStudent, loginStudent, logoutStudent, refreshAccessToken, getUser, isAuthorized, updateUserPfp, updateHandles, scrapeRatingLeetcode, scrapeRatingCodechef, updateRating } from "../controllers/student.controller.js"
+import { registerStudent, loginStudent, logoutStudent, refreshAccessToken, getUser, isAuthorized, updateUserPfp, updateHandles, updateRating, fetchRankings } from "../controllers/student.controller.js"
 import { verifyJWT } from "../middlewares/auth.middleware.js"
 import { upload } from "../middlewares/multer.middleware.js"
 import { fetchLikedBlogs } from "../controllers/blog.controller.js";
@@ -17,6 +17,7 @@ router.route("/user/:username/liked").get(fetchLikedBlogs);
 router.route("/authorized").get(verifyJWT, isAuthorized)
 router.route("/updatePfp").post(verifyJWT,upload.single('pfp'),updateUserPfp);
 router.route("/updateHandles").post(verifyJWT,updateHandles);
+router.route("/fetchRankings").get(fetchRankings);
 // router.route("/leetcode/:platformId").get(scrapeRatingLeetcode);
 // router.route("/codechef/:platformId").get(scrapeRatingCodechef);
 

@@ -22,7 +22,7 @@ function RatingTable({platform, platform_img, users}) {
                     <tr>
                       <td className='table-user-rank'>{user.rank}</td>
                       <td className='table-user-name'>{user.name}</td>
-                      <td className='table-user-rating'>{user.rating}</td>
+                      <td className='table-user-rating'>{parseInt(user.rating)}</td>
                     </tr>
                      )
               })
