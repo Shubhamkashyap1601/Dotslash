@@ -105,38 +105,30 @@ function UserPageTemplate({User}) {
       console.error("Something went wrong :",error);
     }
   }
-  
-  const updateLeetcodeProgressBar = async(currentValue,maxValue=3000)=>{ 
-    const response = await fetch(`/api/leetcode/${user.leetcode}`,{method:'GET'});
-    if(response.ok)
-    {
-      const res = await response.json();
-      setUser((prev)=>
-        ({
-          ...prev,
-          leetcodeRating : res.data,
-        })
-      )
-      currentValue=res.data
+  const updateRating = async()=>{
+    try {
+      const response = await fetch(`/api/updateRating/${user.username}`)
+      if(response.ok)
+      {
+        const res = await response.json();
+        setUser((prev)=>
+          ({...prev,
+            codingPlatforms : res.data
+          })
+        )
+      }
+    } catch (error) {
+      console.error("Something went wrong :",error);
     }
+  }
+  const updateLeetcodeProgressBar = async(currentValue,maxValue=3000)=>{ 
+    currentValue = user.codingPlatforms.leetcode.rating || 0;
     const progressBar = document.querySelector('.leetcode-bar');
     const progressPercentage = (currentValue / maxValue) * 100;
     progressBar.style.width = progressPercentage + '%';
   }
-
   const updateCodeforcesProgressBar = async(currentValue,maxValue=3000)=>{  
-    const response = await fetch(`https://codeforces.com/api/user.info?handles=${user.codeforces}`,{method:'GET'});
-    if(response.ok)
-    {
-      const res = await response.json();
-      setUser((prev)=>
-        ({
-          ...prev,
-          codeforcesRating : res.result[0].rating,
-        })
-      )
-      currentValue=res.result[0].rating
-    }
+    currentValue = user.codingPlatforms.codeforces.rating || 0;
     const progressBar = document.querySelector('.codeforces-bar');
     const progressPercentage = (currentValue / maxValue) * 100;
     progressBar.style.width = progressPercentage + '%';
@@ -147,19 +139,7 @@ function UserPageTemplate({User}) {
     else if(currentValue>=1900 && currentValue < 2100) progressBar.style.backgroundColor = '#CE8AFF'
   }
   const updateCodechefProgressBar = async(currentValue,maxValue=3000)=>{  
-    const response = await fetch(`/api/codechef/${user.codechef}`,{method:'GET'});
-    if(response.ok)
-    {
-      const res = await response.json();
-      console.log(res);
-      setUser((prev)=>
-        ({
-          ...prev,
-          codechefRating : res.data,
-        })
-      )
-      currentValue=res.data;
-    }
+    currentValue = user.codingPlatforms.codechef.rating || 0;
     const progressBar = document.querySelector('.codechef-bar');
     const progressPercentage = (currentValue / maxValue) * 100;
     progressBar.style.width = progressPercentage + '%';
@@ -171,6 +151,11 @@ function UserPageTemplate({User}) {
 
   }
 
+  const updateProgressBar = async()=>{
+    updateCodeforcesProgressBar();
+    updateCodechefProgressBar();
+    updateLeetcodeProgressBar();
+  }
   const unSetImage = ()=>{
 
   }
@@ -181,10 +166,9 @@ function UserPageTemplate({User}) {
     }
     if(isLoggedIn && user.username === username) setIsOwner(true);
     else setIsOwner(false);
-    updateCodeforcesProgressBar();
-    updateCodechefProgressBar();
-    updateLeetcodeProgressBar();  
-  },[user.pfp,username])
+    updateRating();
+    updateProgressBar();
+  },[user.pfp,username,user.codingPlatforms])
   return (
       <div className='user-page-container'>
             <div className='user-left-container'>
@@ -319,16 +303,16 @@ function UserPageTemplate({User}) {
                     <div className='bar-container'>
                       <div className='platform-name'>
                         
-                        leetcode -{user.leetcodeRating} rating
+                        Leetcode - {user.codingPlatforms.leetcode.rating.toFixed(1) || 0} rating
                       </div>
                       <div className="full-length-bar">
                         <div className='leetcode-bar'>
                         </div>
                       </div>                      
                     </div>
-                    <div className='bar-container'>
+                    <div className='(bar-container)'>
                       <div className='platform-name'>
-                        Codeforces - {user.codeforcesRating} rating
+                        Codeforces - {user.codingPlatforms.codeforces.rating || 0} rating
                       </div>
                       <div className="full-length-bar">
                         <div className='codeforces-bar'>
@@ -337,7 +321,7 @@ function UserPageTemplate({User}) {
                     </div>
                     <div className='bar-container'>
                       <div className='platform-name'>
-                        Codechef - {user.codechefRating} rating
+                        Codechef - {user.codingPlatforms.codechef.rating || 0} rating
                       </div>
                       <div className="full-length-bar">
                         <div className='codechef-bar'>

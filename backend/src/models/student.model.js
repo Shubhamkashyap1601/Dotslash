@@ -28,21 +28,35 @@ const studentSchema = new mongoose.Schema({
     phoneNumber :{
         type : Number,
     },
-    leetcode :{
-        type : String,
-        default :""
-    },
-    codeforces :{
-        type : String,
-        default :""
-    },
-    codechef :{
-        type : String,
-        default :""
+    codingPlatforms : {
+        codeforces : {
+            username : String,
+            problemSolved : Number,
+            rating : {
+                type: Number,
+                default: 0
+            }
+        },
+        leetcode : {
+            username : String,
+            problemSolved : Number,
+            rating : {
+                type: Number,
+                default: 0
+            }
+        },
+        codechef : {
+            username : String,
+            problemSolved : Number,
+            rating : {
+                type: Number,
+                default: 0
+            }
+        },
+        lastupdated : { type : Date}
     },
     github:{
         type : String,
-        default :""
     },
     linkedin :{
         type : String,

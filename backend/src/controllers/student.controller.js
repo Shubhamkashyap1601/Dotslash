@@ -5,6 +5,7 @@ import { Student } from "../models/student.model.js"
 import { destroyOnCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js"
 import jwt from "jsonwebtoken"
 import * as cheerio from 'cheerio';
+import { set } from "mongoose"
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -196,6 +197,31 @@ const getUser = asyncHandler(async (req, res) => {
 
 })
 
+const updateRating = asyncHandler(async (req, res) => {
+    const username = req.params.username;
+    let user;
+    try {
+        user = await Student.findOne({ username: username }).select("-password -refreshToken");
+        if(!user.codingPlatforms.lastupdated ||  (user.codingPlatforms.lastupdated - Date.now() > 1000*60*60*24))
+        {
+            await scrapeRatingLeetcode(user.codingPlatforms.leetcode);
+            await scrapeRatingCodeforces(user.codingPlatforms.codeforces);
+            await scrapeRatingCodechef(user.codingPlatforms.codechef);
+            user.codingPlatforms.lastupdated = Date.now();  
+            await user.save({validateBeforeSave:false});
+        }
+    } catch (error) {
+        throw new ApiError("Error occured while fetching the user")
+    }
+    return res.status(200)
+        .json(
+            new ApiResponse(
+                200,
+                user.codingPlatforms,
+                "Found user successfully"
+            )
+        )
+})
 const changePassword = asyncHandler(async (req, res) => {
     const { oldPassword, newPassword } = req.body
     const user = await Student.findById(req.user._id)
@@ -218,7 +244,6 @@ const changePassword = asyncHandler(async (req, res) => {
             )
         )
 })
-
 
 const updateUserPfp = asyncHandler(async (req, res) => {
     if (!(req.file?.path)) {
@@ -270,56 +295,96 @@ const updateHandles = asyncHandler(async(req,res)=>{
         const{codechef,codeforces,leetcode,github} = req.body;
         const user = await Student.findById(req.user._id)
         if (codechef !== undefined && codechef !== null && codechef !== '') {
-            user.codechef = codechef;
+            user.codingPlatforms.codechef.username = codechef;
         }
         if (codeforces !== undefined && codeforces !== null && codeforces !== '') {
-            user.codeforces = codeforces;
+            user.codingPlatforms.codeforces.username = codeforces;
         }
         if (leetcode !== undefined && leetcode !== null && leetcode !== '') {
-            user.leetcode = leetcode;
+            user.codingPlatforms.leetcode.username = leetcode;
         }
         if (github !== undefined && github !== null && github !== '') {
             user.github = github;
         }
+        user.codingPlatforms.lastupdated = undefined;
         await user.save({validationBeforeSave:false})
     } catch (error) {
         throw new ApiError(400,error);
     }
-    return res.status(200);
+    return res.status(200).json(  
+        new ApiResponse(
+            200,
+            "User Handles Updated Successfully"
+        )
+    );
 })
 
-const scrapeRatingLeetcode = asyncHandler(async(req, res) => {
-    const platformId = req.params.platformId;
-    const url = `https://leetcode.com/${platformId}/`;
+const scrapeRatingLeetcode = async (leetcode) => {
+    const platformId = leetcode.username;
+    const url1 = `https://alfa-leetcode-api.onrender.com/${platformId}/contest`;
+    const url2 = `https://alfa-leetcode-api.onrender.com/${platformId}/solved`;
 
     try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            const error = await response.text();
-            console.error(`Error fetching from URL: ${url}. Status: ${response.status}. Error message: ${error}`);
-            throw new ApiError(response.status, "Error fetching from URL");
+        const response1 = await fetch(url1);
+        if (response1.ok) {
+            const res1 = await response1.json();
+            leetcode.rating = res1.contestRating;
+        } else {
+            throw new ApiError(404, "Error fetching rating from Leetcode URL");
         }
 
-        const html = await response.text();
-        const $ = cheerio.load(html);
-        const title = $('.text-label-3:contains("Contest Rating") + .text-label-1').text().replace(/,/g, '').trim();
-        const rating = title.substr(0, 4);
+        const response2 = await fetch(url2);
+        if (response2.ok) {
+            const res2 = await response2.json();
+            leetcode.problemSolved = res2.solvedProblem;
+        } else {
+            throw new ApiError(404, "Error fetching problems solved from Leetcode URL");
+        }
 
-        return res.status(200)
-            .json(new ApiResponse(
-                200,
-                rating,
-                "fetched something"
-            ));
     } catch (error) {
         console.error("Error in scraping:", error);
-        return res.status(500).json(new ApiResponse(500, null, "Internal Server Error"));
+        throw error; // Re-throwing the error to propagate it further
     }
-});
+    console.log(leetcode);
+};
 
-const scrapeRatingCodechef = asyncHandler(async(req,res)=>{
-    const platformId = req.params.platformId;
+const scrapeRatingCodeforces = async (codeforces) => {
+    const platformId = codeforces.username;
+    const url1 = `https://codeforces.com/api/user.info?handles=${platformId}`;
+    const url2 = `https://codeforces.com/api/user.status?handle=${platformId}`;
+
+    try {
+        const response1 = await fetch(url1);
+        if (response1.ok) {
+            const res1 = await response1.json();
+            codeforces.rating = res1.result[0].rating;
+        } else {
+            throw new ApiError(404, "Error fetching rating codeforces URL");
+        }
+
+        const response2 = await fetch(url2);
+        if (response2.ok) {
+            const res2 = await response2.json();
+            const set = new Set();
+            res2.result.forEach(element => {
+                if(element.verdict === "OK"){
+                    const tmp =  element.problem.index + " " + element.problem.name + " " + element.problem.contestId;
+                    set.add(tmp);
+                }
+            });
+            codeforces.problemSolved = set.size;    
+        } else {
+            throw new ApiError(404, "Error fetching problems solved from Codeforces URL");
+        }
+
+    } catch (error) {
+        console.error("Error in scraping:", error);
+        throw error; // Re-throwing the error to propagate it further
+    }
+    console.log(codeforces);
+};
+const scrapeRatingCodechef = async(codechef)=>{
+    const platformId = codechef.username;
     const url = `https://www.codechef.com/users/${platformId}`;
 
     const response = await fetch(url);
@@ -330,14 +395,8 @@ const scrapeRatingCodechef = asyncHandler(async(req,res)=>{
     const html = await response.text();
     const $ = cheerio.load(html);
     const rating = $('.rating-number').text();
+    codechef.rating = rating;
+    console.log(codechef);
+}
 
-    return res.status(200)
-            .json(new ApiResponse(
-                200,
-                rating,
-                "fetched something"
-            ))
-})
-
-
-export { registerStudent, loginStudent, deleteStudent, logoutStudent, refreshAccessToken, getUser, changePassword, updateUserPfp, isAuthorized,updateHandles,scrapeRatingLeetcode,scrapeRatingCodechef} 
+export { registerStudent, loginStudent, deleteStudent, logoutStudent, refreshAccessToken, getUser, changePassword, updateUserPfp, isAuthorized,updateHandles,scrapeRatingLeetcode,scrapeRatingCodechef, updateRating} 
