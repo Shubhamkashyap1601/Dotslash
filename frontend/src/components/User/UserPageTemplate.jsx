@@ -253,62 +253,62 @@ function UserPageTemplate({User}) {
                 <div className="user-details-container">
                     <ul>
                       <li>
-                        <div className="feild">
-                          <span className='feild-name'>
+                        <div className="field">
+                          <span className='field-name'>
                             Name
                           </span>
-                          <span className={`feild-value${deatailInputVisibility}`}>
+                          <span className={`field-value${deatailInputVisibility}`}>
                               Full Name
                           </span>
-                          <input type='text' name='name' className={`feild-input${deatailInputVisibility}`}/>
+                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
                         </div>
                       </li>
                       <hr/>
                       <li>
-                        <div className="feild">
-                          <span className='feild-name'>
+                        <div className="field">
+                          <span className='field-name'>
                             Name
                           </span>
-                          <span className={`feild-value${deatailInputVisibility}`}>
+                          <span className={`field-value${deatailInputVisibility}`}>
                               Full Name
                           </span>
-                          <input type='text' name='name' className={`feild-input${deatailInputVisibility}`}/>
+                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
                         </div>
                       </li>
                       <hr/>
                       <li>
-                        <div className="feild">
-                          <span className='feild-name'>
+                        <div className="field">
+                          <span className='field-name'>
                             Name
                           </span>
-                          <span className={`feild-value${deatailInputVisibility}`}>
+                          <span className={`field-value${deatailInputVisibility}`}>
                               Full Name
                           </span>
-                          <input type='text' name='name' className={`feild-input${deatailInputVisibility}`}/>
+                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
                         </div>
                       </li>
                       <hr/>
                       <li>
-                        <div className="feild">
-                          <span className='feild-name'>
+                        <div className="field">
+                          <span className='field-name'>
                             Name
                           </span>
-                          <span className={`feild-value${deatailInputVisibility}`}>
+                          <span className={`field-value${deatailInputVisibility}`}>
                               Full Name
                           </span>
-                          <input type='text' name='name' className={`feild-input${deatailInputVisibility}`}/>
+                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
                         </div>
                       </li>
                       <hr/>
                       <li>
-                        <div className="feild">
-                          <span className='feild-name'>
+                        <div className="field">
+                          <span className='field-name'>
                             Name
                           </span>
-                          <span className={`feild-value${deatailInputVisibility}`}>
+                          <span className={`field-value${deatailInputVisibility}`}>
                               Full Name
                           </span>
-                          <input type='text' name='name' className={`feild-input${deatailInputVisibility}`}/>
+                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
                         </div>
                       </li>
                       <hr/>
