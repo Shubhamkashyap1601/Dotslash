@@ -3,6 +3,7 @@ import './user.css'
 import { useState } from 'react';
 import { useLoginContext } from '../../context/LoginContext';
 
+
 function UserPageTemplate({User}) {
   
   const [visibility,setvisibility] = useState('-hidden');
@@ -160,9 +161,14 @@ function UserPageTemplate({User}) {
 
   }
   useEffect(()=>{
-    if(user.pfp == undefined)
+    if(user.pfp == "")
     {
-      user.pfp = 'https://wallpapers.com/images/hd/cool-profile-picture-1ecoo30f26bkr14o.jpg'
+      console.log("hello")
+      setUser((prev)=>
+          ({...prev,
+            pfp : '../../../src/assets/JhonnyBhaiya.jpeg'
+          })
+        )
     }
     if(isLoggedIn && user.username === username) setIsOwner(true);
     else setIsOwner(false);
@@ -303,7 +309,7 @@ function UserPageTemplate({User}) {
                     <div className='bar-container'>
                       <div className='platform-name'>
                         
-                        Leetcode - {user.codingPlatforms.leetcode.rating.toFixed(1) || 0} rating
+                        Leetcode - {user.codingPlatforms.leetcode.rating?.toFixed(1) || 0} rating
                       </div>
                       <div className="full-length-bar">
                         <div className='leetcode-bar'>

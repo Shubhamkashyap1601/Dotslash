@@ -58,7 +58,6 @@ const fetchBlogs = asyncHandler(async (req, res) => {
       `Something went wrong while finding the current user: ${error.message}`
     );
   }
-
   const likedBlogs = user?.likedBlogs;
 
   try {
@@ -131,7 +130,7 @@ const incrementLikes = asyncHandler(async (req, res) => {
 
 const fetchOneBlog = asyncHandler(async(req,res)=>{
   const paramValue = req.params.blogId;
-  console.log(req.params);
+  // console.log(req.params);
   let blog;
   try {
     blog = await Blog.findById(paramValue);
@@ -161,6 +160,7 @@ const fetchOneBlog = asyncHandler(async(req,res)=>{
   } else {
     modifiedBlog.isLiked = false;
   }
+  // console.log(modifiedBlog);
   return res.status(200)
     .json(
       new ApiResponse(

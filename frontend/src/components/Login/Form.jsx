@@ -33,6 +33,9 @@ const Form = ({ formType, inputFields }) => {
             setUsername(data.data.user.username)
             LogIn();
             navigate('/');
+            toast.success("Logged In Successfully",{
+              position:toast.POSITION.BOTTOM_LEFT
+            })
           }
           else{
             toast.error("Wrong username or password",{
@@ -55,9 +58,23 @@ const Form = ({ formType, inputFields }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Response from backend:", data);
+        if (data.success) {
+          navigate('/login');
+          toast.success("Registeration Successfull",{
+            position:toast.POSITION.BOTTOM_LEFT
+          })
+        } else {
+          console.error("Error submitting form:", data);
+          toast.error("Wrong username or password",{
+            position:toast.POSITION.BOTTOM_LEFT
+          })
+        }
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
+        toast.error("Wrong username or password",{
+          position:toast.POSITION.BOTTOM_LEFT
+        })
       })
       .finally(() => {setIsDisabled(false)});
     }

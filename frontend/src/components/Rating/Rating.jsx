@@ -1,105 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RatingTable from './RatingTable';
 
 function Rating() {
+
   const [selectedPlatform, setSelectedPlatform] = useState('CodeForces');
+  const [usersCodeForces, setUsersCodeForces] = useState([]);
+  const [users, setUsers] = useState(usersCodeForces);
+  const [usersLeetCode, setUsersLeetCode] = useState([])
+  const [usersCodeChef, setUsersCodeChef] = useState([])
+
 
   const handlePlatformChange = (event) => {
     setSelectedPlatform(event.target.value);
+    if (event.target.value === 'CodeForces') {
+      setUsers(usersCodeForces)
+    } else if (event.target.value === 'LeetCode') {
+      setUsers(usersLeetCode)
+    } else if (event.target.value === 'CodeChef') {
+      setUsers(usersCodeChef)
+    }
   };
 
-  const usersCodeForces = [
-    {
-      rank: '1',
-      name: 'binomanjesh',
-      rating: 1918
-    },
-    {
-      rank: '2',
-      name: 'jmichael',
-      rating: 1741
-    },
-    {
-      rank: '3',
-      name: 'vijay_panwar12',
-      rating: 1686
-    },
-    {
-      rank: '4',
-      name: 'vinay_panwar',
-      rating: 1651
-    },
-    {
-      rank: '5',
-      name: 'vasu52',
-      rating: 1621
-    },
-  ];
 
-  const usersLeetCode = [
-    {
-      rank: '1',
-      name: 'user1',
-      rating: 2000
-    },
-    {
-      rank: '2',
-      name: 'user2',
-      rating: 1800
-    },
-    {
-      rank: '3',
-      name: 'user3',
-      rating: 1600
-    },
-    {
-      rank: '4',
-      name: 'user4',
-      rating: 1500
-    },
-    {
-      rank: '5',
-      name: 'user5',
-      rating: 1400
-    },
-  ];
-
-  const usersCodeChef = [
-    {
-      rank: '1',
-      name: 'coder1',
-      rating: 2100
-    },
-    {
-      rank: '2',
-      name: 'coder2',
-      rating: 1950
-    },
-    {
-      rank: '3',
-      name: 'coder3',
-      rating: 1850
-    },
-    {
-      rank: '4',
-      name: 'coder4',
-      rating: 1750
-    },
-    {
-      rank: '5',
-      name: 'coder5',
-      rating: 1700
-    },
-  ];
-
-  let users;
-  if (selectedPlatform === 'CodeForces') {
-    users = usersCodeForces;
-  } else if (selectedPlatform === 'LeetCode') {
-    users = usersLeetCode;
-  } else if (selectedPlatform === 'CodeChef') {
-    users = usersCodeChef;
+  const fetchRankings = async () => {
+    try {
+      const response = await fetch(`/api/fetchRankings`);
+      const res = await response.json();
+      // console.log(res);
+      setUsersCodeForces(res.data.codeforceRanking);
+      setUsers(res.data.codeforceRanking);
+      setUsersCodeChef(res.data.codechefRanking);
+      setUsersLeetCode(res.data.leetcodeRanking);
+    } catch (error) {
+      console.log("Error fetching data:", error);
+    }
   }
+  useEffect(() => {
+    fetchRankings();
+  },[]);
 
   return (
     <>
@@ -113,7 +51,9 @@ function Rating() {
       </div>
       <br />
       <br />
-      <RatingTable platform={selectedPlatform} platform_img={selectedPlatform === 'CodeForces' ? '../../src/assets/cf_img.webp' : selectedPlatform === 'LeetCode' ? '../../src/assets/leetcode_img.png' : '../../src/assets/codechef_img.jpg'} users={users} />
+      {users?.length > 0 &&
+        <RatingTable platform={selectedPlatform} platform_img={selectedPlatform === 'CodeForces' ? '../../src/assets/cf_img.webp' : selectedPlatform === 'LeetCode' ? '../../src/assets/leetcode_img.png' : '../../src/assets/codechef_img.jpg'} users={users} />
+      }
       <br />
       <br />
     </>
