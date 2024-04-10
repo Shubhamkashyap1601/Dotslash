@@ -23,6 +23,14 @@ function UserPageTemplate({User}) {
 
   const pfpRef = useRef();
 
+  const problemSolvedLeetcode = 200;
+  const problemSolvedCodeChef = 200;
+  const problemSolvedCodeforces = 200;
+  const aboutMeText = "I am a competitive programmer and a web developer. I love to solve problems and learn new things. I am a 3 star coder at codeforces and a 4 star coder at codechef. I have solved 200 problems on leetcode.";
+  const languagesList = "C++, Python, Javascript, Java, C#";
+  const [totalProblemsSolved, setTotalProblemsSolved] = useState(0);
+
+
   const changeVisibility = ()=>{
     setvisibility((pre)=>{
       if(pre === '-hidden') return '';
@@ -240,71 +248,38 @@ function UserPageTemplate({User}) {
                 </div>
             </div>
             <div className="user-right-container">
-                <div className="user-details-container">
-                    <ul>
-                      <li>
-                        <div className="field">
-                          <span className='field-name'>
-                            Name
-                          </span>
-                          <span className={`field-value${deatailInputVisibility}`}>
-                              Full Name
-                          </span>
-                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
-                        </div>
-                      </li>
-                      <hr/>
-                      <li>
-                        <div className="field">
-                          <span className='field-name'>
-                            Name
-                          </span>
-                          <span className={`field-value${deatailInputVisibility}`}>
-                              Full Name
-                          </span>
-                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
-                        </div>
-                      </li>
-                      <hr/>
-                      <li>
-                        <div className="field">
-                          <span className='field-name'>
-                            Name
-                          </span>
-                          <span className={`field-value${deatailInputVisibility}`}>
-                              Full Name
-                          </span>
-                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
-                        </div>
-                      </li>
-                      <hr/>
-                      <li>
-                        <div className="field">
-                          <span className='field-name'>
-                            Name
-                          </span>
-                          <span className={`field-value${deatailInputVisibility}`}>
-                              Full Name
-                          </span>
-                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
-                        </div>
-                      </li>
-                      <hr/>
-                      <li>
-                        <div className="field">
-                          <span className='field-name'>
-                            Name
-                          </span>
-                          <span className={`field-value${deatailInputVisibility}`}>
-                              Full Name
-                          </span>
-                          <input type='text' name='name' className={`field-input${deatailInputVisibility}`}/>
-                        </div>
-                      </li>
-                      <hr/>
-                    </ul>
-                    {isOwner? <button onClick={changeDetailInputVisibility}>{detailButtonText}</button>:""}
-                </div>
+            <div class="user-details-container">
+              {isOwner && (<img src='../../../src/assets/edit.png' alt="Edit" class="edit-about-me" onClick={changeDetailInputVisibility}></img>)}
+              <div class="user-details-title">About Me:</div>
+              <div class="user-details-content" contenteditable="false">{aboutMeText}</div>
+
+              <div class="user-details-title">Languages:</div>
+              <div class="user-details-content">{languagesList}</div>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Platform</th>
+                    <th>Solved</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Leetcode</th>
+                    <td>{problemSolvedLeetcode}</td> </tr>
+                  <tr>
+                    <th>CodeChef</th>
+                    <td>{problemSolvedCodeChef}</td>
+                  </tr>
+                  <tr>
+                    <th>Codeforces</th>
+                    <td>{problemSolvedCodeforces}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
                 <div className="user-ratings-container">
                     <div className='bar-container'>
                       <div className='platform-name'>

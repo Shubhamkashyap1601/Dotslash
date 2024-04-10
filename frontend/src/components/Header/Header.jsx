@@ -45,9 +45,9 @@ const Header = () => {
           <NavLink to="/ratings" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
             Ratings
           </NavLink>
-          <NavLink to="/discussions" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
+          {/* <NavLink to="/discussions" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
             Discussions
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/blogs" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
             Blogs
           </NavLink>
