@@ -203,7 +203,7 @@ function UserPageTemplate({User}) {
                       <div className='list-item'>
                         <span className='list-item-name'>Codeforces
                         </span>
-                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://codeforces.com/profile/${user.codeforces}`}target='_blank'>Codeforces link</a></span>
+                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://codeforces.com/profile/${user.codingPlatforms.codeforces.username}`}target='_blank'>Codeforces link</a></span>
                         <input type='text' className={`list-item-input${linkInputVisibility}`} name='codeforces' onChange={handleChange} />
 
                       </div>
@@ -212,7 +212,7 @@ function UserPageTemplate({User}) {
                     <li>
                       <div className='list-item'>
                         <span className='list-item-name'>Leetcode</span>
-                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://leetcode.com/${user.leetcode}/`}target='_blank'>Leetcode link</a></span>
+                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://leetcode.com/${user.codingPlatforms.leetcode.username}/`}target='_blank'>Leetcode link</a></span>
                         <input type='text' className={`list-item-input${linkInputVisibility}` } name='leetcode' onChange={handleChange} />
 
                       </div>
@@ -221,7 +221,7 @@ function UserPageTemplate({User}) {
                     <li>
                       <div className='list-item'>
                         <span className='list-item-name'>CodeChef</span>
-                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://www.codechef.com/users/${user.codechef}`} target='_blank'>Codechef link</a></span>
+                        <span className={`list-item-content${linkInputVisibility}`}><a href={`https://www.codechef.com/users/${user.codingPlatforms.codechef.username}`} target='_blank'>Codechef link</a></span>
                         <input type='text' className={`list-item-input${linkInputVisibility}`} name='codechef' onChange={handleChange}/>
 
                       </div>
