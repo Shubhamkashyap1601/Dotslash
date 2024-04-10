@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { LoginPage, SignUp, Home, CreateBlog, BlogMainPage, Chat } from './components/index.js'
+import { LoginPage, SignUp, Home, CreateBlog, BlogMainPage, Chat, Resources, DomainResources } from './components/index.js'
 import Layout from './Layout.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Rating from './components/Rating/Rating.jsx'
@@ -13,7 +13,11 @@ const router = createBrowserRouter(
     <Route path='/' element={<Layout />}>
       <Route path='' element={<Home pageText='Home' />} />
       <Route path='announcements' element={<Home pageText='Announcements' />} />
-      <Route path='resources' element={<Home pageText='Resoruces' />} />
+      <Route path='resources' element={<Resources />} />
+      <Route path='resources/cpdsa' element={<DomainResources domain="CP DSA"/>} />
+      <Route path='resources/webdev' element={<DomainResources domain="WEB DEV"/>} />
+      <Route path='resources/appdev' element={<DomainResources domain="APP DEV"/>} />
+      <Route path='resources/ml' element={<DomainResources domain="Machine Learning"/>} />
       <Route path='mentors' element={<Home pageText='Mentors' />} />
       <Route path='ratings' element={<Rating />} />
       <Route path='discussions' element={<Chat pageText='Discussions' />} />

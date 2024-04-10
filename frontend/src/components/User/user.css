@@ -177,26 +177,26 @@ li{
     margin-left: 35%;
     width:30%;
 }
-.feild{
+.field{
     display: flex;
 }
-.feild-name{
+.field-name{
     font-size: large;
     padding: 0px;
     justify-content: center;
     color: aliceblue;
 }
-.feild-value-hidden{
+.field-value-hidden{
     width: 100%;
     text-align: center;
 }
-.feild-value{
+.field-value{
     display:none;
 }
-.feild-input-hidden{
+.field-input-hidden{
     display:none;
 }
-.feild-input{
+.field-input{
     width: 100%;
     padding:0;
     font-size: large;

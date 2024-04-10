@@ -6,7 +6,9 @@ import BlogMainPage from './Blogs/BlogMainPage.jsx'
 import CreateBlog from './Blogs/CreateBlog.jsx'
 import HomeBlogCard from './Blogs/HomeBlogCard.jsx';
 import Blogs from './Blogs/Blogs.jsx';
-import Chat from "./chat/Chat.jsx";
+import Chat from "./Chat/Chat.jsx";
 import User from "./User/UserPageTemplate.jsx";
+import Resources from "./Resources/Resources.jsx";
+import DomainResources from "./Resources/DomainResources.jsx";
 
-export { Header, Home, LoginPage, SignUp, BlogMainPage, CreateBlog, HomeBlogCard, Blogs, Chat , User};
+export { Header, Home, LoginPage, SignUp, BlogMainPage, CreateBlog, HomeBlogCard, Blogs, Chat , User, Resources, DomainResources};
