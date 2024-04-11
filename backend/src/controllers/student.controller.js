@@ -208,32 +208,6 @@ const getUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Found user successfully"));
 });
 
-const updateRating = asyncHandler(async (req, res) => {
-  const username = req.params.username;
-  let user;
-  try {
-    user = await Student.findOne({ username: username }).select(
-      "-password -refreshToken"
-    );
-    if (
-      !user.codingPlatforms.lastupdated ||
-      user.codingPlatforms.lastupdated - Date.now() > 1000 * 60 * 60 * 24
-    ) {
-      await scrapeRatingLeetcode(user.codingPlatforms.leetcode);
-      await scrapeRatingCodeforces(user.codingPlatforms.codeforces);
-      await scrapeRatingCodechef(user.codingPlatforms.codechef);
-      user.codingPlatforms.lastupdated = Date.now();
-      await user.save({ validateBeforeSave: false });
-    }
-  } catch (error) {
-    throw new ApiError("Error occured while fetching the user");
-  }
-  return res
-    .status(200)
-    .json(
-      new ApiResponse(200, user.codingPlatforms, "Found user successfully")
-    );
-});
 const changePassword = asyncHandler(async (req, res) => {
   const { oldPassword, newPassword } = req.body;
   const user = await Student.findById(req.user._id);
@@ -319,6 +293,32 @@ const updateHandles = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "User Handles Updated Successfully"));
 });
 
+const updateRating = asyncHandler(async (req, res) => {
+  const username = req.params.username;
+  let user;
+  try {
+    user = await Student.findOne({ username: username }).select(
+      "-password -refreshToken"
+    );
+    if (
+      !user.codingPlatforms.lastupdated ||
+      user.codingPlatforms.lastupdated - Date.now() > 1000 * 60 * 60 * 24
+    ) {
+      await scrapeRatingLeetcode(user.codingPlatforms.leetcode);
+      await scrapeRatingCodeforces(user.codingPlatforms.codeforces);
+      await scrapeRatingCodechef(user.codingPlatforms.codechef);
+      user.codingPlatforms.lastupdated = Date.now();
+      await user.save({ validateBeforeSave: false });
+    }
+  } catch (error) {
+    throw new ApiError("Error occured while fetching the user");
+  }
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, user.codingPlatforms, "Found user successfully")
+    );
+});
 const scrapeRatingLeetcode = async (leetcode) => {
   const platformId = leetcode.username;
   const url1 = `https://alfa-leetcode-api.onrender.com/${platformId}/contest`;
@@ -396,6 +396,15 @@ const scrapeRatingCodechef = async (codechef) => {
   const html = await response.text();
   const $ = cheerio.load(html);
   const rating = $(".rating-number").text();
+  const inputString = $("section.problems-solved h3").text();
+  const regex = /\((\d+)\)/g;
+  const matches = [];
+  let match;
+  while ((match = regex.exec(inputString)) !== null) {
+    matches.push(parseInt(match[1])); // Extracted number is at index 1
+  }
+  const sum = matches.reduce((acc, curr) => acc + curr, 0);
+  codechef.problemSolved = sum;
   codechef.rating = rating;
   console.log(codechef);
 };
