@@ -44,15 +44,66 @@
 }
 .user-details-container{
     display: flex;
+    align-items: center;
     flex-direction: column;
+    color: white;
     margin-bottom: 10px;
     width : 100%;
     border-radius: 5px;
     background-color:#2c2c2c;
     padding-top: 3%;
     padding-bottom: 3%;
-
 }
+user-details-title,
+.user-details-content {
+    flex: 1; 
+    padding: 5px; 
+}
+
+.problem-header {
+    text-align: left;
+  }
+
+.user-details-container table {
+  border-collapse:
+  /* width: 100%;  */
+  /* margin-top: 10px;  */
+}
+.user-details-container th,
+.user-details-container td {
+  padding: 5px; 
+}
+
+.user-details-container th:nth-child(1) { 
+  width: 50%; 
+  text-align: left; 
+}
+
+.user-details-container th:nth-child(2) { 
+  text-align: left; 
+  font-weight: bold;
+}
+.user-details-title,
+.user-details-content {
+  flex: 1; 
+  padding: 5px; 
+}
+
+.edit-about-me {
+    width: 20px; 
+    height: 20px;
+    cursor: pointer;
+  }
+
+.user-details-title {
+  font-weight: bold; 
+  text-align: right;
+}
+
+.user-details-content {
+  font-style: italic; 
+}
+
 .user-ratings-container{
     display: flex;
     flex-direction: column;
