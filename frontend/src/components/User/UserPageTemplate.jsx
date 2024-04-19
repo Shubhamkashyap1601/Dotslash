@@ -174,7 +174,7 @@ function UserPageTemplate({User}) {
       console.log("hello")
       setUser((prev)=>
           ({...prev,
-            pfp : '../../../src/assets/JhonnyBhaiya.jpeg'
+            pfp : '../../../src/assets/table-back.jpeg'
           })
         )
     }
