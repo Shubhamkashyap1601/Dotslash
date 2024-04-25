@@ -302,7 +302,7 @@ const updateRating = asyncHandler(async (req, res) => {
     );
     if (
       !user.codingPlatforms.lastupdated ||
-      user.codingPlatforms.lastupdated - Date.now() > 1000 * 60 * 60 * 24
+      Date.now() - user.codingPlatforms.lastupdated > 1000 * 60 * 60 * 24
     ) {
       await scrapeRatingLeetcode(user.codingPlatforms.leetcode);
       await scrapeRatingCodeforces(user.codingPlatforms.codeforces);
