@@ -4,6 +4,12 @@
   "description": "test commit 1",
   "main": "index.js",
   "scripts": {
+    "dev:frontend": "cd frontend && npm install && npm run dev",
+    "dev:backend": "cd backend && npm install && npm run dev",
+    "build:frontend": "cd frontend && npm install && npm run build",
+    "build:backend": "cd backend && npm install && npm run build",
+    "dev": "npm run dev:frontend",
+    "build": "npm run build:frontend && npm run build:backend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
