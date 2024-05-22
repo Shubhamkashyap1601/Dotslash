@@ -17,7 +17,7 @@ const ResourcesDetails = ({resources}) => {
                             <div className="resource-title">{resource.title}</div>
                             <div className="resource-description">{resource.description}</div>
                         </td>
-                        <td className="resource-link">{resource.link}</td>
+                        <td className="resource-link"><a href={resource.link}>{resource.type}</a></td>
                     </tr>))}
             </tbody>
         </table>

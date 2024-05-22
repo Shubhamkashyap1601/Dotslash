@@ -6,11 +6,12 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1vh;
-  background-color: black;
+
+  background-color: rgb(35, 35, 35);
   text-align: center;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgb(25, 25, 25);
   width: 100%;
-  z-index: 1;
+  z-index: 5;
 }
 
 #logo1 {
@@ -30,16 +31,19 @@
   color :white;
   background-color: rgba(0, 0, 0, 0);
   padding: right;
+  height: 100%;
   float: right;
 }
 
 a{
   color: white;
 }
-  .navGroup a {
-  font-size: large;
+
+.navGroup a {
+  display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 110%;
   text-decoration: none;
   padding: 10px 15px;
   margin: 0 5px;
@@ -52,8 +56,10 @@ a{
 
 .glow-text-nav-bar {
   color: #ffA500;
-  border-bottom: 1px solid #ffA500;
-  border-right: 1px solid #ffA500;
+  background: rgb(37,37,37);
+  background: radial-gradient(circle, rgb(50, 50, 50, 1) 0%, rgba(30, 30, 30, 1) 50%, rgba(0, 0, 0,1) 100%);
+  /* border-bottom: 1px solid #ffA500;
+  border-right: 1px solid #ffA500; */
 }
 
 .side-image-nav-bar {

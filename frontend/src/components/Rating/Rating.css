@@ -69,26 +69,17 @@ tbody tr:hover{
 /* CSS for home rating card */
 
 .ratings-text{
-    color: white;
-  /* background-color: #242323; */
   width: 90vw;
   text-align: center;
   font-size: 3em;
   font-family:  Cal Sans,Cal Sans Fallback,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
   font-weight: bold;
   
-  /* Blended text with white */
-  color: rgba(255, 255, 255, 0.3);
-  background-color: rgb(255, 166, 0,1); 
-  background-clip: text;
-
-  /* border-radius: 10px; */
-  /* border-top: 1px solid rgba(255, 255, 255, 0.8); */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  color: rgba(255, 166, 0, 1);
 }
 
 .rating-cards{
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -98,11 +89,13 @@ tbody tr:hover{
 
 .home-rating-card{
     width: 30%;
+    background: linear-gradient(180deg, rgb(32, 32, 32) 0%, rgb(40, 40, 40) 100%);
     color: white;
-    border: 0.5px solid white;
+    border: 0.5px solid rgb(55, 55, 55);
     border-radius: 5px;
     padding: 2px;
     margin: 2.2vh;
+    margin-top: 0vh;
 }
 
 .home-rating-card:hover{
@@ -135,7 +128,6 @@ tbody tr:hover{
     border-radius: 25px;
     overflow: hidden;
     border-radius: 70px;
-    /* background-color: coral; */
     margin: 2vh;
 }
 
@@ -158,11 +150,11 @@ tbody tr:hover{
 }
 
 .bgclr-1{
-    background-color: red;
+    background-color: rgb(255, 125, 0);
 }
 .bgclr-2{
-    background-color: orange;
+    background-color: rgb(255, 160, 0);
 }
 .bgclr-3{
-    background-color: yellow;
+    background-color: rgb(255, 195, 0);
 }

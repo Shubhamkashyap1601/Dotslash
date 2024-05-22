@@ -9,11 +9,11 @@ function BlogMainPage() {
   const fetchData = async () => {
     let response;
     try {
-          response = await fetch('/api/fetch-blogs', {
-          method: "GET",
-          headers: {
-              "Content-Type": "application/json",
-          },
+      response = await fetch('/api/fetch-blogs', {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
       })
       if(response.ok){
           const data = await response.json();

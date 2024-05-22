@@ -14,10 +14,10 @@ const router = createBrowserRouter(
       <Route path='' element={<Home pageText='Home' />} />
       <Route path='announcements' element={<Home pageText='Announcements' />} />
       <Route path='resources' element={<Resources />} />
-      <Route path='resources/cpdsa' element={<DomainResources domain="CP DSA"/>} />
-      <Route path='resources/webdev' element={<DomainResources domain="WEB DEV"/>} />
-      <Route path='resources/appdev' element={<DomainResources domain="APP DEV"/>} />
-      <Route path='resources/ml' element={<DomainResources domain="Machine Learning"/>} />
+      <Route path='resources/cpdsa' element={<DomainResources domainTitle="CP DSA" domain="cpdsa"/>} />
+      <Route path='resources/webdev' element={<DomainResources domainTitle="WEB DEV" domain="webdev"/>} />
+      <Route path='resources/appdev' element={<DomainResources domainTitle="APP DEV" domain="appdev"/>} />
+      <Route path='resources/ml' element={<DomainResources domainTitle="Machine Learning" domain="ml"/>} />
       <Route path='mentors' element={<Home pageText='Mentors' />} />
       <Route path='ratings' element={<Rating />} />
       <Route path='discussions' element={<Chat pageText='Discussions' />} />
