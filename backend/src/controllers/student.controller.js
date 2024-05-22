@@ -319,6 +319,7 @@ const updateRating = asyncHandler(async (req, res) => {
       new ApiResponse(200, user.codingPlatforms, "Found user successfully")
     );
 });
+
 const scrapeRatingLeetcode = async (leetcode) => {
   const platformId = leetcode.username;
   const url1 = `https://alfa-leetcode-api.onrender.com/${platformId}/contest`;

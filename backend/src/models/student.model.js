@@ -78,6 +78,7 @@ studentSchema.pre("save", async function (next) {
     this.password = await bcrypt.hash(this.password, 10)
     next()
 })
+
 studentSchema.methods.isPasswordCorrect = async function(password){
     return await bcrypt.compare(password, this.password)
 }
@@ -96,6 +97,7 @@ studentSchema.methods.generateAccessToken = function(){
         }
     )
 }
+
 studentSchema.methods.generateRefreshToken = function(){
     return jwt.sign(
         {
@@ -107,4 +109,5 @@ studentSchema.methods.generateRefreshToken = function(){
         }
     )
 }
+
 export const Student = mongoose.model("Student",studentSchema)
