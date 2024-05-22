@@ -164,6 +164,7 @@ function UserPageTemplate({User}) {
     updateCodeforcesProgressBar();
     updateCodechefProgressBar();
     updateLeetcodeProgressBar();
+
   }
   const unSetImage = ()=>{
 
@@ -182,7 +183,8 @@ function UserPageTemplate({User}) {
     else setIsOwner(false);
     updateRating();
     updateProgressBar();
-  },[user.pfp,username,user.codingPlatforms])
+
+  },[user.pfp,username])
   return (
       <div className='user-page-container'>
             <div className='user-left-container'>
