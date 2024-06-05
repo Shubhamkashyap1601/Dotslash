@@ -20,16 +20,26 @@ const Header = () => {
       console.error("Error occured while logging out :",error)
     }
   }
+
+  const [menuActive, setMenuActive] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuActive(!menuActive);
+  };
   return (
     <>
       <header className='navBar'>
         <div className='side-image-nav-bar'>
-          <NavLink className="Logo" to ="/">
+          <NavLink className="Logo" to="/">
             <img src='./src/assets/dotslashLogo.png' alt="logo" id='logo1'/>
           </NavLink>
-          {/* <p>DotSlash</p> */}
         </div>
-        <nav className='navGroup'>
+        <div className="navbar-toggle" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav className={`navGroup ${menuActive ? 'active' : ''}`}>
           <NavLink to="/" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
             Home
           </NavLink>
@@ -45,16 +55,13 @@ const Header = () => {
           <NavLink to="/ratings" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
             Ratings
           </NavLink>
-          {/* <NavLink to="/discussions" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
-            Discussions
-          </NavLink> */}
           <NavLink to="/blogs" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>
             Blogs
           </NavLink>
           {
-            !isLoggedIn ? ( 
+            !isLoggedIn ? (
               <NavLink to="/login" className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}> Login </NavLink>
-            ) 
+            )
             :(
               <>
                 <NavLink to={`/user/${username}`} className={({ isActive }) => `${isActive ? "glow-text-nav-bar" : ""}`}>{username}</NavLink>
