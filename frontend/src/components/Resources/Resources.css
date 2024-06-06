@@ -1,3 +1,8 @@
+/*
+    Resources home page
+*/
+
+
 .home-resources {
     width: 100%;
     height: 100%;
@@ -47,6 +52,10 @@
     text-shadow: 5%;
 }
 
+/*
+    Resource main page
+*/
+
 .menu {
     display: flex;
     flex-direction: column;
@@ -54,8 +63,7 @@
     justify-content: center;
     width: 100%;
     height: 15vh;
-    padding-top: 1%;
-    margin-top: 1%;
+    padding-top: 3%;
     background-color: rgba(40, 40, 40, 0.95);
 }
 
@@ -66,7 +74,8 @@
     width: 100%;
     height: 50%;
     color: white;
-    font-size: 150%;
+    text-decoration: bold;
+    font-size: 225%;
 }
 
 .resources-menu {
@@ -75,9 +84,10 @@
     align-items: center;
     justify-content: center;
     width: 75%;
-    height: 100%;
-    margin: 2%;
-    background-color: rgba(0, 0, 0, 0.75);
+    height: 50%;
+    margin: 1.5%;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
 }
 
 .resources-menu input[type="radio"] {
@@ -87,19 +97,18 @@
 }
 
 .resources-menu input[type="radio"]:checked+label {
-    background-color: rgba(255, 168, 5, 0.95);
+    background-color: rgba(255, 168, 5, 0.80);
     color: black;
 }
 
 label {
     display: flex;
     width: 100%;
-    height: 75%;
+    height: 80%;
     align-items: center;
     justify-content: center;
     text-align: center;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.75);
     color: white;
     padding: 5px 10px;
     border-radius: 20px;
@@ -107,26 +116,42 @@ label {
     transition: all .15s ease-out;
 }
 
-.resource-table {
+/* 
+    Resources Table 
+*/
+
+table {
     width: 80%;
     height: auto;
     margin-top: 1%;
 }
 
-.table-body {
-    align-items: center;
-    justify-content: center;
+thead th:nth-child(1) {
+    width: 70%;
+    font-size: 120%;
+}
+
+thead th:nth-child(2) {
+    width: 30%;
+    font-size: 120%;
+}
+
+tbody {
     background-color: rgba(40, 40, 40, 0.95);
     color: white;
 }
 
-.resource-data{
-    display: flex;
-    flex-direction: column;
+tbody a{
+    text-decoration: none;
+}
+
+.resource{
     padding: 2%;
 }
 
 .resource-title{
+    text-decoration: underline;
+    margin-bottom: 10px;
     font-size: 150%;
 }
 
@@ -134,7 +159,7 @@ label {
     font-size: 120%;
 }
 
-.resource-link{
+.resource-owner{
     text-align: center;
     font-size: 130%;
 }
