@@ -1,0 +1,23 @@
+body {
+  background-color: #000000;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+} 
+
+#root{
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #111; */
+  /* background-color: rgba(21 , 21, 21, 0.75); */
+  background: rgb(33,33,33);
+  background: linear-gradient(0deg, rgb(23 23 23) 0%, rgb(43 43 43) 100%);
+  /* background-color: rgb(17 17 17); */
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

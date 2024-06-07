@@ -1,0 +1,127 @@
+.navBar {
+  position: sticky;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1vh;
+
+  background-color: rgb(35, 35, 35);
+  text-align: center;
+  border-bottom: 1px solid rgb(25, 25, 25);
+  width: 100%;
+  z-index: 1;
+}
+
+#logo1 {
+  width: 23%;
+  height: auto;
+  min-width: 50px;
+  display: flex;
+}
+
+.navGroup {
+  margin-left: auto;
+  right: 0px;
+  float: right;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color :white;
+  background-color: rgba(0, 0, 0, 0);
+  padding: right;
+  height: 100%;
+  float: right;
+}
+
+a{
+  color: white;
+}
+
+.navGroup a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 110%;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 10px;
+}   
+
+.navGroup a:hover {
+  color: #ffA500;
+}
+
+.glow-text-nav-bar {
+  color: #ffA500;
+  background: rgb(37,37,37);
+  background: radial-gradient(circle, rgb(50, 50, 50, 1) 0%, rgba(30, 30, 30, 1) 50%, rgba(0, 0, 0,1) 100%);
+  /* border-bottom: 1px solid #ffA500;
+  border-right: 1px solid #ffA500; */
+}
+
+.side-image-nav-bar {
+  display: flex;
+  padding: 0;
+  padding-left: 2%;
+  width: 15%;
+  flex-shrink: 0; /* Prevent the logo from shrinking */
+  position: relative; /* Add this to enable absolute positioning inside */
+}
+.dropdown-content{
+  display: none;
+}
+.dropdown:hover{
+  display: block;
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.navbar-toggle span {
+  background: rgb(98, 98, 98);
+  height: 3px;
+  margin: 4px;
+  width: 25px;
+}
+
+@media (max-width: 768px) {
+
+  .side-image-nav-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding-left: 20px; /* Adjust as needed */
+    width: auto; /* Adjust as needed */
+  }
+
+  .navGroup {
+    flex-direction: column;
+    align-items: flex-start;
+    display: none; 
+    width: 100%; 
+  }
+
+  .navGroup.active {
+    display: flex; 
+  }
+
+  .navbar-toggle {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+
+  .navGroup a {
+    width: 100%; 
+    text-align: left; 
+    padding: 10px 20px; 
+  }
+}

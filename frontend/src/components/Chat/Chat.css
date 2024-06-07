@@ -1,0 +1,125 @@
+.background {
+    border-radius: 8px;
+    background-color: #36393f;
+
+    height: 90vh;
+    width: 60vw;
+    display: flex;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+}
+
+.discussion-topics {
+
+    background-color: #2f3136;
+
+    width: 30%;
+    position: relative;
+    padding: 20px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.topics-heading {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.topic {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    background-color: #40444b;
+    color: #f0f0f0;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.topic:hover {
+    background-color: #1d242f;
+    transform: scale(1.05);
+}
+
+.discussion-chat {
+    flex: 1;
+    border-radius: 8px;
+    background-color: #424549;
+    width: 30%;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.chat-box {
+    flex: 1;
+    max-height: 70vh;
+    align-self: flex-end;
+}
+
+.message-input {
+    flex: 1;
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #495163;
+    border-radius: 6px;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #000000;
+}
+
+.send-button {
+    padding: 10px;
+    background-color: #7289da;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.message-form {
+    display: flex;
+    align-items: center;
+    margin-top: auto; 
+}
+
+.sendmessage {
+    margin-top: 20px; 
+}
+
+
+
+.send-button {
+    padding: 10px;
+    background-color: #7289da;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+
+.send-button:hover {
+    background-color: #677bc4;
+}
+
+.create-topic-button {
+    cursor: pointer;
+  }
+  
+  .create-topic-button img {
+    position: absolute;
+  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  right: 10px; /* Adjust the distance from the right as needed */
+  cursor: pointer;
+  }

@@ -1,0 +1,310 @@
+.user-page-container{
+    padding-top: 2%;
+    display: flex;
+    flex-direction: row;
+    width:60vw;
+}
+.user-left-container{
+    display:flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 10px;
+    
+}
+
+.user-right-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    margin: 10px;
+}
+.user-image-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#2c2c2c;
+    width : 100%;
+    border-radius: 5px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+}
+.user-profile-links-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 5px;
+    background-color:#2c2c2c;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+    
+}
+.user-details-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    margin-bottom: 10px;
+    width : 100%;
+    border-radius: 5px;
+    background-color:#2c2c2c;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+user-details-title,
+.user-details-content {
+    flex: 1; 
+    padding: 5px; 
+}
+
+.problem-header {
+    text-align: left;
+  }
+
+.user-details-container table {
+  border-collapse:
+  /* width: 100%;  */
+  /* margin-top: 10px;  */
+}
+.user-details-container th,
+.user-details-container td {
+  padding: 5px; 
+}
+
+.user-details-container th:nth-child(1) { 
+  width: 50%; 
+  text-align: left; 
+}
+
+.user-details-container th:nth-child(2) { 
+  text-align: left; 
+  font-weight: bold;
+}
+.user-details-title,
+.user-details-content {
+  flex: 1; 
+  padding: 5px; 
+}
+
+.edit-about-me {
+    width: 20px; 
+    height: 20px;
+    cursor: pointer;
+  }
+
+.user-details-title {
+  font-weight: bold; 
+  text-align: right;
+}
+
+.user-details-content {
+  font-style: italic; 
+}
+
+.user-ratings-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    width : 100%;
+    border-radius: 5px;
+    background-color:#2c2c2c;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+}
+.user-image{
+    margin: 10px;
+    height: 50%;
+    width:50%;
+    border-radius: 50%;
+}
+.text-container-hidden{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text-container{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+.custom-text1{
+    font-size: large;
+    font-style: oblique;
+    font-weight: 600;
+    color: aliceblue;
+    justify-content: center;
+    margin: 5px;
+}
+
+.custom-text2{
+
+    font-size: large;
+    font-weight: 0;
+    color: aliceblue;
+    justify-content: center;
+    margin: 5px;
+}
+
+.custom-text3{
+    font-size: medium;
+    font-weight: 0;
+    color: aliceblue;
+    justify-content: center;
+    margin: 5px;
+}
+.user-image-container label{
+    color:#BDBCBA
+}
+.upload-image{
+    padding: 0;
+    margin: 5px;
+}
+
+.upload-image-hidden{
+    display: none;
+    padding: 0;
+    margin: 5px;
+}
+.submit-image-hidden{
+    display: none;
+}
+.submit-image{
+    padding: 10;
+    margin: 10;
+}
+ul{
+    padding-left: 4%;
+    padding-right: 4%;
+    margin:0;
+    margin-top: 5%;
+    list-style: none;
+}
+li{
+    color: rgb(208, 192, 192);
+    padding: 0.5%;
+    font-size: medium;
+}
+.list-item{
+    display: flex;
+    align-items: center;
+}
+.list-item-name{
+    justify-content: center;
+    color: aliceblue;
+}
+.list-item-content{
+    display:none;
+}
+.list-item-content-hidden{
+    width: 100%;
+    text-align: right;
+}
+.list-item-content-hidden a{
+    color: rgb(189, 188, 186);
+    text-decoration: none;
+}
+.list-item-content a:hover{
+    color: rgb(189, 188, 186);
+    text-decoration: underline;
+}
+.list-item-input{
+    padding:0;
+    font-size: medium;
+    margin-bottom: 0;
+    margin-top:0;
+    margin-left: 2%;
+}
+.list-item-input-hidden{
+    display: none;
+}
+.user-profile-links-container button{
+    margin:0%;
+    justify-content: center;
+    margin-left: 35%;
+    width:30%;
+}
+.field{
+    display: flex;
+}
+.field-name{
+    font-size: large;
+    padding: 0px;
+    justify-content: center;
+    color: aliceblue;
+}
+.field-value-hidden{
+    width: 100%;
+    text-align: center;
+}
+.field-value{
+    display:none;
+}
+.field-input-hidden{
+    display:none;
+}
+.field-input{
+    width: 100%;
+    padding:0;
+    font-size: large;
+    margin-bottom: 0;
+    margin-top:0;
+    margin-left: 2%;
+}
+.user-details-container button{
+    margin:0%;
+    justify-content: center;
+    margin-left: 35%;
+    width:30%;
+}
+.bar-container{
+    display: flex;
+    flex-direction: column;
+}
+.platform-name{
+    color: aliceblue;
+    margin: 10px;
+    font-size: large;
+}
+.full-length-bar{
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+}
+.leetcode-bar{
+    justify-content:right ;
+    height:1vh;
+    width:50%;
+    background-color: rgb(255, 145, 0);
+}
+.codeforces-bar{
+    justify-content:right ;
+    height:1vh;
+    width:70%;
+    background-color: rgb(255, 145, 0);
+}
+.codechef-bar{
+    justify-content:right ;
+    height:1vh;
+    width:40%;
+    background-color: rgb(255, 145, 0);
+}
+
+@media (max-width: 800px) {
+    .user-page-container {
+      flex-direction: column;
+    }
+    .user-left-container{
+        width:100%;
+    }
+    .user-right-container{
+        width: 100%;
+    }
+  }
