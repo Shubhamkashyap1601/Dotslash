@@ -2,54 +2,53 @@
     Resources home page
 */
 
-
 .home-resources {
-    width: 100%;
-    height: 100%;
-    color: red;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  color: red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .domain-card {
-    width: 20vw;
-    height: 40vh;
-    border-radius: 5px 5px 25px 25px;
-    margin: 0% 2vw 0% 2vw;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
+  width: 20vw;
+  height: 40vh;
+  border-radius: 5px 5px 25px 25px;
+  margin: 0% 2vw 0% 2vw;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
 .domain-card a {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .domain-card-image {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .domain-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    height: 20%;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .domain-title h3 {
-    color: white;
-    font-size: 100%;
-    text-shadow: 5%;
+  color: white;
+  font-size: 100%;
+  text-shadow: 5%;
 }
 
 /*
@@ -57,63 +56,64 @@
 */
 
 .menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 15vh;
-    padding-top: 3%;
-    background-color: rgba(40, 40, 40, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 15vh;
+  padding-top: 3%;
+  background-color: rgba(40, 40, 40, 0.95);
 }
 
 .menu-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 50%;
-    color: white;
-    text-decoration: bold;
-    font-size: 225%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+  color: white;
+  text-decoration: bold;
+  font-weight: bold;
+  font-size: 225%;
 }
 
 .resources-menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 75%;
-    height: 50%;
-    margin: 1.5%;
-    background-color: rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  height: 50%;
+  margin: 1.5%;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 }
 
 .resources-menu input[type="radio"] {
-    visibility: hidden;
-    height: 0;
-    width: 0;
+  visibility: hidden;
+  height: 0;
+  width: 0;
 }
 
-.resources-menu input[type="radio"]:checked+label {
-    background-color: rgba(255, 168, 5, 0.80);
-    color: black;
+.resources-menu input[type="radio"]:checked + label {
+  background-color: rgba(255, 168, 5, 0.8);
+  color: black;
 }
 
 label {
-    display: flex;
-    width: 100%;
-    height: 80%;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 130%;
-    transition: all .15s ease-out;
+  display: flex;
+  width: 100%;
+  height: 80%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 130%;
+  transition: all 0.15s ease-out;
 }
 
 /* 
@@ -121,45 +121,36 @@ label {
 */
 
 table {
-    width: 80%;
-    height: auto;
-    margin-top: 1%;
+  margin-top: 1%;
 }
 
 thead th:nth-child(1) {
-    width: 70%;
-    font-size: 120%;
+  width: 70%;
+  font-size: 120%;
 }
 
 thead th:nth-child(2) {
-    width: 30%;
-    font-size: 120%;
+  width: 30%;
+  font-size: 120%;
 }
 
-tbody {
-    background-color: rgba(40, 40, 40, 0.95);
-    color: white;
+.resource {
+  padding: 2%;
 }
 
-tbody a{
-    text-decoration: none;
+.resource-title {
+  text-decoration: underline;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 150%;
 }
 
-.resource{
-    padding: 2%;
+.resource-description {
+  font-size: 120%;
 }
 
-.resource-title{
-    text-decoration: underline;
-    margin-bottom: 10px;
-    font-size: 150%;
-}
-
-.resource-description{
-    font-size: 120%;
-}
-
-.resource-owner{
-    text-align: center;
-    font-size: 130%;
+.resource-owner {
+  text-align: center;
+  font-weight: bold;
+  font-size: 130%;
 }

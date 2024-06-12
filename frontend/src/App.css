@@ -1,23 +1,68 @@
 body {
-  background-color: #000000;
-  font-family: Arial, sans-serif;
-  margin: 0;
   display: block;
   width: 100vw;
   height: 100vh;
-} 
+  background-color: #000000;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
 
-#root{
-  width: 100vw;
-  height: 100vh;
-  /* background-color: #111; */
-  /* background-color: rgba(21 , 21, 21, 0.75); */
-  background: rgb(33,33,33);
-  background: linear-gradient(0deg, rgb(23 23 23) 0%, rgb(43 43 43) 100%);
-  /* background-color: rgb(17 17 17); */
-  display: flex;  
+#root {
+  display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(33, 33, 33);
+  background: linear-gradient(0deg, rgb(23 23 23) 0%, rgb(43 43 43) 100%);
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+/*
+  CSS for tables 
+*/
+
+table {
+  width: 80%;
+  height: auto;
+  font-family: Rubik;
+  color: white;
+  border: 1px solid white;
+  border-collapse: collapse;
+  font-size: 120%;
+  border-radius: 8px;
+  overflow-x: auto;
+  overflow: hidden;
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.15);
+}
+
+thead {
+  background-color: rgba(0, 0, 0, 0.306);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.46);
+  color: white;
+  border-radius: 8px;
+}
+
+tbody {
+  background-color: rgba(40, 40, 40, 0.95);
+  color: white;
+}
+
+tbody a {
+  text-decoration: none;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(47, 47, 47, 0.272);
+}
+
+tbody tr:hover {
+  background-color: rgba(224, 224, 224, 0.68);
+  color: black;
+}
+
+th,
+td {
+  padding: 10px;
 }

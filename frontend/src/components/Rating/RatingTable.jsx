@@ -1,38 +1,31 @@
-import React from 'react'
-import './Rating.css'
+import React from "react";
+import "./Rating.css";
 
-function RatingTable({platform, platform_img, users}) {
+function RatingTable({ users }) {
   return (
     <>
-        <div className='rating-table'>
-          <div className='rating-table-header'>
-            {/* <img className='table-platform-img' src={platform_img} alt="platform-image" />   */}
-            {/* <p className="table-header-title">{platform}</p> */}
-          </div>
-          <div className='rating-table-body'>
-            <table>
-              <thead>
-                <th className='heading-rank'>Rank</th>
-                <th>Username</th>
-                <th>Current Rating</th>
-              </thead>
-              <tbody>
-            {   users.map((user) => {
-                return (
-                    <tr>
-                      <td className='table-user-rank'>{user.rank}</td>
-                      <td className='table-user-name'>{user.name}</td>
-                      <td className='table-user-rating'>{parseInt(user.rating)}</td>
-                    </tr>
-                     )
-              })
-            }
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <table>
+          <thead className="rating-thead">
+            <tr>
+              <th>Rank</th>
+              <th>Username</th>
+              <th>Current Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => {
+              return (
+                <tr>
+                  <td className="rating-table-data">{user.rank}</td>
+                  <td className="rating-table-data">{user.name}</td>
+                  <td className="rating-table-data">{parseInt(user.rating)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
     </>
-  )
+  );
 }
 
-export default RatingTable
+export default RatingTable;
