@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import './user.css'
 import { useState } from 'react';
 import { useLoginContext } from '../../context/LoginContext';
+import edit from '../../assets/edit.png'
 
 
 function UserPageTemplate({User}) {
@@ -251,7 +252,7 @@ function UserPageTemplate({User}) {
             </div>
             <div className="user-right-container">
             <div class="user-details-container">
-              {isOwner && (<img src='../../../src/assets/edit.png' alt="Edit" class="edit-about-me" onClick={changeDetailInputVisibility}></img>)}
+              {isOwner && (<img src={edit} alt="Edit" class="edit-about-me" onClick={changeDetailInputVisibility}></img>)}
               <div class="user-details-title">About Me:</div>
               <div class="user-details-content" contenteditable="false">{aboutMeText}</div>
 

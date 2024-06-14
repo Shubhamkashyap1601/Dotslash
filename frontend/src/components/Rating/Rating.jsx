@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import RatingTable from "./RatingTable";
 
+import cf from '../../assets/cf_img.webp'
+import leetcode from '../../assets/leetcode_img.png'
+import codechef from '../../assets/codechef_img.jpg'
+
 function Rating() {
   const [selectedPlatform, setSelectedPlatform] = useState("CodeForces");
   const [usersCodeForces, setUsersCodeForces] = useState([]);
@@ -42,10 +46,10 @@ function Rating() {
         <img
           src={
             selectedPlatform === "CodeForces"
-              ? "../../src/assets/cf_img.webp"
+              ? cf
               : selectedPlatform === "LeetCode"
-              ? "../../src/assets/leetcode_img.png"
-              : "../../src/assets/codechef_img.jpg"
+              ? leetcode
+              : codechef
           }
           alt="platform"
           style={{ width: "50px", height: "50px" }}
@@ -73,10 +77,10 @@ function Rating() {
           platform={selectedPlatform}
           platform_img={
             selectedPlatform === "CodeForces"
-              ? "../../src/assets/cf_img.webp"
+              ? cf
               : selectedPlatform === "LeetCode"
-              ? "../../src/assets/leetcode_img.png"
-              : "../../src/assets/codechef_img.jpg"
+              ? leetcode
+              : codechef
           }
           users={users}
         />
