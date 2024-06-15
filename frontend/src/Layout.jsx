@@ -24,6 +24,7 @@ function Layout() {
      fetch('/api/authorized', 
          {
          method: 'GET',
+         credentials: 'include',
          }
      )
      .then(async(response) => {
