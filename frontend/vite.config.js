@@ -18,9 +18,6 @@ export default defineConfig(({ mode }) => {
       },
       port: PORT,
     },
-    build: {
-      outDir: 'public',
-    },
     plugins: [react()],
   };
 });

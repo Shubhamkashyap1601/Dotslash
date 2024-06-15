@@ -19,11 +19,12 @@ const Form = ({ formType, inputFields }) => {
   const sendDataToBackend = async (data) => {
     setIsDisabled(true);
     if (formType === "Login") {
-      fetch('/api/login', {
+      fetch(`${import.meta.env.VITE_BACKEND_URI}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body: JSON.stringify(data),
       })
       .then(async(response) => {
@@ -48,12 +49,13 @@ const Form = ({ formType, inputFields }) => {
         });
       }
       else {
-      fetch('/api/register', {
+      fetch(`${import.meta.env.VITE_BACKEND_URI}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: 'include'
       })
       .then((response) => response.json())
       .then((data) => {

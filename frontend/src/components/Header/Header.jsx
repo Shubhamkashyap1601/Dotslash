@@ -10,7 +10,7 @@ const Header = () => {
 
   const logout = async()=>{
     try {
-      const response = await fetch('/api/logout',{method:"POST"})
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/logout`,{method:"POST",credentials: 'include'})
       if(!response.ok){
         console.error("Error occured while logging out :",response)
       }
