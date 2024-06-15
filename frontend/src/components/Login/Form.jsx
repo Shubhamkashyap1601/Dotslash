@@ -24,6 +24,7 @@ const Form = ({ formType, inputFields }) => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body: JSON.stringify(data),
       })
       .then(async(response) => {
@@ -54,6 +55,7 @@ const Form = ({ formType, inputFields }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: 'include'
       })
       .then((response) => response.json())
       .then((data) => {
