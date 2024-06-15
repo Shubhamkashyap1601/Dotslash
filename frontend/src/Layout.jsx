@@ -19,27 +19,25 @@ function Layout() {
 
   let data = null;
   const isAuthorized = async () => {
-    setTimeout(() => {
-        try {
-            fetch("/api/authorized", {
-              method: "GET",
-              credentials: "include",
-            }).then(async (response) => {
-              if (response.ok) {
-                data = await response.json();
-                LogIn();
-                setUsername(data.data);
-              } else {
-                LogOut();
-                toast.warning("Please Login to view restricted content", {
-                  position: toast.POSITION.BOTTOM_LEFT,
-                });
-              }
-            });
-          } catch (error) {
-            console.error(error);
-          }
-    }, 2000);
+    try {
+      fetch(`${import.meta.env.VITE_BACKEND_URI}/authorized`, {
+        method: "GET",
+        credentials: "include",
+      }).then(async (response) => {
+        if (response.ok) {
+          data = await response.json();
+          LogIn();
+          setUsername(data.data);
+        } else {
+          LogOut();
+          toast.warning("Please Login to view restricted content", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
   useEffect(() => {
     isAuthorized();
