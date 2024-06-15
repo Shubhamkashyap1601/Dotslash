@@ -22,3 +22,8 @@
     height: 30%;
     display: inline-block;
   }  
+  @media (max-width: 768px) {
+    .side-image {
+      display: none;
+    }
+  }

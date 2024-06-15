@@ -80,3 +80,14 @@
     color: white;
     font-size: 14px;
   }
+
+  
+@media (max-width: 768px) {
+  .login-container{
+    width: 100vw;
+    /* height: 100vh; */
+  }
+  .authentication-page{
+    width: 100%;
+  }
+}
