@@ -31,6 +31,7 @@ const generateAccessAndRefreshTokens = async (userId) => {
 const options = {
   httpOnly: true,
   secure: true,
+  sameSite: 'None',
 };
 
 const registerStudent = asyncHandler(async (req, res) => {
