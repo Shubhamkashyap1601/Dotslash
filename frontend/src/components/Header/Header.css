@@ -96,9 +96,6 @@ a{
     position: absolute;
     left: 0;
     top: 0;
-    bottom: 0;
-    padding-left: 20px; /* Adjust as needed */
-    width: auto; /* Adjust as needed */
   }
 
   .navGroup {
