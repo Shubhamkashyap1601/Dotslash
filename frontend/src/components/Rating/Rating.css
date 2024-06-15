@@ -114,3 +114,14 @@
 .bgclr-3 {
   background-color: rgba(255, 140, 0, 1);
 }
+
+
+@media (max-width: 768px) {
+  .rating-cards{
+    flex-direction: column;
+    align-items: center;
+  }
+  .home-rating-card {
+    width: 80%;
+  }
+}
