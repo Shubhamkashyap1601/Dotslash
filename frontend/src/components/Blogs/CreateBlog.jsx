@@ -15,6 +15,7 @@ function CreateBlog() {
     fetch(`${import.meta.env.VITE_BACKEND_URI}/create-blog`, {
       method: "POST",
       body: data,
+      credentials: 'include'
     })
       .then((response) => {
         if (response.ok) navigate('../blogs');

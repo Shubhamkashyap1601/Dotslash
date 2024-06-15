@@ -28,6 +28,7 @@ function BlogTemplate({ blog }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ _id: blog._id }),
+        credentials: 'include'
       });
 
       if (response.ok) {

@@ -14,6 +14,7 @@ function BlogMainPage() {
         headers: {
             "Content-Type": "application/json",
         },
+        credentials: 'include'
       })
       if(response.ok){
           const data = await response.json();
