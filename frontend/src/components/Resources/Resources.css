@@ -7,7 +7,8 @@
   height: 100%;
   color: red;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
 }
@@ -153,4 +154,29 @@ thead th:nth-child(2) {
   text-align: center;
   font-weight: bold;
   font-size: 130%;
+}
+
+
+@media (max-width: 768px) {
+ .home-resources{
+  flex-direction: column;
+ }
+ .domain-card{
+  width: 40%;
+  height: 100%;
+  margin-bottom: 5vh;
+ }
+ .resource-description{
+  font-size: medium;
+ }
+ .resource-owner{
+  font-size: large;
+ }
+ .resource-title{
+  font-size: large;
+ }
+ thead th:nth-child(1) {
+  width: 50%;
+  font-size: 120%;
+}
 }
