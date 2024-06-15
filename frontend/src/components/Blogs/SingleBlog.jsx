@@ -10,7 +10,7 @@ function SingleBlog() {
   const fetchBlog = async () => {
     try {
 
-      const response = await fetch(`/api/blog/${blogId}`, { method: "GET" });
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/blog/${blogId}`, { method: "GET" });
       if (response.ok) {
         const res = await response.json();
         // console.log(res);

@@ -12,7 +12,7 @@ function CreateBlog() {
 
   const sendDataToBackend = async (data) => {
     setIsDisabled(true);
-    fetch('/api/create-blog', {
+    fetch(`${import.meta.env.VITE_BACKEND_URI}/create-blog`, {
       method: "POST",
       body: data,
     })

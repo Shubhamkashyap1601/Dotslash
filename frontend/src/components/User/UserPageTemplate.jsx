@@ -45,7 +45,7 @@ function UserPageTemplate({User}) {
 
   const updateHandles = async()=>{
     try {
-      const response = await fetch('/api/updateHandles',{
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updateHandles`,{
         method : 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -99,7 +99,7 @@ function UserPageTemplate({User}) {
     const formData = new FormData();
     formData.append('pfp', pfpRef.current.files[0]);
     try {
-      const response = await fetch('/api/updatePfp',{method : 'POST',body : formData})
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updatePfp`,{method : 'POST',body : formData})
       if(response.ok)
       {
         setUser((prev)=>
@@ -117,7 +117,7 @@ function UserPageTemplate({User}) {
   }
   const updateRating = async()=>{
     try {
-      const response = await fetch(`/api/updateRating/${user.username}`)
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updateRating/${user.username}`)
       if(response.ok)
       {
         const res = await response.json();

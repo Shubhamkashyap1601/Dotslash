@@ -13,7 +13,7 @@ const DomainResources = ({ domainTitle, domain }) => {
 
     const fetchResources = async () => {
         let data;
-        data = await fetch(`/api/resources?domain=${domain}&type=${type}`, {
+        data = await fetch(`${import.meta.env.VITE_BACKEND_URI}/resources?domain=${domain}&type=${type}`, {
             method: "GET",
         });
         if(data.ok){

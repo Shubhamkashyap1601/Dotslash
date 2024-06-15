@@ -22,7 +22,7 @@ function BlogTemplate({ blog }) {
       setLikeEmoji("💖");
     }
     try {
-      const response = await fetch("/api/like", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/like`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

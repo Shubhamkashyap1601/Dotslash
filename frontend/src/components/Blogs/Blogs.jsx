@@ -8,7 +8,7 @@ function Blogs() {
     const fetchData = async () => {
         let response;
         try {
-                response = await fetch('/api/fetch-blogs', {
+                response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/fetch-blogs`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
