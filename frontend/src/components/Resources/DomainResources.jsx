@@ -15,6 +15,7 @@ const DomainResources = ({ domainTitle, domain }) => {
         let data;
         data = await fetch(`${import.meta.env.VITE_BACKEND_URI}/resources?domain=${domain}&type=${type}`, {
             method: "GET",
+            credentials: 'include'
         });
         if(data.ok){
             const dataInJson = await data.json();

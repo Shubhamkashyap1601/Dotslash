@@ -9,7 +9,7 @@ function UserPage() {
     const [user,setUser] = useState();
     const fetchUserInfo = async()=>{
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/user/${username}`, { method: "GET" });
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/user/${username}`, { method: "GET", credentials: 'include'});
             if(response.ok)
             {
                 const res = await response.json();

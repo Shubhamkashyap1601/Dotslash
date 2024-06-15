@@ -50,6 +50,7 @@ function UserPageTemplate({User}) {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body : JSON.stringify(formData)})
       if(response.ok)
       {
@@ -99,7 +100,7 @@ function UserPageTemplate({User}) {
     const formData = new FormData();
     formData.append('pfp', pfpRef.current.files[0]);
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updatePfp`,{method : 'POST',body : formData})
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updatePfp`,{method : 'POST',credentials: 'include',body : formData})
       if(response.ok)
       {
         setUser((prev)=>
@@ -117,7 +118,7 @@ function UserPageTemplate({User}) {
   }
   const updateRating = async()=>{
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updateRating/${user.username}`)
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updateRating/${user.username}`,{credentials: 'include'})
       if(response.ok)
       {
         const res = await response.json();
