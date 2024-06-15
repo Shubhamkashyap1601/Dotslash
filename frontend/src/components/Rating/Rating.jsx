@@ -25,7 +25,7 @@ function Rating() {
 
   const fetchRankings = async () => {
     try {
-      const response = await fetch(import.meta.env.VITE_BACKEND_URI + '/fetchRankings`);
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/fetchRankings`);
       const res = await response.json();
       // console.log(res);
       setUsersCodeForces(res.data.codeforceRanking);
