@@ -397,3 +397,12 @@ body.dark-mode {
   margin: 0;
   padding: 12px;
 }
+
+@media (max-width: 768px) {
+  .home-blog-container{
+    flex-direction: column;
+  }
+  .blog-card{
+    width: 50%;  
+  }
+}

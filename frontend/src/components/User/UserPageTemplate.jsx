@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import './user.css'
 import { useState } from 'react';
 import { useLoginContext } from '../../context/LoginContext';
+import edit from '../../assets/edit.png'
 
 
 function UserPageTemplate({User}) {
@@ -44,11 +45,12 @@ function UserPageTemplate({User}) {
 
   const updateHandles = async()=>{
     try {
-      const response = await fetch('/api/updateHandles',{
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updateHandles`,{
         method : 'POST',
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body : JSON.stringify(formData)})
       if(response.ok)
       {
@@ -98,7 +100,7 @@ function UserPageTemplate({User}) {
     const formData = new FormData();
     formData.append('pfp', pfpRef.current.files[0]);
     try {
-      const response = await fetch('/api/updatePfp',{method : 'POST',body : formData})
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updatePfp`,{method : 'POST',credentials: 'include',body : formData})
       if(response.ok)
       {
         setUser((prev)=>
@@ -116,7 +118,7 @@ function UserPageTemplate({User}) {
   }
   const updateRating = async()=>{
     try {
-      const response = await fetch(`/api/updateRating/${user.username}`)
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/updateRating/${user.username}`,{credentials: 'include'})
       if(response.ok)
       {
         const res = await response.json();
@@ -251,7 +253,7 @@ function UserPageTemplate({User}) {
             </div>
             <div className="user-right-container">
             <div class="user-details-container">
-              {isOwner && (<img src='../../../src/assets/edit.png' alt="Edit" class="edit-about-me" onClick={changeDetailInputVisibility}></img>)}
+              {isOwner && (<img src={edit} alt="Edit" class="edit-about-me" onClick={changeDetailInputVisibility}></img>)}
               <div class="user-details-title">About Me:</div>
               <div class="user-details-content" contenteditable="false">{aboutMeText}</div>
 

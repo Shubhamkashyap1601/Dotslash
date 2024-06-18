@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
 import {useLoginContext} from '../../context/LoginContext.js';
+import dotslashLogo from "../../assets/dotslashLogo.png";
 
 const Header = () => {
 
@@ -9,9 +10,9 @@ const Header = () => {
 
   const logout = async()=>{
     try {
-      const response = await fetch('/api/logout',{method:"POST"})
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/logout`,{method:"POST",credentials: 'include'})
       if(!response.ok){
-        console.error("Error occured while logging out :",error)
+        console.error("Error occured while logging out :",response)
       }
       else{
         LogOut()
@@ -31,7 +32,7 @@ const Header = () => {
       <header className='navBar'>
         <div className='side-image-nav-bar'>
           <NavLink className="Logo" to="/">
-            <img src='./src/assets/dotslashLogo.png' alt="logo" id='logo1'/>
+            <img src={dotslashLogo} alt="logo" id='logo1'/>
           </NavLink>
         </div>
         <div className="navbar-toggle" onClick={toggleMenu}>

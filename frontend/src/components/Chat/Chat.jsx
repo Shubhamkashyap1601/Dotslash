@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Chat.css'; 
 import Message from './Message';
+import add from '../../assets/add.png';
 
 const Chat = () => {
   const [selectedTopic, setSelectedTopic] = useState(null);
@@ -74,7 +75,7 @@ const Chat = () => {
         ) : (
           <div className='create-topic-button' onClick={handleCreateTopicToggle}>
             <img
-              src='../../src/assets/add.png'
+              src={add}
               alt="Create Topic"
               style={{ width: '24px', height: '24px' , cursor: 'pointer' }} 
             />

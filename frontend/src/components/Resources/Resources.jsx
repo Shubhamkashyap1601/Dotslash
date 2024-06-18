@@ -1,27 +1,30 @@
 import React from "react";
 import DomainCard from "./DomainCard";
 import "./Resources.css";
-
+import cpdsa from "../../assets/cpdsa.png";
+import webd from "../../assets/webd.jpeg";
+import appd from "../../assets/appd.jpg";
+import ml from "../../assets/ml.jpeg";
 const Resources = () => {
     const domainCards = [
         {
             title: "CP/DSA",
-            imgSrc: './src/assets/cpdsa.png',
+            imgSrc: cpdsa,
             target: "cpdsa",
         },
         {
             title: "Web Development",
-            imgSrc: './src/assets/webd.jpeg',
+            imgSrc: webd,
             target: "webdev",
         },
         {
             title: "App Development",
-            imgSrc: './src/assets/appd.jpg',
+            imgSrc: appd,
             target: "appdev",
         },
         {
             title: "Machine Learning",
-            imgSrc: './src/assets/ml.jpeg',
+            imgSrc: ml,
             target: "ml",
         }
     ]

@@ -31,6 +31,8 @@ const generateAccessAndRefreshTokens = async (userId) => {
 const options = {
   httpOnly: true,
   secure: true,
+  sameSite: 'None',
+  maxAge: 31536000,
 };
 
 const registerStudent = asyncHandler(async (req, res) => {
