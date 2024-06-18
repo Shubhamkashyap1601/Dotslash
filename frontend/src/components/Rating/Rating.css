@@ -106,11 +106,11 @@
 }
 
 .bgclr-1 {
-  background-color: rgba(255, 160, 0, 1);
+  background-color: rgba(255, 180, 0, 1);
 }
 .bgclr-2 {
-  background-color: rgba(255, 150, 0, 1);
+  background-color: rgba(255, 180, 0, 0.9);
 }
 .bgclr-3 {
-  background-color: rgba(255, 140, 0, 1);
+  background-color: rgba(255, 180, 0, 0.8);
 }

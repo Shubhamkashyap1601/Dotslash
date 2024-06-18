@@ -61,39 +61,35 @@ function BlogTemplate({ blog }) {
   }, [blog]);
   return (
     <>
-      {/* <nav> */}
-      {/* <NavLink to={`/api/blog/${blog._id}`}> */}
       <div className={`blog-container dark-mode`}>
         <nav>
           <NavLink to={`/blog/${blog._id}`} className="blog-nav">
             <h1 className="blog-title">{blog.title}</h1>
+            <div className="author-date">
+              <span className="author">{blog.author}</span>
+              <span className="date">{blog.createdAt}</span>
+            </div>
+            <div className="blog-body">
+              <div className="blog-body-image">
+                <img src={blog.imageURL} alt="Blog Image" />
+              </div>
+              <div className="blog-body-content">
+                <p>{blog.content}</p>
+              </div>
+            </div>
+            <div className="like-dislike">
+              <span
+                className="like-btn"
+                role="img"
+                aria-label="Like"
+                onClick={handleLikeClick}
+              >
+                {likeEmoji} {likes} Likes
+              </span>
+            </div>
           </NavLink>
         </nav>
-        <div className="author-date">
-          <span className="author">{blog.author}</span>
-          <span className="date">{blog.createdAt}</span>
-        </div>
-        <div className="blog-body">
-          <div className="blog-body-image">
-            <img src={blog.imageURL} />
-          </div>
-          <div className="blog-body-content">
-            <p>{blog.content}</p>
-          </div>
-        </div>
-        <div className="like-dislike">
-          <span
-            className="like-btn"
-            role="img"
-            aria-label="Like"
-            onClick={handleLikeClick}
-          >
-            {likeEmoji} {likes} Likes
-          </span>
-        </div>
       </div>
-      {/* // </NavLink> */}
-      {/* </nav> */}
     </>
   );
 }

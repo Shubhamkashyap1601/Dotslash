@@ -33,7 +33,7 @@ function Blogs() {
             <>
                 <div className="home-blog">
                     <div className="home-blog-header">
-                        Most liked blogs!
+                        Top Blogs!
                     </div>
                     <div className="home-blog-container">
                         { blogs.map((blog) => (<HomeBlogCard blog={blog} />)) }

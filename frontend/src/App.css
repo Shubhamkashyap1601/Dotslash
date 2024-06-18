@@ -62,6 +62,10 @@ tbody tr:hover {
   color: black;
 }
 
+tbody tr:hover a {
+  color: black;
+}
+
 th,
 td {
   padding: 10px;
