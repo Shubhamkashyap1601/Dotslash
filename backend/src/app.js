@@ -2,6 +2,7 @@ import express from "express";
 import homeRouter from "./routes/student.routes.js"
 import blogRouter from "./routes/blog.routes.js"
 import resourceRouter from "./routes/resource.routes.js"
+import chatRouter from "./routes/chat.routes.js"
 import cors from "cors";
 import cookieParser from "cookie-parser" 
 
@@ -20,5 +21,6 @@ app.use(cookieParser())
 app.use("/api",homeRouter);
 app.use("/api",blogRouter);
 app.use("/api",resourceRouter);
+app.use("/api", chatRouter)
 
 export {app};
